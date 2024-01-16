@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 14:29:37 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/16 14:34:14 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/12 12:10:11 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/16 16:08:23 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	unsigned char	*ptr;
+	size_t	i;
+	size_t	src_len;
+	size_t	dst_len;
 
-	ptr = (unsigned char *)s;
-	while (n > 0)
+	i = 0;
+	src_len = ft_strlen(src);
+	dst_len = ft_strlen(dst);
+	if (dstsize < dst_len + 1)
+		return (src_len + dstsize);
+	if (dstsize > dst_len + 1)
 	{
-		if (*ptr == c)
-			return (ptr);
-		n--;
+		i = 0;
+		while (src[i] && i + dst_len < dstsize - 1)
+		{
+			dst[i + dst_len] = src[i];
+			i++;
+		}
+		dst[i + dst_len] = '\0';
 	}
-	return (0);
+	return (dst_len + src_len);
 }
-
-//Faltan pruebas
+//ESTA MAL

@@ -1,6 +1,20 @@
-int ft_strncmp(const char *s1, const char *s2, size_t n)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/16 14:29:48 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/16 16:18:15 by dlopez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	if (n == 0)
@@ -13,4 +27,3 @@ int ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (s1[i] - s2[i]);
 }
-

@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 14:29:37 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/16 14:34:14 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/11 17:29:17 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/12 16:45:23 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*ptr;
+	size_t			i;
+	unsigned char	*a;
+	unsigned char	*b;
 
-	ptr = (unsigned char *)s;
-	while (n > 0)
+	a = (unsigned char *)dst;
+	b = (unsigned char *)src;
+	if (a < b)
 	{
-		if (*ptr == c)
-			return (ptr);
-		n--;
+		i = 0;
+		while (i < len)
+		{
+			a[i] = b[i];
+			i++;
+		}
 	}
-	return (0);
+	else
+	{
+		i = len;
+		while (i > 0)
+		{
+			i--;
+			a[i] = b[i];
+		}
+	}
+	return (dst);
 }
-
-//Faltan pruebas

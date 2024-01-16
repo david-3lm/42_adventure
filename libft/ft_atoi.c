@@ -1,29 +1,41 @@
-int ft_atoi(const char *nptr)
-{
-	int count;
-	int num;
-	int aux;
-	int i;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/16 14:29:25 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/16 15:20:28 by dlopez-l         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	count = strlen(nptr);
-	num = 0;
-	while (*nptr)
+#include "libft.h"
+
+int	ft_atoi(const char *nptr)
+{
+	int	aux;
+	int	neg;
+
+	aux = 0;
+	while (!ft_isalnum(*nptr) && *nptr != '-')
+		nptr++;
+	if (*nptr == '-')
 	{
-		if ((*nptr < '0' || *nptr > '9') && count)
-			return (0);
-		else
-		{
-			i = 0;
-			aux = (*nptr - '0');
-			while (i < count - 1)
-			{
-				aux *= 10;
-				i++;
-			}
-			num += aux;
-			count--;
-		}
+		neg = -1;
 		nptr++;
 	}
-	return (num);
+	else
+		neg = 1;
+	if (!ft_isdigit(*nptr))
+		return (0);
+	aux += (*nptr - '0');
+	nptr++;
+	while (ft_isdigit(*nptr))
+	{
+		aux *= 10;
+		aux += (*nptr - '0');
+		nptr++;
+	}
+	return (aux * neg);
 }
