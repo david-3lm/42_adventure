@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:24:12 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/18 16:00:59 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:04:12 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	*ft_itoa(int n)
 		nbr = n;
 	units = count_units(nbr) + is_neg;
 	res = malloc(units + 1);
+	if (!res)
+		return (0);
 	res[units] = 0;
 	units--;
 	while (units >= is_neg)

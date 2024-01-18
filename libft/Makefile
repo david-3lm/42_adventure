@@ -9,8 +9,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
-	gcc main.c -L. -l ft -o main
-	./main
+#	gcc main.c -L. -l ft -o main
+#	./main
 clean:
 	$(RM) $(OBJ)
 

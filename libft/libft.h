@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:46:39 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/18 16:49:49 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:02:43 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_calloc(size_t count, size_t size);
+char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *big, const char *little, size_t len);

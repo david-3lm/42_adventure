@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:44:29 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/18 16:46:35 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:54:48 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ void	ft_putstr_fd(char *s, int fd)
 	size_t	size;
 
 	size = ft_strlen(s);
-	write(1, s, size);
+	write(fd, s, size);
 }
