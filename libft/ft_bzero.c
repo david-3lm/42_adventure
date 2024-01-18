@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:13:56 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/12 18:25:03 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:58:37 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 void	*ft_bzero(void *b, size_t len)
 {
-	if (len == 0)
-		return (0);
 	return (ft_memset(b, '\0', len));
 }
