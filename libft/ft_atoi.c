@@ -26,15 +26,16 @@ int	ft_atoi(const char *nptr)
 		nptr++;
 	}
 	else
+	{
 		neg = 1;
+		if (*nptr == '+')
+			nptr++;
+	}
 	if (!ft_isdigit(*nptr))
 		return (0);
-	aux += (*nptr - '0');
-	nptr++;
 	while (ft_isdigit(*nptr))
 	{
-		aux *= 10;
-		aux += (*nptr - '0');
+		aux = aux * 10 + (*nptr - '0');
 		nptr++;
 	}
 	return (aux * neg);
