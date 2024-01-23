@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:29:40 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/18 16:29:10 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:34:39 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	ptr2 = (unsigned char *)s2;
 	if (n == 0)
 		return (0);
-	while (ptr1[i] && ptr2[i] && i < n - 1)
+	while (i < n - 1)
 	{
 		if (ptr1[i] != ptr2[i])
 			return (ptr1[i] - ptr2[i]);
@@ -31,5 +31,3 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (ptr1[i] - ptr2[i]);
 }
-
-//Faltan pruebas

@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 12:10:11 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/18 16:29:23 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:09:54 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	}
 	return (dst_len + src_len);
 }
-//ESTA MAL

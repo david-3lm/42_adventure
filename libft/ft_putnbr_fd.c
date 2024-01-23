@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:49:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/18 16:51:55 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:42:14 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,27 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	*str;
+	char	c;
 
-	str = ft_itoa(n);
-	ft_putstr_fd(str, fd);
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else
+	{
+		if (n < 0)
+		{
+			n *= -1;
+			write(fd, "-", 1);
+		}
+
+		if (n <= 9)
+		{
+			c = n + '0';
+			write(fd, &c, 1);
+		}
+		else
+		{
+			ft_putnbr_fd(n / 10, fd);
+			ft_putnbr_fd(n % 10, fd);
+		}
+	}
 }

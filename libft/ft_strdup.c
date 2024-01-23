@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:18:55 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/18 11:58:53 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:39:26 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ char	*ft_strdup(const char *s1)
 	size_t	len;
 	char	*ptr;
 
-	len = ft_strlen(s1);
+	len = ft_strlen(s1) + 1;
 	ptr = malloc(len);
-	if (ptr)
-		ft_strlcpy(ptr, s1, len);
+	if (!ptr)
+		return (0);
+	ft_strlcpy(ptr, s1, len);
+	ptr[len - 1] = 0;
 	return (ptr);
 }

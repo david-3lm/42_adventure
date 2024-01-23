@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:13:02 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/18 11:59:00 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:47:19 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	first = get_first_char(s1, set);
 	last = get_last_char(s1, set);
-	trim = malloc(last - first);
+	if (first > last)
+		return ("");
+	trim = malloc(last - first + 2);
 	if (!trim)
 		return (0);
 	i = 0;
@@ -64,5 +66,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 		trim[i] = s1[first + i];
 		i++;
 	}
+	trim[i] = 0;
 	return (trim);
 }
