@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:30:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/23 16:45:41 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:52:04 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ char	**ft_split(char const *s, char c)
 	int		size;
 
 	if (!s)
-		return (0);
+	 	return (0);
 	words = count_words(s, c) + 1;
-	pptr = malloc(sizeof(char *) * (words));
+	pptr = (char **) malloc(sizeof(char *) * (words));
 	if (!pptr)
 		return (0);
 	i = 0;
@@ -91,10 +91,11 @@ char	**ft_split(char const *s, char c)
 	{
 		idx = idx_next_word(s, c, idx + size);
 		size = size_next_word(&s[idx], c);
-		pptr[i] = malloc(size + 1);
+		pptr[i] = (char *) malloc(size + 1);
 		if (!pptr[i])
 		{
 			free_mem(pptr, i);
+			free(pptr);
 			return (0);
 		}
 		ft_strlcpy(pptr[i], &s[idx], (int) size + 1);
