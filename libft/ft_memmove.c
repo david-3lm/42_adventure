@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 17:29:17 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/25 12:18:11 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:03:18 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	a = (unsigned char *)dst;
 	b = (unsigned char *)src;
+	if (!dst && !src)
+		return (dst);
 	if (a < b)
 	{
 		i = 0;

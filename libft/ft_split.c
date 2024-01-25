@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:30:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/25 12:52:04 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:29:12 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,54 @@ static int	count_words(char const *s, char c)
 	return (count);
 }
 
-static int	idx_next_word(char const *s, char c, int start)
+static int	idxnsize_next_word(char const *s, char c, int start, int *size)
 {
 	int	i;
+	int	siz;
 
 	i = start;
+	siz = 0;
 	while (s[i] == c)
 		i++;
+	while (s[i + siz] != c && s[i + siz])
+		siz++;
+	*size = siz;
 	return (i);
 }
 
-static int	size_next_word(char const *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != c && s[i])
-		i++;
-	return (i);
-}
-
-static void	free_mem(char **pptr, int i)
+static int	free_mem(char **pptr, int i)
 {
 	while (0 <= i)
 	{
 		free(pptr[i]);
 		i--;
 	}
+	free(pptr);
+	return (0);
+}
+
+static int	compute_array(char const *s, char c, char **pptr, int words)
+{
+	int	i;
+	int	idx;
+	int	size;
+
+	i = 0;
+	idx = 0;
+	size = 0;
+	while (i < words - 1)
+	{
+		idx = idxnsize_next_word(s, c, idx + size, &size);
+		pptr[i] = (char *) malloc(size + 1);
+		if (!pptr[i])
+		{
+			free_mem(pptr, i);
+			return (0);
+		}
+		ft_strlcpy(pptr[i], &s[idx], (int) size + 1);
+		i++;
+	}
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
@@ -77,7 +98,7 @@ char	**ft_split(char const *s, char c)
 	int		size;
 
 	if (!s)
-	 	return (0);
+		return (0);
 	words = count_words(s, c) + 1;
 	pptr = (char **) malloc(sizeof(char *) * (words));
 	if (!pptr)
@@ -85,22 +106,8 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	idx = 0;
 	size = 0;
-	while (*s == c)
-		s++;
-	while (i < words - 1)
-	{
-		idx = idx_next_word(s, c, idx + size);
-		size = size_next_word(&s[idx], c);
-		pptr[i] = (char *) malloc(size + 1);
-		if (!pptr[i])
-		{
-			free_mem(pptr, i);
-			free(pptr);
-			return (0);
-		}
-		ft_strlcpy(pptr[i], &s[idx], (int) size + 1);
-		i++;
-	}
-	pptr[i] = 0;
+	if (!compute_array(s, c, pptr, words))
+		return (0);
+	pptr[words - 1] = 0;
 	return (pptr);
 }
