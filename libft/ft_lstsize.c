@@ -19,6 +19,8 @@ int	ft_lstsize(t_list *lst)
 
 	i = 1;
 	aux = lst;
+	if (!aux)
+		return (0);	
 	while (aux->next != NULL)
 	{
 		aux = aux->next;
