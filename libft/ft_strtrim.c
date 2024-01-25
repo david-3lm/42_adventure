@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:13:02 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/23 17:47:19 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:48:26 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	get_first_char(char const *s1, char const *set)
 	int	i;
 
 	i = 0;
-	while (check_char(s1[i], set))
+	while (s1[i] && check_char(s1[i], set))
 		i++;
 	return (i);
 }
@@ -41,7 +41,7 @@ static int	get_last_char(char const *s1, char const *set)
 	int	i;
 
 	i = ft_strlen(s1) - 1;
-	while (check_char(s1[i], set))
+	while (i >= 0 && check_char(s1[i], set))
 		i--;
 	return (i);
 }
@@ -56,7 +56,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	first = get_first_char(s1, set);
 	last = get_last_char(s1, set);
 	if (first > last)
-		return ("");
+		last = first - 1;
 	trim = malloc(last - first + 2);
 	if (!trim)
 		return (0);
