@@ -17,13 +17,14 @@ $(NAME): $(OBJ)
 #	gcc main.c -L. -l ft -o main
 #	./main
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(OBJBONUS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-bonus: 
+bonus: $(OBJBONUS)
+	ar rcs $(NAME) $(OBJBONUS)
 
 .PHONY: all clean fclean re bonus
