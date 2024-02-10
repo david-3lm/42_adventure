@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/16 18:18:55 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/23 18:39:26 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+char	*ft_strdup(const char *s1)
 {
-	va_list			args;
-	int				i;
+	size_t	len;
+	char	*ptr;
 
-	va_start(args, format);
-	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-		}
-		i++;
-	}
-	va_end(args);
-	return (1);
+	len = ft_strlen(s1) + 1;
+	ptr = malloc(len);
+	if (!ptr)
+		return (0);
+	ft_strlcpy(ptr, s1, len);
+	ptr[len - 1] = 0;
+	return (ptr);
 }

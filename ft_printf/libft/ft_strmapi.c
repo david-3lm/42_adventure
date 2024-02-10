@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/18 16:14:17 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/23 14:26:03 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	va_list			args;
-	int				i;
+	char	*str;
+	size_t	size;
+	size_t	i;
 
-	va_start(args, format);
+	size = ft_strlen(s) + 1;
+	str = malloc(size);
+	if (!str)
+		return (0);
 	i = 0;
-	while (format[i])
+	while (i < size - 1)
 	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-		}
+		str[i] = (*f)(i, s[i]);
 		i++;
 	}
-	va_end(args);
-	return (1);
+	str[i] = 0;
+	return (str);
 }

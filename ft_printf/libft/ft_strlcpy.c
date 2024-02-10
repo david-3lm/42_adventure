@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/11 17:58:40 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/18 11:58:55 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	va_list			args;
-	int				i;
+	size_t	i;
+	size_t	src_len;
 
-	va_start(args, format);
 	i = 0;
-	while (format[i])
+	src_len = ft_strlen(src);
+	if (dstsize > 0)
 	{
-		if (format[i] == '%')
+		while (src[i] && i + 1 < dstsize)
 		{
+			dst[i] = src[i];
 			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
 		}
-		i++;
+		dst[i] = '\0';
 	}
-	va_end(args);
-	return (1);
+	return (src_len);
 }

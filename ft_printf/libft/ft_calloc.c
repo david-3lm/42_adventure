@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/16 16:12:43 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/23 11:55:07 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+void	*ft_calloc(size_t count, size_t size)
 {
-	va_list			args;
-	int				i;
+	void	*ptr;
 
-	va_start(args, format);
-	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-		}
-		i++;
-	}
-	va_end(args);
-	return (1);
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (ptr);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }

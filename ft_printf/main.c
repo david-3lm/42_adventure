@@ -12,8 +12,36 @@
 
 #include "libftprintf.h"
 
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+
+int	ft_printf(char const *format, ...)
+{
+	va_list			args;
+	int				i;
+
+	va_start(args, format);
+	i = 0;
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			i++;
+			if (format[i] == 'c')
+			{
+				char	*c = va_arg(args, char *);
+				write(1 , &c, 1);
+			}
+		}
+		i++;
+	}
+	va_end(args);
+	return (1);
+}
 
 int	main(void)
 {
-	printf("%d%d", 321, 543);
+	ft_printf("%c", "t");
 }

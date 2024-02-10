@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/11 16:59:21 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/30 13:43:10 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	va_list			args;
-	int				i;
+	size_t			i;
+	unsigned char	*a;
+	unsigned char	*b;
 
-	va_start(args, format);
+	a = (unsigned char *)dst;
+	b = (unsigned char *)src;
 	i = 0;
-	while (format[i])
+	if (!n || dst == src)
+		return (dst);
+	while (i < n)
 	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-		}
+		a[i] = b[i];
 		i++;
 	}
-	va_end(args);
-	return (1);
+	return (dst);
 }

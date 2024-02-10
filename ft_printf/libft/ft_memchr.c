@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/16 14:29:37 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/23 18:20:29 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	va_list			args;
-	int				i;
+	unsigned char	*ptr;
 
-	va_start(args, format);
-	i = 0;
-	while (format[i])
+	ptr = (unsigned char *)s;
+	while (n > 0)
 	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-		}
-		i++;
+		if (*ptr == (unsigned char)c)
+			return ((void *)ptr);
+		n--;
+		ptr++;
 	}
-	va_end(args);
-	return (1);
+	return (0);
 }
+
+//Faltan pruebas

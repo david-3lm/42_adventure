@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/11 12:06:55 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/18 11:58:50 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include <stdio.h>
 
-int	ft_printf(char const *format, ...)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	va_list			args;
-	int				i;
+	size_t			i;
+	unsigned char	*ptr;
 
-	va_start(args, format);
+	ptr = (unsigned char *)b;
 	i = 0;
-	while (format[i])
+	while (i < len)
 	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-		}
+		ptr[i] = (unsigned char)c;
 		i++;
 	}
-	va_end(args);
-	return (1);
+	return (b);
 }

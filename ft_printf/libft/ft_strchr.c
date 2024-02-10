@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/12 18:50:34 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/23 18:53:38 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-
-int	ft_printf(char const *format, ...)
+char	*ft_strchr(const char *s, int c)
 {
-	va_list			args;
-	int				i;
+	int	i;
 
-	va_start(args, format);
 	i = 0;
-	while (format[i])
+	while (s[i])
 	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-		}
+		if (s[i] == (char)c)
+			return ((char *) &s[i]);
 		i++;
 	}
-	va_end(args);
-	return (1);
+	if (s[i] == (char)c)
+		return ((char *) &s[i]);
+	return (0);
 }

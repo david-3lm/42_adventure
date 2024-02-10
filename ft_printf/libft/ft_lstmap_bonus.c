@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/26 12:02:16 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/30 12:46:38 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	va_list			args;
-	int				i;
+	t_list	*start;
+	t_list	*aux;
 
-	va_start(args, format);
-	i = 0;
-	while (format[i])
+	if (!f || !del)
+		return (0);
+	start = NULL;
+	while (lst)
 	{
-		if (format[i] == '%')
+		aux = ft_lstnew(f(lst->content));
+		if (!aux)
 		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
+			ft_lstclear(&start, del);
+			return (NULL);
 		}
-		i++;
+		ft_lstadd_back(&start, aux);
+		lst = lst->next;
 	}
-	va_end(args);
-	return (1);
+	return (start);
 }

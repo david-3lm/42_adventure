@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/16 14:29:48 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/23 13:16:37 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	va_list			args;
-	int				i;
+	size_t			i;
+	unsigned char	*us1;
+	unsigned char	*us2;
 
-	va_start(args, format);
 	i = 0;
-	while (format[i])
+	us1 = (unsigned char *) s1;
+	us2 = (unsigned char *) s2;
+	if (n == 0)
+		return (0);
+	while (us1[i] && us2[i] && i < n - 1)
 	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-		}
+		if (us1[i] != us2[i])
+			return (us1[i] - us2[i]);
 		i++;
 	}
-	va_end(args);
-	return (1);
+	return (us1[i] - us2[i]);
 }

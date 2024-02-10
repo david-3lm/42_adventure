@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/18 16:31:25 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/18 16:36:47 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	va_list			args;
-	int				i;
+	size_t	i;
 
-	va_start(args, format);
 	i = 0;
-	while (format[i])
+	if (s && (*f))
 	{
-		if (format[i] == '%')
+		while (s[i])
 		{
+			(*f)(i, &s[i]);
 			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
 		}
-		i++;
 	}
-	va_end(args);
-	return (1);
 }

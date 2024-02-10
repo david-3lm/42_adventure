@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/26 11:57:34 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/26 12:01:55 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	va_list			args;
-	int				i;
+	t_list	*aux;
 
-	va_start(args, format);
-	i = 0;
-	while (format[i])
+	aux = lst;
+	if (aux)
 	{
-		if (format[i] == '%')
+		while (aux->next)
 		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
+			if (aux->content)
+				(*f)(aux->content);
+			aux = aux->next;
 		}
-		i++;
+		(*f)(aux->content);
 	}
-	va_end(args);
-	return (1);
 }

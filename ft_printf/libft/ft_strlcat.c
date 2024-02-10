@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/12 12:10:11 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/23 18:09:54 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	va_list			args;
-	int				i;
+	size_t	i;
+	size_t	src_len;
+	size_t	dst_len;
 
-	va_start(args, format);
 	i = 0;
-	while (format[i])
+	src_len = ft_strlen(src);
+	dst_len = ft_strlen(dst);
+	if (dstsize < dst_len + 1)
+		return (src_len + dstsize);
+	if (dstsize > dst_len + 1)
 	{
-		if (format[i] == '%')
+		i = 0;
+		while (src[i] && i + dst_len < dstsize - 1)
 		{
+			dst[i + dst_len] = src[i];
 			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
 		}
-		i++;
+		dst[i + dst_len] = '\0';
 	}
-	va_end(args);
-	return (1);
+	return (dst_len + src_len);
 }

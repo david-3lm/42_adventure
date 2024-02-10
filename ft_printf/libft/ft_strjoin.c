@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 19:35:20 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/17 15:56:25 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/25 12:13:03 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "libft.h"
 
-int	ft_printf(char const *format, ...)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	va_list			args;
-	int				i;
+	size_t	size_s1;
+	size_t	size_s2;
+	size_t	size_ptr;
+	char	*ptr;
 
-	va_start(args, format);
-	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-		}
-		i++;
-	}
-	va_end(args);
-	return (1);
+	size_s1 = ft_strlen(s1);
+	size_s2 = ft_strlen(s2);
+	size_ptr = size_s1 + size_s2 + 1;
+	ptr = malloc(size_ptr);
+	if (!ptr)
+		return (0);
+	ft_strlcpy(ptr, s1, size_s1 + 1);
+	ft_strlcat(ptr, s2, size_ptr);
+	return (ptr);
 }
