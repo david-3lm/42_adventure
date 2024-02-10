@@ -12,7 +12,8 @@
 
 #include "libftprintf.h"
 
+
 int	main(void)
 {
-	ft_printf("%d%d", 321, 543);
+	printf("%d%d", 321, 543);
 }

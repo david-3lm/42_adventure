@@ -12,11 +12,11 @@
 
 #ifndef LIBFTPRINTF_H
 # define LIBFTPRINTF_H
-# include <stdio.h>
 # include <stdarg.h>
 # include <unistd.h>
 
 int	ft_printf(char const *format, ...);
+
 /*funciones para hacer:
 	-un write para cada tipo de dato (que entre void y se hará el cast, porque cuando no hay correlacion el resultado es indefinido)
 	-un detector de formato contador
