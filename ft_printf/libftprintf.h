@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:09:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/08 20:02:14 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/13 12:41:06 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFTPRINTF_H
 # include <stdarg.h>
 # include <unistd.h>
+# include "libft/libft.h"
 
 int	ft_printf(char const *format, ...);
 

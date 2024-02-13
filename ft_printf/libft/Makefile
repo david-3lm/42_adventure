@@ -13,7 +13,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
 #	gcc main.c -L. -l ft -o main
 #	./main
 clean:
