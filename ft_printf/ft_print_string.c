@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 18:58:11 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 14:46:19 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/02/13 14:02:07 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/02/13 14:18:50 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
-int	main(void)
+int	ft_print_string(char *str)
 {
-	ft_printf("Hola buenas: %s Numero: %i que onda Numero mu grande: %u\n",
-		"Como estamos", -65, 4294967294);
-	printf("Hola buenas: %s Numero: %i que onda Numero mu grande: %u\n",
-		"Como estamos", -65, 4294967294);
+	const size_t	size = ft_strlen(str);
+	size_t			i;
+
+	i = 0;
+	while (i < size)
+	{
+		ft_putchar_fd(str[i], 1);
+		i++;
+	}
+	return (size);
 }

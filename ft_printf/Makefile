@@ -1,5 +1,6 @@
 NAME = libftprintf.a
-SRC = ft_printf.c
+SRC = ft_printf.c ft_print_string.c ft_print_nbr_dec.c ft_print_unsigned.c
+
 OBJ = $(SRC:.c=.o)
 #SRCBONUS =
 #OBJBONUS = $(SRCBONUS:.c=.o)

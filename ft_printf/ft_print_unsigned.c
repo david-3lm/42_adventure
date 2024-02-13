@@ -1,22 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 18:58:11 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 14:46:19 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/02/13 14:32:14 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/02/13 14:45:59 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
-
-int	main(void)
+static int	get_size(int nbr)
 {
-	ft_printf("Hola buenas: %s Numero: %i que onda Numero mu grande: %u\n",
-		"Como estamos", -65, 4294967294);
-	printf("Hola buenas: %s Numero: %i que onda Numero mu grande: %u\n",
-		"Como estamos", -65, 4294967294);
+	int	size;
+
+	size = 0;
+	while (nbr != 0)
+	{
+		nbr /= 10;
+		size++;
+	}
+	return (size);
+}
+
+static void	ft_putunsigned_nbr(unsigned int n)
+{
+	char	c;
+
+	if (n <= 9)
+	{
+		c = n + '0';
+		write(1, &c, 1);
+	}
+	else
+	{
+		ft_putunsigned_nbr(n / 10);
+		ft_putunsigned_nbr(n % 10);
+	}
+}
+
+int	ft_print_unsigned(unsigned int nbr)
+{
+	ft_putunsigned_nbr(nbr);
+	return (get_size(nbr));
 }
