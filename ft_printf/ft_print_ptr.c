@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 19:09:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 16:08:08 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/02/13 15:52:33 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/02/13 16:07:20 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft/libft.h"
+#include "libftprintf.h"
 
-int		ft_printf(char const *format, ...);
-int		ft_print_string(char *str);
-int		ft_print_nbr_dec(int nbr);
-int		ft_print_unsigned(unsigned int nbr);
-int		ft_print_hex(size_t arg, int caps);
-int		ft_print_ptr(size_t ptr);
 
-#endif
+int	ft_print_ptr(size_t ptr)
+{
+	write(1, "0x", 2);
+	if (!ptr)
+		return (write(1, "0", 1) + 2);
+	return (ft_print_hex(ptr, 0) + 2);
+}

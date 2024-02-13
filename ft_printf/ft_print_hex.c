@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_string.c                                  :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 14:02:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 15:51:43 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/02/13 15:00:26 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/02/13 16:05:45 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_print_string(char *str)
+int	ft_print_hex(size_t arg, int cap)
 {
-	size_t			size;
-	size_t			i;
+	const char	caps[] = "0123456789ABCDEF";
+	const char	mins[] = "0123456789abcdef";
+	int			count;
 
-	if (!str)
-		return (ft_print_string("(null)"));
-	i = 0;
-	size = ft_strlen(str);
-	while (i < size)
+	count = 0;
+	if (arg < 16)
 	{
-		ft_putchar_fd(str[i], 1);
-		i++;
+		if (cap)
+			ft_putchar_fd(caps[arg % 16], 1);
+		else
+			ft_putchar_fd(mins[arg % 16], 1);
+		return (1);
 	}
-	return (size);
+	else
+	{
+		count += ft_print_hex(arg / 16, cap);
+		count += ft_print_hex(arg % 16, cap);
+	}
+	return (count);
 }

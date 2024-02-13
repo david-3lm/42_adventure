@@ -6,11 +6,12 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:32:14 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 14:45:59 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:47:52 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
 static int	get_size(int nbr)
 {
 	int	size;
