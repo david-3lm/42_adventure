@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 15:58:54 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:19:45 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	ft_format(char format, va_list args)
 	else if (format == 'p')
 		print_len += ft_print_ptr(va_arg(args, size_t));
 	else if (format == '%')
-		ft_putchar_fd('%', 1);
+		print_len += ft_print_char('%');
 	return (print_len);
 }
 

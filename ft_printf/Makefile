@@ -22,8 +22,8 @@ $(NAME): $(OBJ)
 	@mv libft.a $(NAME)
 	@ar rcs $(NAME) $(OBJ)
 	@echo "$(GREEN)ft_printf compilado!$(COLOREND)"
-	gcc main.c -L. -l ftprintf -o main
-	./main
+#	gcc main.c -L. -l ftprintf -o main
+#	./main
 
 clean:
 	$(RM) $(OBJ) $(OBJBONUS)
@@ -37,7 +37,7 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJBONUS)
-	ar rcs $(NAME) $(OBJBONUS)
+#bonus: $(OBJBONUS)
+#	ar rcs $(NAME) $(OBJBONUS)
 
 .PHONY: all clean fclean re bonus

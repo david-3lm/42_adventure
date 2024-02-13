@@ -6,12 +6,11 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:52:33 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 16:07:20 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/13 16:16:38 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
 
 int	ft_print_ptr(size_t ptr)
 {
