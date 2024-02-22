@@ -6,16 +6,27 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:52:33 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 16:16:38 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:06:58 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_print_ptr(size_t ptr)
 {
-	write(1, "0x", 2);
+	int	aux;
+
+	if (write(1, "0x", 2) == -1)
+		return (-1);
 	if (!ptr)
-		return (write(1, "0", 1) + 2);
-	return (ft_print_hex(ptr, 0) + 2);
+	{
+		aux = write(1, "0", 1);
+		if (aux == -1)
+			return (-1);
+		return (aux + 2);
+	}
+	aux = ft_print_hex(ptr, 0);
+	if (aux == -1)
+		return (-1);
+	return (aux + 2);
 }

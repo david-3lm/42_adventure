@@ -6,11 +6,11 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:58:11 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 16:18:12 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:10:45 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 int	main(void)
@@ -18,6 +18,6 @@ int	main(void)
 	const void	*ptr = malloc (1);
 
 
-	ft_printf("%u\n", -6000023);
-	printf("%u", -6000023);
+	ft_printf("%c\n", 'x');
+	printf("%c", 'x');
 }

@@ -6,11 +6,11 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:02:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 15:51:43 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:49:43 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_print_string(char *str)
 {
@@ -23,7 +23,8 @@ int	ft_print_string(char *str)
 	size = ft_strlen(str);
 	while (i < size)
 	{
-		ft_putchar_fd(str[i], 1);
+		if (write(1, &str[i], 1) == -1)
+			return (-1);
 		i++;
 	}
 	return (size);

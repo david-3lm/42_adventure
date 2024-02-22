@@ -6,31 +6,37 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:00:26 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 16:05:45 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:03:31 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	ft_print_hex(size_t arg, int cap)
+static int	write_from_string(size_t arg, int cap)
 {
 	const char	caps[] = "0123456789ABCDEF";
 	const char	mins[] = "0123456789abcdef";
+
+	if (cap)
+		return (write(1, &caps[arg % 16], 1));
+	return (write(1, &mins[arg % 16], 1));
+}
+
+int	ft_print_hex(size_t arg, int cap)
+{
 	int			count;
+	int			aux;
 
 	count = 0;
 	if (arg < 16)
-	{
-		if (cap)
-			ft_putchar_fd(caps[arg % 16], 1);
-		else
-			ft_putchar_fd(mins[arg % 16], 1);
-		return (1);
-	}
-	else
-	{
-		count += ft_print_hex(arg / 16, cap);
-		count += ft_print_hex(arg % 16, cap);
-	}
+		return (write_from_string(arg, cap));
+	aux = ft_print_hex(arg / 16, cap);
+	if (aux == -1)
+		return (-1);
+	count += aux;
+	aux = ft_print_hex(arg % 16, cap);
+	if (aux == -1)
+		return (-1);
+	count += aux;
 	return (count);
 }

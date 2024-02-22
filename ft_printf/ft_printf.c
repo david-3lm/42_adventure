@@ -6,16 +6,15 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/13 16:19:45 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:23:38 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	ft_print_char(char c)
 {
-	ft_putchar_fd(c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }
 
 static int	ft_format(char format, va_list args)
@@ -37,6 +36,8 @@ static int	ft_format(char format, va_list args)
 		print_len += ft_print_ptr(va_arg(args, size_t));
 	else if (format == '%')
 		print_len += ft_print_char('%');
+	if (print_len == -1)
+		return (-1);
 	return (print_len);
 }
 
@@ -45,6 +46,7 @@ int	ft_printf(char const *format, ...)
 	va_list			args;
 	int				i;
 	int				print_len;
+	int				aux;
 
 	va_start(args, format);
 	i = 0;
@@ -54,13 +56,13 @@ int	ft_printf(char const *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			print_len += ft_format(format[i], args);
+			aux = ft_format(format[i], args);
 		}
 		else
-		{
-			ft_putchar_fd(format[i], 1);
-			print_len++;
-		}
+			aux = ft_print_char(format[i]);
+		if (aux == -1)
+			return (-1);
+		print_len += aux;
 		i++;
 	}
 	va_end(args);
