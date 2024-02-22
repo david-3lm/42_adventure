@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:09:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/22 13:36:11 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:31:00 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include "libft/libft.h"
+# define ERROR	-1
 
 int		ft_printf(char const *format, ...);
 int		ft_print_string(char *str);

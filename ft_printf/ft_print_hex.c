@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:00:26 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/22 15:03:31 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:31:21 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	ft_print_hex(size_t arg, int cap)
 	if (arg < 16)
 		return (write_from_string(arg, cap));
 	aux = ft_print_hex(arg / 16, cap);
-	if (aux == -1)
-		return (-1);
+	if (aux == ERROR)
+		return (ERROR);
 	count += aux;
 	aux = ft_print_hex(arg % 16, cap);
-	if (aux == -1)
-		return (-1);
+	if (aux == ERROR)
+		return (ERROR);
 	count += aux;
 	return (count);
 }

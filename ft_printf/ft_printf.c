@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:00:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/22 14:23:38 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/02/22 15:32:52 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int	ft_format(char format, va_list args)
 		print_len += ft_print_ptr(va_arg(args, size_t));
 	else if (format == '%')
 		print_len += ft_print_char('%');
-	if (print_len == -1)
-		return (-1);
+	if (print_len == ERROR)
+		return (ERROR);
 	return (print_len);
 }
 
@@ -60,8 +60,8 @@ int	ft_printf(char const *format, ...)
 		}
 		else
 			aux = ft_print_char(format[i]);
-		if (aux == -1)
-			return (-1);
+		if (aux == ERROR)
+			return (ERROR);
 		print_len += aux;
 		i++;
 	}
