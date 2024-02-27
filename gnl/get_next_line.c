@@ -59,10 +59,13 @@ static char	*read_file(int fd, char *buffer)
 	char	*buf;
 
 	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!buf)
+	//CAMBIAR
+	if (!buffer)
+		buffer = ft_calloc(1, 1);
+	if (!buf || !buffer)
 		return (free_mem(&buffer));
 	rd = 1;
-	while (rd > 0 && !ft_strchr(buffer, '\n'))
+	while (rd > 0 && !ft_strchr(buf, '\n'))
 	{
 		rd = read(fd, buf, BUFFER_SIZE);
 		if (rd > 0)

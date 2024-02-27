@@ -139,7 +139,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ptr = malloc(size_ptr);
 	if (!ptr)
 		return (0);
-	ft_strlcpy(ptr, s1, size_s1 + 1);
+	if (size_s1)
+	    ft_strlcpy(ptr, s1, size_s1 + 1);
 	ft_strlcat(ptr, s2, size_ptr);
 	return (ptr);
 }
