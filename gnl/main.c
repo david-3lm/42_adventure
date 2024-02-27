@@ -14,10 +14,10 @@
 #include <fcntl.h>
 #include <stdio.h>
 
+//EN 42 CAMBIAR INTS POR SIZE_T
 int main(void)
 {
 
 	int fd = open("prueba", O_RDONLY);
-	printf("%s",get_next_line(fd));
 	printf("%s",get_next_line(fd));
 }

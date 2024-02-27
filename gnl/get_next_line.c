@@ -12,29 +12,85 @@
 
 #include "get_next_line.h"
 
-static char	*get_line(char *buf)
+static char *free_mem(char **c)
 {
-	int		i;
-	char	*str;
+	free(*c);
+	*c = NULL;
+	return (NULL);
+}
 
-	i = 0;
-	while (buf[i] && buf[i] != '\n')
-		i++;
-	//sumar 1 si EoF? y 2 para \n y \0???
-	str = ft_calloc(i + 1, sizeof(char));
-	ft_strlcpy(str, buf, i + 1);
+static char	*cut_buffer(char *buffer)
+{
+	char	*new_buf;
+	char	*ptr;
+	int		len;
+
+	ptr = ft_strchr(buffer, '\n');
+	if (!ptr)
+		return (free_mem(&buffer));
+	len = (ptr - buffer) + 1;
+	// if (!storage[len])
+	// 	return (ft_free(&storage));
+	new_buf = ft_substr(buffer, len, ft_strlen(buffer) - len);
+	free_mem(&buffer);
+	if (!new_buf)
+		return (NULL);
+	return (new_buf);
+
+}
+
+static char	*get_line(char *buffer)
+{
+	char	*line;
+	char	*end;
+	int		len;
+
+	end = ft_strchr(buffer, '\n');
+	len = (end - buffer) + 1;
+	line = ft_substr(buffer, 0, len);
+	if (!line)
+		return (NULL);
+	return (line);
+}
+
+static char	*read_file(int fd, char *buffer)
+{
+	int		rd;
+	char	*buf;
+
+	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!buf)
+		return (free_mem(&buffer));
+	rd = 1;
+	while (rd > 0 && !ft_strchr(buffer, '\n'))
+	{
+		rd = read(fd, buf, BUFFER_SIZE);
+		if (rd > 0)
+		{
+			buf[rd] = '\0';
+			buffer = ft_strjoin(buffer, buf);
+		}
+	}
 	free(buf);
-	return (str);
+	if (rd == -1)
+		return (free_mem(&buffer));
+	return (buffer);
 }
 
 char	*get_next_line(int fd)
 {
-	char	*buffer;
+	static char	*buffer;
+	char		*line;
 
-	buffer = ft_calloc(BUFFER_SIZE, sizeof(char));
+	if (fd < 0)
+		return (NULL);
+	if ((buffer && !ft_strchr(buffer, '\n')) || !buffer)
+		buffer = read_file(fd, buffer);
 	if (!buffer)
 		return (NULL);
-	if (read(fd, buffer, BUFFER_SIZE) == -1)
-		return (NULL);
-	return (get_line(buffer));
+	line = get_line(buffer);
+	if (!line)
+		return (free_mem(&buffer));
+	buffer = cut_buffer(buffer);
+	return (line);
 }

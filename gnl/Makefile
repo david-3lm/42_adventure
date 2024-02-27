@@ -6,6 +6,6 @@ all: get_next_line
 
 get_next_line:
 	@$(CC) $(CFLAGS) $(DEPS)
-	@./a.out
+	@./a.exe
 
 .PHONY: all get_next_line
