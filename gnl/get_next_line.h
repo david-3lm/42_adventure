@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:40:10 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/22 18:06:57 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/03/05 12:51:12 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-char	*get_next_line(int fd);
+char			*get_next_line(int fd);
+char			*free_mem(char **c);
 
-void	*ft_calloc(size_t count, size_t size);
-void	*ft_memset(void *b, int c, size_t len);
-int	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char	*ft_strdup(const char *s1);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *s, int c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+char			*ft_strdup(const char *s1);
+char			*ft_strjoin(char *s1, char const *s2);
+char			*ft_strchr(const char *s, int c);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
 unsigned int	ft_strlen(const char *c);
 
 

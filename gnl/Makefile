@@ -6,6 +6,18 @@ all: get_next_line
 
 get_next_line:
 	@$(CC) $(CFLAGS) $(DEPS)
-	@./a.exe
+#	@./a.out
 
-.PHONY: all get_next_line
+clean:
+	$(RM) $(OBJ) $(OBJBONUS)
+	@echo "$(BLUE)Limpio$(COLOREND)"
+
+fclean: clean
+	$(RM) $(NAME)
+	@echo "$(BLUE)Limpio$(COLOREND)"
+
+re: fclean all
+
+
+.PHONY: all clean fclean re bonus get_next_line
+

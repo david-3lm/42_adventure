@@ -6,13 +6,13 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:40:15 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/22 18:19:13 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:14:41 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char *free_mem(char **c)
+char	*free_mem(char **c)
 {
 	free(*c);
 	*c = NULL;
@@ -27,10 +27,13 @@ static char	*cut_buffer(char *buffer)
 
 	ptr = ft_strchr(buffer, '\n');
 	if (!ptr)
+	{
+		//new_buf = NULL;
 		return (free_mem(&buffer));
+	}
 	len = (ptr - buffer) + 1;
-	// if (!storage[len])
-	// 	return (ft_free(&storage));
+	if (!buffer[len])
+		return (free_mem(&buffer));
 	new_buf = ft_substr(buffer, len, ft_strlen(buffer) - len);
 	free_mem(&buffer);
 	if (!new_buf)
@@ -46,7 +49,9 @@ static char	*get_line(char *buffer)
 	int		len;
 
 	end = ft_strchr(buffer, '\n');
-	len = (end - buffer) + 1;
+	if (!end)
+		return (free_mem(&buffer));
+	len = (end - buffer);
 	line = ft_substr(buffer, 0, len);
 	if (!line)
 		return (NULL);
@@ -58,11 +63,8 @@ static char	*read_file(int fd, char *buffer)
 	int		rd;
 	char	*buf;
 
-	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	//CAMBIAR
-	if (!buffer)
-		buffer = ft_calloc(1, 1);
-	if (!buf || !buffer)
+	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buf)
 		return (free_mem(&buffer));
 	rd = 1;
 	while (rd > 0 && !ft_strchr(buf, '\n'))
