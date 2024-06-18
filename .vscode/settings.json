@@ -5,6 +5,10 @@
 	"editor.fontWeight": "450",
 	"files.associations": {
 		"stdarg.h": "c",
-		"libftprintf.h": "c"
+		"libftprintf.h": "c",
+		"unistd.h": "c",
+		"stdio.h": "c",
+		"stdlib.h": "c",
+		"cstddef": "c"
 	} // Bold
 }
