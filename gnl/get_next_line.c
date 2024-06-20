@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:40:15 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/03/05 13:14:41 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:31:13 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 char	*free_mem(char **c)
 {
-	free(*c);
-	*c = NULL;
+	if (c && *c)
+	{
+		free(*c);
+		*c = NULL;
+	}
 	return (NULL);
 }
 
@@ -39,7 +42,6 @@ static char	*cut_buffer(char *buffer)
 	if (!new_buf)
 		return (NULL);
 	return (new_buf);
-
 }
 
 static char	*get_line(char *buffer)
@@ -50,8 +52,9 @@ static char	*get_line(char *buffer)
 
 	end = ft_strchr(buffer, '\n');
 	if (!end)
-		return (free_mem(&buffer));
-	len = (end - buffer);
+		len = ft_strlen(buffer);
+	else
+		len = (end - buffer);
 	line = ft_substr(buffer, 0, len);
 	if (!line)
 		return (NULL);
@@ -87,9 +90,9 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if ((buffer && !ft_strchr(buffer, '\n')) || !buffer)
+	if ((buffer && (!ft_strchr(buffer, '\n'))) || !buffer)
 		buffer = read_file(fd, buffer);
 	if (!buffer)
 		return (NULL);
