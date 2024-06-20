@@ -93,9 +93,6 @@ char	**ft_split(char const *s, char c)
 {
 	char	**pptr;
 	int		words;
-	int		i;
-	int		idx;
-	int		size;
 
 	if (!s)
 		return (0);
@@ -103,9 +100,6 @@ char	**ft_split(char const *s, char c)
 	pptr = (char **) malloc(sizeof(char *) * (words));
 	if (!pptr)
 		return (0);
-	i = 0;
-	idx = 0;
-	size = 0;
 	if (!compute_array(s, c, pptr, words))
 		return (0);
 	pptr[words - 1] = 0;
