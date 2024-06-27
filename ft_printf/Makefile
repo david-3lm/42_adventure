@@ -21,9 +21,9 @@ $(NAME): $(OBJ)
 	@cp libft/libft.a .
 	@mv libft.a $(NAME)
 	@ar rcs $(NAME) $(OBJ)
-#	@echo "$(GREEN)ft_printf compilado!$(COLOREND)"
-#	gcc main.c -L. -l ftprintf -o main
-#	./main
+	@echo "$(GREEN)ft_printf compilado!$(COLOREND)"
+	gcc main_printf.c -L. -l ftprintf -o main
+	./main
 
 clean:
 	$(RM) $(OBJ) $(OBJBONUS)

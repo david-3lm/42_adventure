@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:40:19 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/06/27 15:11:56 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:19:29 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	sub[i] = 0;
 	return (sub);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		len;
-	char	*ptr;
-	size_t	i;
-
-	len = ft_strlen(s1) + 1;
-	ptr = malloc(len);
-	if (!ptr)
-		return (0);
-	i = 0;
-	while (s1[i])
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	ptr[i] = 0;
-	return (ptr);
 }
 
 char	*ft_strjoin(char *s1, char const *s2)

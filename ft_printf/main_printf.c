@@ -38,8 +38,8 @@ int	main(void)
 	printf("Pointer: %p\n", NULL);
 
 	// Test case for percentage
-	ft_printf("Percentage: %%\n");
-	printf("Percentage: %%\n");
+	printf("Percentage: %1\n");
+	ft_printf("Percentage: %1\n");
 
 	return 0;
 }
