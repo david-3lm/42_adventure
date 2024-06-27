@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:40:15 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/06/20 15:31:13 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:53:07 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static char	*cut_buffer(char *buffer)
 	ptr = ft_strchr(buffer, '\n');
 	if (!ptr)
 	{
-		//new_buf = NULL;
 		return (free_mem(&buffer));
 	}
 	len = (ptr - buffer) + 1;
@@ -79,8 +78,8 @@ static char	*read_file(int fd, char *buffer)
 			buffer = ft_strjoin(buffer, buf);
 		}
 	}
-	free(buf);
-	if (rd == -1)
+	free_mem(&buf);
+	if (rd == -1 || (rd == 0 && (!buffer || !*buffer)))
 		return (free_mem(&buffer));
 	return (buffer);
 }

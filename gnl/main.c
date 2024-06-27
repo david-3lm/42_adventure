@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:48:09 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/06/20 16:43:30 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:13:18 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ int main(void)
 {
 
 	int fd = open("prueba", O_RDONLY);
-	printf("%s",get_next_line(fd));
-	printf("\n");
-	printf("%s",get_next_line(fd));
-	printf("%s",get_next_line(fd));
-	printf("%s",get_next_line(fd));
-	printf("%s",get_next_line(fd));
+	char *line = get_next_line(fd);
+    while (line)
+    {
+        printf("%s", line);
+        free(line);  // Libera la memoria asignada para la línea
+        line = get_next_line(fd);
+    }
+
+	printf("\n%s", line);
 
 }
