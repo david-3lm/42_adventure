@@ -21,19 +21,19 @@ $(NAME): $(OBJ)
 	@cp libft/libft.a .
 	@mv libft.a $(NAME)
 	@ar rcs $(NAME) $(OBJ)
-	@echo "$(GREEN)ft_printf compilado!$(COLOREND)"
+#	@echo "$(GREEN)ft_printf compilado!$(COLOREND)"
 #	gcc main.c -L. -l ftprintf -o main
 #	./main
 
 clean:
 	$(RM) $(OBJ) $(OBJBONUS)
 	@make clean -C libft
-	@echo "$(BLUE)Limpio$(COLOREND)"
+#	@echo "$(BLUE)Limpio$(COLOREND)"
 
 fclean: clean
 	$(RM) $(NAME)
 	@make fclean -C libft
-	@echo "$(BLUE)Limpio$(COLOREND)"
+#	@echo "$(BLUE)Limpio$(COLOREND)"
 
 re: fclean all
 
