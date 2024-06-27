@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:40:19 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/06/20 13:46:17 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:11:56 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i])
 	{
 		if (s[i] == (char)c)
@@ -111,4 +113,21 @@ char	*ft_strchr(const char *s, int c)
 	if (s[i] == (char)c)
 		return ((char *) &s[i]);
 	return (0);
+}
+
+char	*ft_calloc(size_t count, size_t size)
+{
+	char	*ptr;
+	size_t	i;
+
+	ptr = malloc(count * size);
+	i = 0;
+	if (!ptr)
+		return (ptr);
+	while (i < size * count)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+	return (ptr);
 }

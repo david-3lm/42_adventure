@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Werror -Wextra -D BUFFER_SIZE=2048
+CFLAGS=-Wall -Werror -Wextra -D BUFFER_SIZE=2
 DEBUGFLAGS=-g -O0
 DEPS = get_next_line.c get_next_line_utils.c main.c
 OBJ = $(DEPS:.c=.o)
@@ -8,7 +8,7 @@ all: get_next_line
 
 get_next_line:
 	@$(CC) $(CFLAGS) $(DEPS)
-#	@./a.out
+	@./a.out
 
 debug: CFLAGS += $(DEBUGFLAGS)
 debug: clean get_next_line
