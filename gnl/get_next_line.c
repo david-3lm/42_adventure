@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:40:15 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/06/27 15:54:42 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:26:19 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= 2147483647)
 		return (NULL);
 	buffer = read_line(fd, buffer);
 	if (!buffer)

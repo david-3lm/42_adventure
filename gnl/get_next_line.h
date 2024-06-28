@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:40:10 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/06/27 17:20:48 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:41:21 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define GET_NEXT_LINE_H
 # include <unistd.h>
 # include <stdlib.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE	2048
+# endif
 
 char			*get_next_line(int fd);
 char			*free_mem(char **c);
