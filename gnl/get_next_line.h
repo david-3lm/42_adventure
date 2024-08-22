@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:40:10 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/06/28 16:41:21 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:59:10 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	2048
+#  define BUFFER_SIZE	1
 # endif
 
 char			*get_next_line(int fd);
@@ -26,4 +26,5 @@ char			*ft_strchr(const char *s, int c);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_calloc(size_t count, size_t size);
 unsigned int	ft_strlen(const char *c);
+
 #endif
