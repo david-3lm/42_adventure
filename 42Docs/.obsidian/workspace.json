@@ -6,7 +6,7 @@
       {
         "id": "589474a18a32d793",
         "type": "tabs",
-        "dimension": 70.58823529411765,
+        "dimension": 63.13451776649747,
         "children": [
           {
             "id": "d6c2637583b54d05",
@@ -19,13 +19,26 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "a5931a7260bcf454",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "MiniLibX - Function Documentation.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "869fbcc5383cdd4b",
         "type": "tabs",
-        "dimension": 29.411764705882355,
+        "dimension": 36.86548223350254,
         "children": [
           {
             "id": "e1426ec14bb33365",
@@ -103,7 +116,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "GNL/Get_next_line.md",
+                "file": "MiniLibX - Function Documentation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +133,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "GNL/Get_next_line.md",
+                "file": "MiniLibX - Function Documentation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "GNL/Get_next_line.md"
+                "file": "MiniLibX - Function Documentation.md"
               }
             }
           }
@@ -164,11 +177,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d6c2637583b54d05",
+  "active": "a5931a7260bcf454",
   "lastOpenFiles": [
+    "GNL/Get_next_line.md",
+    "MiniLibX - Function Documentation.md",
+    "MinilibX",
     "Libft/Libft.md",
     "ft_printf/ft_printf.md",
-    "GNL/Get_next_line.md",
     "ft_printf",
     "GNL",
     "Libft"
