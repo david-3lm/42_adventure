@@ -1,30 +1,40 @@
-NAME	:= fractol
-CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
-LIBMLX	:= ./MLX42
+NAME = fractol
+SRC = main.c
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS	:= main.c
-OBJS	:= ${SRCS:.c=.o}
+OBJ = $(SRC:.c=.o)
+#SRCBONUS =
+#OBJBONUS = $(SRCBONUS:.c=.o)
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra
+RM = rm -f
 
-all: libmlx $(NAME)
+#COLORES
+COLOREND = \033[0m
+GREEN = \033[0;32m
+RED=\033[0;31m
+BLUE=\033[0;34m
 
-libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
-$(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
-	@rm -rf $(OBJS)
-	@rm -rf $(LIBMLX)/build
+	$(RM) $(OBJ) $(OBJBONUS)
+	@echo "$(BLUE)Limpio$(COLOREND)"
 
 fclean: clean
-	@rm -rf $(NAME)
+	$(RM) $(NAME)
+	@echo "$(BLUE)Limpio$(COLOREND)"
 
-re: clean all
+re: fclean all
 
-.PHONY: all, clean, fclean, re, libmlx
+#bonus: $(OBJBONUS)
+#	ar rcs $(NAME) $(OBJBONUS)
+
+.PHONY: all clean fclean re bonus

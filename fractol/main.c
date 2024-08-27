@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/26 19:34:33 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:01:42 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-// Written by Bruh
-
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include "MLX42/MLX42.h"
-#define WIDTH 256
-#define HEIGHT 256
+#include <mlx.h>
 
 typedef struct	s_data {
 	void	*img;
@@ -74,63 +67,19 @@ void	my_mlx_circle(t_data *data, int x, int y, int radius, int color)
 		j++;
 	}
 }
-/**
- * Main MLX handle, carries important data in regards to the program.
- * @param window The window itself.
- * @param context Abstracted opengl data.
- * @param width The width of the window.
- * @param height The height of the window.
- * @param delta_time The time difference between the previous frame and the current frame.
- */
-typedef struct mlx
+
+int	main(void)
 {
-	void*		window;
-	void*		context;
-	int32_t		width;
-	int32_t		height;
-	double		delta_time;
-}	t_mlx;
+	void	*mlx;
+	void	*mlx_win;
+	t_data	img;
 
-
-
-// Exit the program as failure.
-static void ft_error(void)
-{
-	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
-
-// Print the window width and height.
-static void ft_hook(void* param)
-{
-	const t_mlx* mlx = param;
-
-	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-}
-
-int32_t	main(void)
-{
-
-	// MLX allows you to define its core behaviour before startup.
-	mlx_set_setting(MLX_MAXIMIZED, true);
-	t_mlx* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
-	if (!mlx)
-		ft_error();
-
-	/* Do stuff */
-
-	// Create and display the image.
-	mlx_image_t* img = mlx_new_image(mlx, 256, 256);
-	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
-		ft_error();
-
-	// Even after the image is being displayed, we can still modify the buffer.
-	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
-
-	// Register a hook and pass mlx as an optional param.
-	// NOTE: Do this before calling mlx_loop!
-	mlx_loop_hook(mlx, ft_hook, mlx);
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	img.img = mlx_new_image(mlx, 1920, 1080);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	my_mlx_circle(&img, 350, 500, 500, 0x00FFFF00);
+	my_mlx_square(&img, 50, 50, 50, 0xFFFF0000);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
 }
