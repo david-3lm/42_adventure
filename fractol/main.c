@@ -3,23 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/26 12:01:42 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:47:54 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <mlx.h>
+#include <math.h>
+#include <stdio.h>
+#include "fractol.h"
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+
+double	complex_abs(t_complex complex)
+{
+	double	r;
+
+	r = sqrt(pow(complex.real, 2) + pow(complex.imaginary, 2));
+	return (r);
+}
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -28,6 +32,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
+
 
 void	my_mlx_square(t_data *data, int x, int y, int size, int color)
 {
@@ -73,7 +78,12 @@ int	main(void)
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
+	t_complex	complex;
 
+	complex.real = 3;
+	complex.imaginary = 4;
+
+	printf("%f", complex_abs(complex));
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
 	img.img = mlx_new_image(mlx, 1920, 1080);
@@ -81,5 +91,13 @@ int	main(void)
 	my_mlx_circle(&img, 350, 500, 500, 0x00FFFF00);
 	my_mlx_square(&img, 50, 50, 50, 0xFFFF0000);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	double t = 20;
+
+	while (t<110)
+	{
+		my_mlx_circle(&img, t*20, 1000 + cos(t)*20, 2, 0xFFFF0000);
+		t += 0.1;
+	}
+	
 	mlx_loop(mlx);
 }
