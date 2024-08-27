@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/27 17:47:54 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:01:23 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,20 @@
 #include <stdio.h>
 #include "fractol.h"
 
-
-double	complex_abs(t_complex complex)
+int	mandelbrot(t_complex c)
 {
-	double	r;
+	int			i;
+	t_complex	z;
 
-	r = sqrt(pow(complex.real, 2) + pow(complex.imaginary, 2));
-	return (r);
+	z.imaginary = 0;
+	z.real = 0;
+	i = 0;
+	while (complex_abs(z) <= 2 && i < MAX_ITER)
+	{
+		z = complex_add(complex_mult(z, z), c);
+		i++;
+	}
+	return (i);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -75,29 +82,36 @@ void	my_mlx_circle(t_data *data, int x, int y, int radius, int color)
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
-	t_complex	complex;
+	void		*mlx;
+	void		*mlx_win;
+	t_data		img;
+	//coords
+	int			x;
+	int			y;
+	t_complex	c;
 
-	complex.real = 3;
-	complex.imaginary = 4;
-
-	printf("%f", complex_abs(complex));
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	my_mlx_circle(&img, 350, 500, 500, 0x00FFFF00);
-	my_mlx_square(&img, 50, 50, 50, 0xFFFF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	double t = 20;
-
-	while (t<110)
+	x = 0;
+	while (x < 1920)
 	{
-		my_mlx_circle(&img, t*20, 1000 + cos(t)*20, 2, 0xFFFF0000);
-		t += 0.1;
+		y = 0;
+		while (y < 1080)
+		{
+			c.real = (x - 1920 / 2.0) * 4.0 / 1920;
+			c.imaginary = (y - 1080 / 2.0) * 4.0 / 1080;
+			if (mandelbrot(c) == MAX_ITER)
+				my_mlx_pixel_put(&img, x, y, 0x00FFFFFF);
+			else
+				my_mlx_pixel_put(&img, x, y, 0x00000000);
+			y++;
+		}
+		x++;
 	}
 	
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+
 	mlx_loop(mlx);
 }

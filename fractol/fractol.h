@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/27 17:43:36 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:01:54 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define WIDTH 1920
-#define HEIGHT 1080
+#ifndef FRACTOL_H
+# define FRACTOL_H
+# define WIDTH 1920
+# define HEIGHT 1080
+# define MAX_ITER 10
+# include <math.h>
+# include <mlx.h>
 
 typedef struct s_data
 {
@@ -27,3 +32,10 @@ typedef struct s_complex
 	double	real;
 	double	imaginary;
 }				t_complex;
+
+t_complex	complex_mult(t_complex a, t_complex b);
+t_complex	complex_add(t_complex a, t_complex b);
+double		complex_abs(t_complex complex);
+
+
+#endif
