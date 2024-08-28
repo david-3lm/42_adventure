@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/27 21:01:23 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:07:20 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 #include <math.h>
 #include <stdio.h>
 #include "fractol.h"
+
+int get_color(int iter)
+{
+    if (iter == MAX_ITER)
+        return 0x000000; // Negro para puntos dentro del conjunto
+
+    double t = (double)iter / MAX_ITER; // Escala el número de iteraciones.
+    int r = (int)(9 * (1 - t) * t * t * t * 255); // Componente roja
+    int g = (int)(15 * (1 - t) * (1 - t) * t * t * 255); // Componente verde
+    int b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255); // Componente azul
+    return (r << 16) | (g << 8) | b; // Combina los componentes en un color RGB.
+}
+
 
 int	mandelbrot(t_complex c)
 {
@@ -80,20 +93,14 @@ void	my_mlx_circle(t_data *data, int x, int y, int radius, int color)
 	}
 }
 
-int	main(void)
+void	print_fractal(t_data *img)
 {
-	void		*mlx;
-	void		*mlx_win;
-	t_data		img;
-	//coords
 	int			x;
 	int			y;
 	t_complex	c;
+	int			mandel;
+	int			color;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	x = 0;
 	while (x < 1920)
 	{
@@ -102,16 +109,39 @@ int	main(void)
 		{
 			c.real = (x - 1920 / 2.0) * 4.0 / 1920;
 			c.imaginary = (y - 1080 / 2.0) * 4.0 / 1080;
-			if (mandelbrot(c) == MAX_ITER)
-				my_mlx_pixel_put(&img, x, y, 0x00FFFFFF);
-			else
-				my_mlx_pixel_put(&img, x, y, 0x00000000);
+			mandel = mandelbrot(c);
+			color = 0x00000000;
+			if (mandel != MAX_ITER)
+				color = get_color(mandel);
+			my_mlx_pixel_put(img, x, y, color);
 			y++;
 		}
 		x++;
-	}
-	
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	}	
+}
+int	close(int keycode, t_data *vars)
+{
+	int i;
 
-	mlx_loop(mlx);
+	i = keycode;
+	keycode = i;
+	mlx_destroy_window(vars->mlx, vars->win);
+	return (0);
+}
+
+int	main(void)
+{
+	t_data		data;
+	//coords
+
+	data.mlx = mlx_init();
+	data.win = mlx_new_window(data.mlx, 1920, 1080, "Fractalin");
+	data.img = mlx_new_image(data.mlx, 1920, 1080);
+	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
+	print_fractal(&data);
+	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+	mlx_hook(data.win, 2, 1L<<0, close, &data);
+
+
+	mlx_loop(data.mlx);
 }
