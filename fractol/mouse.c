@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 19:11:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/29 19:28:46 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/29 20:38:59 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	hook_mouse(int keycode, int x, int y, t_data *mlx)
 		x = y;
 		y = x;
 		mlx_destroy_window(mlx->mlx, mlx->win);
+		exit(0);
 	}
 	return (0);
 }

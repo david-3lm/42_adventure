@@ -24,11 +24,14 @@
             "id": "a5931a7260bcf454",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "MiniLibX - Function Documentation.md",
-                "mode": "source",
-                "source": false
+                "file": "Fractol/a.canvas",
+                "viewState": {
+                  "x": -260.5320215573588,
+                  "y": -433.14081138137016,
+                  "zoom": 0.6
+                }
               }
             }
           }
@@ -116,7 +119,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MiniLibX - Function Documentation.md",
+                "file": "Fractol/a.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +136,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "MiniLibX - Function Documentation.md",
+                "file": "Fractol/a.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,7 +159,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "MiniLibX - Function Documentation.md"
+                "file": "Fractol/a.canvas"
               }
             }
           }
@@ -179,8 +182,10 @@
   },
   "active": "a5931a7260bcf454",
   "lastOpenFiles": [
+    "Fractol/MiniLibX - Function Documentation.md",
+    "Fractol/a.canvas",
+    "Fractol",
     "GNL/Get_next_line.md",
-    "MiniLibX - Function Documentation.md",
     "MinilibX",
     "Libft/Libft.md",
     "ft_printf/ft_printf.md",

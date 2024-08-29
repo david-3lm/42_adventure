@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/29 19:28:40 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/29 20:39:24 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define K_ESC 65307
 # include <math.h>
 # include <mlx.h>
+# include <stdlib.h>
 
 typedef struct s_data
 {

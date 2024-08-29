@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/29 19:26:36 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/29 20:48:39 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int	close(int keycode, t_data *vars)
 	if (keycode == K_ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
+		exit(0);
 	}
 	return (0);
 }
@@ -134,7 +135,6 @@ int	close(int keycode, t_data *vars)
 int	main(void)
 {
 	t_data		data;
-	//coords
 
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Fractalin");
@@ -143,9 +143,9 @@ int	main(void)
 	print_fractal(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_hook(data.win, 2, 1L<<0, close, &data);
-	mlx_hook(data.win, 4, 1L<<2, hook_mouse, &data);
-	//mlx_mouse_hook(data.win, close, &data);
+	mlx_mouse_hook(data.win, hook_mouse, &data);
 
 	mlx_loop(data.mlx);
+	mlx_destroy_display(data.mlx);
 	return (0);
 }
