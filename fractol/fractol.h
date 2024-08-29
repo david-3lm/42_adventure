@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/29 20:39:24 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/29 21:13:20 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	double	off_x;
+	double	off_y;
 }				t_data;
 
 typedef struct s_complex
@@ -42,6 +44,9 @@ t_complex	complex_add(t_complex a, t_complex b);
 t_complex	calc_c(int x, int y);
 double		complex_abs(t_complex complex);
 int			hook_mouse(int button, int x, int y, t_data *mlx);
+void		print_fractal(t_data *img);
 
+/*MOVE AND ZOOM*/
+int			move(int keycode, t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/29 20:48:39 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/29 21:13:43 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "fractol.h"
+#include "keys.h"
 
 int get_color(int iter)
 {
@@ -132,6 +133,7 @@ int	close(int keycode, t_data *vars)
 	return (0);
 }
 
+
 int	main(void)
 {
 	t_data		data;
@@ -142,7 +144,8 @@ int	main(void)
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 	print_fractal(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-	mlx_hook(data.win, 2, 1L<<0, close, &data);
+	//mlx_hook(data.win, 2, 1L<<0, close, &data);
+	mlx_hook(data.win, 2, 1L<<0, move, &data);
 	mlx_mouse_hook(data.win, hook_mouse, &data);
 
 	mlx_loop(data.mlx);
