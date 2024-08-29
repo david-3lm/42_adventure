@@ -1,5 +1,5 @@
 NAME = fractol
-SRC = main.c complex_utils.c
+SRC = main.c complex_utils.c fractal_utils.c mouse.c
 
 OBJ = $(SRC:.c=.o)
 #SRCBONUS =

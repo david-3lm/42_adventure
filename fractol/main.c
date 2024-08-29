@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/28 17:07:20 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:26:36 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,12 @@ void	print_fractal(t_data *img)
 	int			color;
 
 	x = 0;
-	while (x < 1920)
+	while (x < WIDTH)
 	{
 		y = 0;
-		while (y < 1080)
+		while (y < HEIGHT)
 		{
-			c.real = (x - 1920 / 2.0) * 4.0 / 1920;
-			c.imaginary = (y - 1080 / 2.0) * 4.0 / 1080;
+			c = calc_c(x, y);
 			mandel = mandelbrot(c);
 			color = 0x00000000;
 			if (mandel != MAX_ITER)
@@ -117,7 +116,7 @@ void	print_fractal(t_data *img)
 			y++;
 		}
 		x++;
-	}	
+	}
 }
 int	close(int keycode, t_data *vars)
 {
@@ -125,7 +124,10 @@ int	close(int keycode, t_data *vars)
 
 	i = keycode;
 	keycode = i;
-	mlx_destroy_window(vars->mlx, vars->win);
+	if (keycode == K_ESC)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+	}
 	return (0);
 }
 
@@ -135,13 +137,15 @@ int	main(void)
 	//coords
 
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, 1920, 1080, "Fractalin");
-	data.img = mlx_new_image(data.mlx, 1920, 1080);
+	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Fractalin");
+	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 	print_fractal(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	mlx_hook(data.win, 2, 1L<<0, close, &data);
-
+	mlx_hook(data.win, 4, 1L<<2, hook_mouse, &data);
+	//mlx_mouse_hook(data.win, close, &data);
 
 	mlx_loop(data.mlx);
+	return (0);
 }
