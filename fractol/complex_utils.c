@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 20:22:11 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/27 20:33:31 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:37:43 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ double	complex_abs(t_complex complex)
 {
 	double	r;
 
-	r = sqrt(pow(complex.real, 2) + pow(complex.imaginary, 2));
+	r = pow(complex.real, 2) + pow(complex.imaginary, 2);
 	return (r);
 }

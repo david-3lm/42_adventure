@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/29 21:13:43 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:07:08 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	mandelbrot(t_complex c)
 	z.imaginary = 0;
 	z.real = 0;
 	i = 0;
-	while (complex_abs(z) <= 2 && i < MAX_ITER)
+	while (complex_abs(z) <= 4 && i < MAX_ITER)
 	{
 		z = complex_add(complex_mult(z, z), c);
 		i++;
@@ -108,7 +108,7 @@ void	print_fractal(t_data *img)
 		y = 0;
 		while (y < HEIGHT)
 		{
-			c = calc_c(x, y);
+			c = calc_c(x, y, *img);
 			mandel = mandelbrot(c);
 			color = 0x00000000;
 			if (mandel != MAX_ITER)
@@ -119,7 +119,7 @@ void	print_fractal(t_data *img)
 		x++;
 	}
 }
-int	close(int keycode, t_data *vars)
+int	key_hook(int keycode, t_data *vars)
 {
 	int i;
 
@@ -130,9 +130,18 @@ int	close(int keycode, t_data *vars)
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
 	}
+	else if (keycode == K_UP || keycode == K_LEFT || keycode == K_RIGHT || keycode == K_DOWN)
+		move(keycode, vars);
 	return (0);
 }
 
+void	create_limits(t_data *data)
+{
+	data->max_c.real = 4.0;
+	data->min_c.real = -4.0;
+	data->min_c.imaginary = -4.0;
+	data->max_c.imaginary = data->min_c.imaginary + (data->max_c.real - data->min_c.real) * HEIGHT / WIDTH;
+}
 
 int	main(void)
 {
@@ -142,10 +151,14 @@ int	main(void)
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Fractalin");
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
+	data.off_x = 0;
+	data.off_y = 0;
+	data.zoom = 1.0;
+	create_limits(&data);
 	print_fractal(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
 	//mlx_hook(data.win, 2, 1L<<0, close, &data);
-	mlx_hook(data.win, 2, 1L<<0, move, &data);
+	mlx_key_hook(data.win, key_hook, &data);
 	mlx_mouse_hook(data.win, hook_mouse, &data);
 
 	mlx_loop(data.mlx);
