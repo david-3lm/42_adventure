@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/09 17:07:08 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:36:07 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,6 @@ int	main(void)
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Fractalin");
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
-	data.off_x = 0;
-	data.off_y = 0;
-	data.zoom = 1.0;
 	create_limits(&data);
 	print_fractal(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);

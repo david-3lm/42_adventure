@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/09 16:59:32 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:40:55 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include <mlx.h>
 # include <stdlib.h>
 
+typedef struct s_complex
+{
+	double	real;
+	double	imaginary;
+}				t_complex;
+
 typedef struct s_data
 {
 	void	*img;
@@ -28,18 +34,9 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	double	off_x;
-	double	off_y;
-	double	zoom;
 	t_complex	max_c;
 	t_complex	min_c;
 }				t_data;
-
-typedef struct s_complex
-{
-	double	real;
-	double	imaginary;
-}				t_complex;
 
 t_complex	complex_mult(t_complex a, t_complex b);
 t_complex	complex_add(t_complex a, t_complex b);
