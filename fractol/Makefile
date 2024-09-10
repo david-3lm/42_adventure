@@ -1,5 +1,5 @@
 NAME = fractol
-SRC = main.c complex_utils.c fractal_utils.c mouse.c view.c render.c
+SRC = main.c complex_utils.c fractal_utils.c mouse.c view.c render.c mandelbrot.c julia.c
 
 OBJ = $(SRC:.c=.o)
 #SRCBONUS =
@@ -34,7 +34,8 @@ fclean: clean
 
 re: fclean all
 
-#bonus: $(OBJBONUS)
-#	ar rcs $(NAME) $(OBJBONUS)
+exec:
+	./$(NAME)
 
-.PHONY: all clean fclean re bonus
+
+.PHONY: all clean fclean re exec

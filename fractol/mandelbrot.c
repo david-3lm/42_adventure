@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractal_utils.c                                    :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/29 18:15:28 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/10 16:01:45 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/09/10 15:45:27 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/09/10 18:37:57 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_complex	calc_c(int x, int y, t_data data)
+int	mandelbrot(t_complex c)
 {
-	t_complex	c;
-	
-	c.real = data.min_c.real + (double)x * (data.max_c.real - data.min_c.real) / WIDTH;
-	c.imaginary = data.max_c.imaginary + (double)y * (data.min_c.imaginary - data.max_c.imaginary) / HEIGHT;
-	return (c);
+	int			i;
+	t_complex	z;
+
+	z.imaginary = 0;
+	z.real = 0;
+	i = 0;
+	while (complex_abs(z) <= 4 && i < MAX_ITER)
+	{
+		z = complex_add(complex_pow(z, 2), c);
+		i++;
+	}
+	return (i);
 }

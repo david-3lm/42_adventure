@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/09 17:36:07 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/10 20:06:40 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,68 +30,12 @@ int get_color(int iter)
 }
 
 
-int	mandelbrot(t_complex c)
-{
-	int			i;
-	t_complex	z;
-
-	z.imaginary = 0;
-	z.real = 0;
-	i = 0;
-	while (complex_abs(z) <= 4 && i < MAX_ITER)
-	{
-		z = complex_add(complex_mult(z, z), c);
-		i++;
-	}
-	return (i);
-}
-
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-
-void	my_mlx_square(t_data *data, int x, int y, int size, int color)
-{
-    int	i;
-    int	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size)
-		{
-			my_mlx_pixel_put(data, x + i, y + j, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	my_mlx_circle(t_data *data, int x, int y, int radius, int color)
-{
-	int i;
-	int j;
-
-	j = -radius;
-	while (j <= radius)
-	{
-		i = -radius;
-		while (i <= radius)
-		{
-			if ((i * i) + (j * j) <= (radius * radius))
-			{
-				my_mlx_pixel_put(data, i + x, j + y, color);
-			}
-			i++;
-		}
-		j++;
-	}
+	*(unsigned int *)dst = color;
 }
 
 void	print_fractal(t_data *img)
@@ -109,7 +53,7 @@ void	print_fractal(t_data *img)
 		while (y < HEIGHT)
 		{
 			c = calc_c(x, y, *img);
-			mandel = mandelbrot(c);
+			mandel = julia(c);
 			color = 0x00000000;
 			if (mandel != MAX_ITER)
 				color = get_color(mandel);
@@ -135,6 +79,14 @@ int	key_hook(int keycode, t_data *vars)
 	return (0);
 }
 
+int	close(int keycode, t_data *vars)
+{
+	(void)keycode;
+	exit(0);
+	mlx_destroy_window(vars->mlx, vars->win);
+	return (0);
+}
+
 void	create_limits(t_data *data)
 {
 	data->max_c.real = 4.0;
@@ -154,10 +106,9 @@ int	main(void)
 	create_limits(&data);
 	print_fractal(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-	//mlx_hook(data.win, 2, 1L<<0, close, &data);
 	mlx_key_hook(data.win, key_hook, &data);
 	mlx_mouse_hook(data.win, hook_mouse, &data);
-
+	mlx_hook(data.win, 17, 1L << 0, close, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_display(data.mlx);
 	return (0);
