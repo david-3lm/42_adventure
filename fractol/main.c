@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/10 20:06:40 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:27:05 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	key_hook(int keycode, t_data *vars)
 	return (0);
 }
 
-int	close(int keycode, t_data *vars)
+int	close_win(int keycode, t_data *vars)
 {
 	(void)keycode;
 	exit(0);
@@ -95,21 +95,39 @@ void	create_limits(t_data *data)
 	data->max_c.imaginary = data->min_c.imaginary + (data->max_c.real - data->min_c.real) * HEIGHT / WIDTH;
 }
 
-int	main(void)
+int	main(int argc, char **args)
 {
 	t_data		data;
+	char		*fr_name;
 
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Fractalin");
-	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
-	create_limits(&data);
-	print_fractal(&data);
-	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-	mlx_key_hook(data.win, key_hook, &data);
-	mlx_mouse_hook(data.win, hook_mouse, &data);
-	mlx_hook(data.win, 17, 1L << 0, close, &data);
-	mlx_loop(data.mlx);
-	mlx_destroy_display(data.mlx);
+	if (argc <= 1)
+	{
+		(void)args[0];
+		invalid_input("Falta un fractal para ejecutar\n");
+		return (0);
+	}
+	else
+	{
+		fr_name = args[1];
+		if (!ft_strncmp(fr_name, "mandel", 7) || !ft_strncmp(fr_name, "julia", 7))
+		{
+			data.mlx = mlx_init();
+			data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Fractalin");
+			data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
+			data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
+			create_limits(&data);
+			print_fractal(&data);
+			mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+			mlx_key_hook(data.win, key_hook, &data);
+			mlx_mouse_hook(data.win, hook_mouse, &data);
+			mlx_hook(data.win, 17, 1L << 0, close_win, &data);
+			mlx_loop(data.mlx);
+			mlx_destroy_display(data.mlx);
+		}
+		else
+		{
+			invalid_input("Fractal no valido");
+		}
+	}
 	return (0);
 }
