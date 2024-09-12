@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 20:22:11 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/10 19:23:31 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:46:43 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ t_complex	complex_pow(t_complex a, int b)
 	return (a);
 }
 
-t_complex exp_complex(t_complex z) {
-    t_complex result;
-    double exp_real = exp(z.real); // exp(x)
+t_complex	exp_complex(t_complex z) 
+{
+	t_complex 	result;
+	double 		exp_real = exp(z.real); 
 
-    result.real = exp_real * cos(z.imaginary); // exp(x) * cos(y)
-    result.imaginary = exp_real * sin(z.imaginary); // exp(x) * sin(y)
+	result.real = exp_real * cos(z.imaginary); 
+	result.imaginary = exp_real * sin(z.imaginary);
 
-    return result;
+	return result;
 }
