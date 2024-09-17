@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/17 18:05:59 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:46:17 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	get_color(int iter, int cp)
 	if (iter == MAX_ITER)
 		return (0x000000);
 
-	t = (double)iter / MAX_ITER;
+	t = sqrt((double)iter) / sqrt((double)MAX_ITER);
 	r = (int)(9 * (1 - t) * t * t * t * 255);
 	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
 	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
