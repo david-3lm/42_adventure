@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/12 17:00:50 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:05:59 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	get_color(int iter, int cp)
 	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
 	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
 	if (cp == 1)
-		return ((r << 16) | (g << 8) | b);
+		return ((r << 16) | (g << 8) | (b));
 	if (cp == 2)
-		return ((b << 16) | (g << 8) | r);
+		return ((b << 16) | (g << 8) | (r));
 	if (cp == 3)
 		return ((r << 16) | (b << 8) | g);
 	return ((r << 16) | (g << 8) | b);
@@ -57,8 +57,10 @@ void	draw(t_data *img, t_complex c, int x, int y)
 
 	if (img->fractal == 0)
 		res = mandelbrot(c);
-	else
+	else if (img->fractal == 1)
 		res = julia(c, img->c_juila);
+	else
+		res = multibrot(c, img->c_juila);
 	color = 0x00000000;
 	if (res != MAX_ITER)
 		color = get_color(res, img->color_palette);
@@ -126,9 +128,22 @@ int	frac_selected(char *arg)
 		return (0);
 	if (ft_strncmp(arg, "julia", 7) == 0)
 		return (1);
+	if (ft_strncmp(arg, "multi", 7) == 0)
+		return (2);
 	return (-1);
 }
+// int	main(void)
+// {
+// 	t_complex c = {3.0, 2.0};
+// 	t_complex res;
 
+// 	res = complex_pow(c,4);
+// 	printf("%f %f", res.real, res.imaginary);
+
+// 	res = complex_pow2(c,4);
+// 	printf("%f %f", res.real, res.imaginary);
+	
+// }
 
 int	main(int argc, char **args)
 {
@@ -145,7 +160,7 @@ int	main(int argc, char **args)
 		data.fractal = frac_selected(args[1]);
 		if (data.fractal != -1)
 		{
-			if (data.fractal == 1 && argc >= 4)
+			if (data.fractal != 0 && argc >= 4)
 			{
 				data.c_juila.real = ft_atod(args[2]);
 				data.c_juila.imaginary = ft_atod(args[3]);

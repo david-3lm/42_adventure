@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 20:22:11 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/12 16:46:43 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:28:32 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,34 @@ double	complex_abs(t_complex complex)
 
 t_complex	complex_pow(t_complex a, int b)
 {
+	t_complex	result;
+	t_complex	base;
+	int			exponent;
+
+	result.real = 1;
+	result.imaginary = 0;
+	base = a;
+	exponent = b;
+	if (exponent < 0)
+	{
+		base = (t_complex){1.0 / base.real, -1.0 / base.imaginary};
+		exponent = -exponent;
+	}
+
+	while (exponent > 0)
+	{
+		if (exponent % 2 == 1)
+		{
+			result = complex_mult(result, base);
+		}
+		base = complex_mult(base, base);
+		exponent /= 2;
+	}
+	return (result);
+}
+
+t_complex	complex_pow2(t_complex a, int b)
+{
 	if (b > 2)
 	{
 		return (complex_mult(complex_pow(a, b - 1), a));
@@ -49,15 +77,4 @@ t_complex	complex_pow(t_complex a, int b)
 		return (complex_mult(a, a));
 	}
 	return (a);
-}
-
-t_complex	exp_complex(t_complex z) 
-{
-	t_complex 	result;
-	double 		exp_real = exp(z.real); 
-
-	result.real = exp_real * cos(z.imaginary); 
-	result.imaginary = exp_real * sin(z.imaginary);
-
-	return result;
 }
