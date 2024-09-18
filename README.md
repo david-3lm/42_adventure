@@ -9,6 +9,9 @@ Here I will be saving my adventure throughout 42 Madrid as a student.
 ## Acknowledgements
 These is the content of the repository:
  - [Libft](https://github.com/david-3lm/42_adventure/tree/main/libft)
+ - [ft_printf](https://github.com/david-3lm/42_adventure/tree/main/ft_printf)
+ - [Get_next_line](https://github.com/david-3lm/42_adventure/tree/main/gnl)
+ - [fractol](https://github.com/david-3lm/42_adventure/tree/main/fractol)
 
 
 ## Authors
