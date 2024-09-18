@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:30:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/17 17:39:30 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:27:10 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_data	init_mlx(t_data data)
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 	data.color_palette = 1;
+	data.iter = MAX_ITER;
 	create_limits(&data);
 	print_fractal(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);

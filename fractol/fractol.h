@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/17 18:07:19 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:26:40 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_data
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			iter;
 	t_complex	max_c;
 	t_complex	min_c;
 	t_complex	c_juila;
