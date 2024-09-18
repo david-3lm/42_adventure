@@ -6,14 +6,14 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/18 11:26:40 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/18 22:15:23 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define WIDTH 1800
-# define HEIGHT 1800
+# define WIDTH 800
+# define HEIGHT 800
 # define MAX_ITER 500
 # include <math.h>
 # include <mlx.h>
