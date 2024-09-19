@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/18 22:15:23 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/19 14:12:44 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void		print_fractal(t_data *img);
 
 /*MOVE AND ZOOM*/
 int			move(int keycode, t_data *data);
+void		zoom(t_data *d, int x, int y, double zoom);
 
 /*DIFFERENT FRACTALS*/
 int			mandelbrot(t_complex c);
