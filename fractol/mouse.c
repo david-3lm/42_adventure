@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 19:11:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/19 14:14:59 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:10:59 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	zoom(t_data *d, int x, int y, double zoom)
 {
 	t_complex	c;
-	(void)x;
-	(void)y;
 	double		off_x;
 	double		off_y;
 
@@ -27,6 +25,7 @@ void	zoom(t_data *d, int x, int y, double zoom)
 		off_x = -off_x;
 		off_y = -off_y;
 	}
+	ft_printf("%d, %d\n", x, y);
 	c.real = d->min_c.real - d->max_c.real;
 	c.imaginary = d->max_c.imaginary - d->min_c.imaginary;
 	d->max_c.real += ((c.real - zoom * c.real) / 2) + off_x;
