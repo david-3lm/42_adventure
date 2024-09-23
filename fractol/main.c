@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/09/17 18:46:17 by dlopez-l         ###   ########.fr       */
+=======
+/*   Updated: 2024/09/19 14:14:44 by dlopez-l         ###   ########.fr       */
+>>>>>>> 3c77f5eb74c55ef09409d42ad7dfcd94025330cc
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +93,6 @@ void	print_fractal(t_data *img)
 
 int	key_hook(int keycode, t_data *vars)
 {
-	int i;
-
-	i = keycode;
-	keycode = i;
 	if (keycode == K_ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
@@ -102,12 +102,19 @@ int	key_hook(int keycode, t_data *vars)
 		move(keycode, vars);
 	else
 	{
-		if (keycode == K_R)
+		if (keycode == K_TWO)
 			vars->color_palette = 2;
-		if (keycode == K_G)
+		if (keycode == K_THREE)
 			vars->color_palette = 3;
-		if (keycode == K_B)
+		if (keycode == K_ONE)
 			vars->color_palette = 1;
+		if (keycode == K_R)
+			create_limits(vars);
+		if (keycode == K_MINUS)
+			zoom(vars, WIDTH / 2, HEIGHT / 2, 1.1);
+		if (keycode == K_PLUS)
+			zoom(vars, WIDTH / 2, HEIGHT / 2, 0.9);
+		
 		mlx_clear_window(vars->mlx, vars->win);
 		print_fractal(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);

@@ -22,6 +22,11 @@ $(NAME): $(OBJ) $(LIBFTPRINTF)
 
 $(LIBFTPRINTF):
 	@$(MAKE) -C $(LIBFTPRINTF_DIR)
+	@echo "\n$(GREEN)Compliation completed \n $(BLUE)To execute the fractal:$(COLOREND) \n\t \
+	-Mandelbrot: $(RED)./fractol $(GREEN)mandel \n\t $(COLOREND)\
+	-Julia: $(RED)./fractol $(GREEN)julia [(double)cR] [(double)cI] \n\t $(COLOREND)\
+	-Multibrot: $(RED)./fractol $(GREEN)multi [(double)cR] [(double)cI] $(COLOREND)"
+
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@

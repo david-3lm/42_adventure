@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/09/17 18:50:53 by dlopez-l         ###   ########.fr       */
+=======
+/*   Updated: 2024/09/19 14:12:44 by dlopez-l         ###   ########.fr       */
+>>>>>>> 3c77f5eb74c55ef09409d42ad7dfcd94025330cc
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define WIDTH 1800
-# define HEIGHT 1800
+# define WIDTH 800
+# define HEIGHT 800
 # define MAX_ITER 500
 # include <math.h>
 # include <mlx.h>
@@ -36,6 +40,7 @@ typedef struct s_data
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			iter;
 	t_complex	max_c;
 	t_complex	min_c;
 	t_complex	c_juila;
@@ -55,6 +60,7 @@ void		print_fractal(t_data *img);
 
 /*MOVE AND ZOOM*/
 int			move(int keycode, t_data *data);
+void		zoom(t_data *d, int x, int y, double zoom);
 
 /*DIFFERENT FRACTALS*/
 int			mandelbrot(t_complex c);
