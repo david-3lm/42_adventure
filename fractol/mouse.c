@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 19:11:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/24 14:43:11 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/24 20:56:01 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	zoom(t_data *d, int x, int y, double zoom)
 	double		off_x;
 	double		off_y;
 
-	off_x = ((double)x / 800.0) - 0.5;
-	off_y = ((double)y / 800.0) - 0.5;
+	off_x = ((double)x / (double)WIDTH) - 0.5;
+	off_y = ((double)y / (double)HEIGHT) - 0.5;
 	c.real = d->min_c.real - d->max_c.real;
 	c.imaginary = d->max_c.imaginary - d->min_c.imaginary;
 	if (zoom > 1)

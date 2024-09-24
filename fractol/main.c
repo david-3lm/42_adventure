@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/23 11:03:45 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/24 21:25:02 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	get_color(int iter, int cp)
 		return ((b << 16) | (g << 8) | (r));
 	if (cp == 3)
 		return ((r << 16) | (b << 8) | g);
+	if (cp == 4)
+		return (0xFFFF55 * t * (1 - t));
 	return ((r << 16) | (g << 8) | b);
 
 }
@@ -56,7 +58,7 @@ void	draw(t_data *img, t_complex c, int x, int y)
 	int	color;
 
 	if (img->fractal == 0)
-		res = mandelbrot(c);
+		res = phoenix(*img, x, y);
 	else if (img->fractal == 1)
 		res = julia(c, img->c_juila);
 	else
@@ -79,7 +81,8 @@ void	print_fractal(t_data *img)
 		y = 0;
 		while (y < HEIGHT)
 		{
-			c = calc_c(x, y, *img);
+			if (img->fractal != 0) //cambiar por fractal fenix
+				c = calc_c(x, y, *img);
 			draw(img, c, x, y);
 			y++;
 		}
@@ -98,19 +101,20 @@ int	key_hook(int keycode, t_data *vars)
 		move(keycode, vars);
 	else
 	{
+		if (keycode == K_ONE)
+			vars->color_palette = 1;
 		if (keycode == K_TWO)
 			vars->color_palette = 2;
 		if (keycode == K_THREE)
 			vars->color_palette = 3;
-		if (keycode == K_ONE)
-			vars->color_palette = 1;
+		if (keycode == K_FOUR)
+			vars->color_palette = 4;
 		if (keycode == K_R)
 			create_limits(vars);
 		if (keycode == K_MINUS)
 			zoom(vars, WIDTH / 2, HEIGHT / 2, 1.1);
 		if (keycode == K_PLUS)
 			zoom(vars, WIDTH / 2, HEIGHT / 2, 0.9);
-		
 		mlx_clear_window(vars->mlx, vars->win);
 		print_fractal(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);

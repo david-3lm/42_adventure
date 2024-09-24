@@ -1,5 +1,5 @@
 NAME = fractol
-SRC = main.c complex_utils.c pow_complex.c fractal_utils.c mouse.c view.c render.c mandelbrot.c julia.c multibrot.c inerror.c init.c
+SRC = main.c complex_utils.c pow_complex.c fractal_utils.c mouse.c view.c render.c mandelbrot.c julia.c multibrot.c phoenix.c inerror.c init.c
 
 OBJ = $(SRC:.c=.o)
 LIBFTPRINTF_DIR = ./ft_printf

@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 20:22:11 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/17 17:28:32 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:29:28 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,4 @@ t_complex	complex_pow(t_complex a, int b)
 		exponent /= 2;
 	}
 	return (result);
-}
-
-t_complex	complex_pow2(t_complex a, int b)
-{
-	if (b > 2)
-	{
-		return (complex_mult(complex_pow(a, b - 1), a));
-	}
-	else if (b == 2)
-	{
-		return (complex_mult(a, a));
-	}
-	return (a);
 }
