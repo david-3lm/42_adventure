@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 19:11:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/24 20:56:01 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/27 14:40:30 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,3 @@ int	hook_mouse(int keycode, int x, int y, t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }
-

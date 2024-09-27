@@ -1,5 +1,6 @@
 NAME = fractol
-SRC = main.c complex_utils.c pow_complex.c fractal_utils.c mouse.c view.c render.c mandelbrot.c julia.c multibrot.c phoenix.c inerror.c init.c
+SRC = main.c complex_utils.c pow_complex.c fractal_utils.c mouse.c keyboard.c \
+render.c mandelbrot.c julia.c multibrot.c phoenix.c inerror.c init.c input.c
 
 OBJ = $(SRC:.c=.o)
 LIBFTPRINTF_DIR = ./ft_printf
@@ -46,4 +47,7 @@ re: fclean all
 exec:
 	./$(NAME)
 
-.PHONY: all clean fclean re exec
+norma:
+	norminette $(SRC)
+
+.PHONY: all clean fclean re exec norma

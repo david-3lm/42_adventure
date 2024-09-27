@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 20:22:11 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/24 19:29:28 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/27 14:39:59 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_complex	complex_pow(t_complex a, int b)
 		base = (t_complex){1.0 / base.real, -1.0 / base.imaginary};
 		exponent = -exponent;
 	}
-
 	while (exponent > 0)
 	{
 		if (exponent % 2 == 1)

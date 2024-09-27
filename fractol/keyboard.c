@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   view.c                                             :+:      :+:    :+:   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 21:03:49 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/12 17:13:58 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/27 14:40:48 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "keys.h"
 
-void	move_aux(t_data *d, int keycode, double mov)
+void	move(int keycode, t_data *d, double mov)
 {
 	t_complex	c;
 
@@ -33,7 +33,6 @@ void	move_aux(t_data *d, int keycode, double mov)
 	{
 		d->min_c.real += c.real * mov;
 		d->max_c.real += c.real * mov;
-
 	}
 	if (keycode == K_LEFT)
 	{
@@ -42,11 +41,24 @@ void	move_aux(t_data *d, int keycode, double mov)
 	}
 }
 
-int	move(int keycode, t_data *data)
+void	key_color(int keycode, t_data *vars)
 {
-	move_aux(data, keycode, 0.2);
-	mlx_clear_window(data->mlx, data->win);
-	print_fractal(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	return (0);
+	if (keycode == K_ONE)
+		vars->color_palette = 1;
+	if (keycode == K_TWO)
+		vars->color_palette = 2;
+	if (keycode == K_THREE)
+		vars->color_palette = 3;
+	if (keycode == K_FOUR)
+		vars->color_palette = 4;
+}
+
+void	key_zoom(int keycode, t_data *vars)
+{
+	if (keycode == K_R)
+		create_limits(vars);
+	if (keycode == K_MINUS)
+		zoom(vars, WIDTH / 2, HEIGHT / 2, 1.1);
+	if (keycode == K_PLUS)
+		zoom(vars, WIDTH / 2, HEIGHT / 2, 0.9);
 }

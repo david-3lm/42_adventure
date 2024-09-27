@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pow_complex.c                                      :+:      :+:    :+:   */
+/*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 16:11:45 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/27 14:40:09 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/09/27 11:29:47 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/09/27 11:41:53 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	fact_complex(t_complex c)
+int	get_input(t_data *data, int argc, char **args)
 {
-	double	d;
-
-	d = pow(c.real, 2) + pow(c.imaginary, 2);
-	return (d);
-}
-
-t_complex	neg_pow(t_complex c, int p)
-{
-	double		num;
-	t_complex	res;
-	t_complex	pow_result;
-
-	pow_result = complex_pow(c, p);
-	num = fact_complex(pow_result);
-	res.real = pow_result.real / num;
-	res.imaginary = -pow_result.imaginary / num;
-	return (res);
+	if (data->fractal != 0)
+	{
+		if (argc < 4)
+			return (0);
+		data->c_juila.real = ft_atod(args[2]);
+		data->c_juila.imaginary = ft_atod(args[3]);
+		if (data->fractal == 3)
+		{
+			if (argc < 6)
+				return (0);
+			data->p_pho.real = ft_atod(args[4]);
+			data->p_pho.imaginary = ft_atod(args[5]);
+		}
+	}
+	return (1);
 }
