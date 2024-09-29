@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 20:54:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/24 19:22:20 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:41:34 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef KEYS_H
 # define KEYS_H
@@ -27,7 +26,5 @@
 # define K_FOUR 52
 # define K_PLUS 65451
 # define K_MINUS 65453
-
-
 
 #endif

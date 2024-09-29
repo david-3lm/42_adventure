@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/27 14:35:06 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:15:56 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACTOL_H
 # define WIDTH 800
 # define HEIGHT 800
-# define MAX_ITER 500
+# define MAX_ITER 50
 # include <math.h>
 # include <mlx.h>
 # include <stdlib.h>
@@ -58,23 +58,23 @@ void		move(int keycode, t_data *data, double mov);
 void		zoom(t_data *d, int x, int y, double zoom);
 
 /*DIFFERENT FRACTALS*/
-int			mandelbrot(t_complex c);
-int			multibrot(t_complex z, t_complex c);
-int			julia(t_complex z, t_complex c);
-int			phoenix(t_data data, t_complex c);
+int			mandelbrot(t_complex c, t_data data);
+int			multibrot(t_complex z, t_data data);
+int			julia(t_complex z, t_data data);
+int			phoenix(t_complex c, t_data data);
 
 /*ERROR*/
 void		invalid_input(char *msg);
 int			close_win(int keycode, t_data *vars);
 
 /*RENDER*/
-int			get_color(int iter, int cp);
+int			get_color(int iter, int cp, t_data data);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		draw(t_data *img, t_complex c, int x, int y);
 void		print_fractal(t_data *img);
 void		key_color(int keycode, t_data *vars);
 void		key_zoom(int keycode, t_data *vars);
-
+void		key_iter(int keycode, t_data *vars);
 
 /*INIT*/
 t_data		init_mlx(t_data data);

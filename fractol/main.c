@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/27 14:39:16 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:06:19 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	key_hook(int keycode, t_data *vars)
 	{
 		key_color(keycode, vars);
 		key_zoom(keycode, vars);
+		key_iter(keycode, vars);
 	}
 	mlx_clear_window(vars->mlx, vars->win);
 	print_fractal(vars);

@@ -1,7 +1,7 @@
 NAME = fractol
 SRC = main.c complex_utils.c pow_complex.c fractal_utils.c mouse.c keyboard.c \
 render.c mandelbrot.c julia.c multibrot.c phoenix.c inerror.c init.c input.c
-
+HEADERS = fractol.h keys.h
 OBJ = $(SRC:.c=.o)
 LIBFTPRINTF_DIR = ./ft_printf
 LIBFTPRINTF = $(LIBFTPRINTF_DIR)/libftprintf.a
@@ -12,9 +12,12 @@ RM = rm -f
 
 # COLORES
 COLOREND = \033[0m
-GREEN = \033[0;32m
-RED = \033[0;31m
+GREEN = \033[1;32m
+RED = \e[1;31m
+YELLOW = \e[1;33m
 BLUE = \033[0;34m
+CIAN = \e[7;36m
+
 
 all: $(NAME)
 
@@ -48,6 +51,27 @@ exec:
 	./$(NAME)
 
 norma:
-	norminette $(SRC)
+	@echo "$(CIAN)SCRIPTS\n$(COLOREND)"
+	@for file in $(SRC); do \
+		norminette $$file | grep "OK!" > /dev/null; \
+		if [ $$? -eq 0 ]; then \
+			echo "$(GREEN)$$file: OK!$(COLOREND)"; \
+		else \
+			echo "$(RED)"; \
+			norminette $$file; \
+			echo "$(COLOREND)"; \
+		fi \
+	done
+	@echo "$(CIAN)\nHEADERS\n$(COLOREND)"
+	@for header in $(HEADERS); do \
+		norminette $$header | grep "OK!" > /dev/null; \
+		if [ $$? -eq 0 ]; then \
+			echo "$(GREEN)$$header: OK!$(COLOREND)"; \
+		else \
+			echo "$(RED)"; \
+			norminette $$header; \
+			echo "$(COLOREND)"; \
+		fi \
+	done
 
 .PHONY: all clean fclean re exec norma

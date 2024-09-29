@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 21:03:52 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/27 14:41:17 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:14:31 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	get_color(int iter, int cp)
+int	get_color(int iter, int cp, t_data data)
 {
 	int		r;
 	int		g;
 	int		b;
 	double	t;
 
-	if (iter == MAX_ITER)
+	if (iter == data.iter)
 		return (0x000000);
-	t = sqrt((double)iter) / sqrt((double)MAX_ITER);
+	t = sqrt((double)iter) / sqrt((double)data.iter);
 	r = (int)(9 * (1 - t) * t * t * t * 255);
 	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
 	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
@@ -50,16 +50,16 @@ void	draw(t_data *img, t_complex c, int x, int y)
 	int	color;
 
 	if (img->fractal == 0)
-		res = mandelbrot(c);
+		res = mandelbrot(c, *img);
 	else if (img->fractal == 1)
-		res = julia(c, img->c_juila);
+		res = julia(c, *img);
 	else if (img->fractal == 2)
-		res = multibrot(c, img->c_juila);
+		res = multibrot(c, *img);
 	else
-		res = phoenix(*img, c);
+		res = phoenix(c, *img);
 	color = 0x00000000;
-	if (res != MAX_ITER)
-		color = get_color(res, img->color_palette);
+	if (res != img->iter)
+		color = get_color(res, img->color_palette, *img);
 	my_mlx_pixel_put(img, x, y, color);
 }
 

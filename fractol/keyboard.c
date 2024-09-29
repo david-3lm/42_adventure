@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 21:03:49 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/27 14:40:48 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:30:42 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,12 @@ void	key_zoom(int keycode, t_data *vars)
 		zoom(vars, WIDTH / 2, HEIGHT / 2, 1.1);
 	if (keycode == K_PLUS)
 		zoom(vars, WIDTH / 2, HEIGHT / 2, 0.9);
+}
+
+void	key_iter(int keycode, t_data *vars)
+{
+	if (keycode == K_G)
+		vars->iter += 10;
+	else if (keycode == K_B)
+		vars->iter -= 10;
 }

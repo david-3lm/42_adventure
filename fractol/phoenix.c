@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   phoenix.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 19:50:40 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/27 11:57:37 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:15:02 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	phoenix(t_data data, t_complex c)
+int	phoenix(t_complex c, t_data data)
 {
 	t_complex	zn;
 	t_complex	zn_1;
@@ -22,7 +22,7 @@ int	phoenix(t_data data, t_complex c)
 	i = 0;
 	zn = c;
 	zn_1 = zn;
-	while (i < MAX_ITER)
+	while (i < data.iter)
 	{
 		z_next = complex_add(complex_add(complex_pow(zn, 2), data.c_juila), \
 			complex_mult(data.p_pho, zn_1));
