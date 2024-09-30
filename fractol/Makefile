@@ -29,7 +29,9 @@ $(LIBFTPRINTF):
 	@echo "\n$(GREEN)Compliation completed \n $(BLUE)To execute the fractal:$(COLOREND) \n\t \
 	-Mandelbrot: $(RED)./fractol $(GREEN)mandel \n\t $(COLOREND)\
 	-Julia: $(RED)./fractol $(GREEN)julia [(double)cR] [(double)cI] \n\t $(COLOREND)\
-	-Multibrot: $(RED)./fractol $(GREEN)multi [(double)cR] [(double)cI] $(COLOREND)"
+	-Multibrot: $(RED)./fractol $(GREEN)multi [(double)cR] [(double)cI] ([(int)pow])$(COLOREND) \n\t \
+	-Phoenix: $(RED)./fractol $(GREEN)phoenix [(double)cR] [(double)cI] [(double)pR] [(double)pI] $(COLOREND)"\
+
 
 
 %.o: %.c

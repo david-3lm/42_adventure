@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/29 20:15:56 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:04:01 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 # define WIDTH 800
 # define HEIGHT 800
 # define MAX_ITER 50
+# define BAD_INPUT "\033[1;31m Bad input!\033[0m\n To execute the fractal: \n\t \
+- Julia: ./fractol julia [(double)cR] [(double)cI] \n\t \
+\033[1;31m- Mandelbrot: ./fractol\033[1;32m  mandel \n\t \
+\033[1;31m- Multibrot: ./fractol\033[1;32m multi [(double)cR] [(double)cI] ([(int)pow]) \n\t \
+\033[1;31m- Phoenix: ./fractol\033[1;32m \
+phoenix [(double)cR] [(double)cI] [(double)pR] [(double)pI]"
 # include <math.h>
 # include <mlx.h>
 # include <stdlib.h>
@@ -41,6 +47,7 @@ typedef struct s_data
 	t_complex	min_c;
 	t_complex	c_juila;
 	t_complex	p_pho;
+	int			multi_pow;
 	int			color_palette;
 }				t_data;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:30:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/27 14:41:44 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:25:34 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ t_data	init_mlx(t_data data)
 	mlx_mouse_hook(data.win, hook_mouse, &data);
 	mlx_hook(data.win, 17, 1L << 0, close_win, &data);
 	mlx_loop(data.mlx);
-	mlx_destroy_display(data.mlx);
 	return (data);
 }

@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:46:28 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/29 20:15:11 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:07:10 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	multibrot(t_complex z, t_data data)
 	c = data.c_juila;
 	while (complex_abs(z) <= 4 && i < data.iter)
 	{
-		z = complex_add(neg_pow(z, 2), c);
+		if (data.multi_pow < 0)
+			z = complex_add(neg_pow(z, -data.multi_pow), c);
+		else if (data.multi_pow > 0)
+			z = complex_add(complex_pow(z, data.multi_pow), c);
 		i++;
 	}
 	return (i);

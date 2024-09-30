@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/29 20:06:19 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/09/30 11:25:53 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int	main(int argc, char **args)
 			if (get_input(&data, argc, args))
 				data = init_mlx(data);
 			else
-				invalid_input("Input incorrecto, revisa la entrada\n");
+				invalid_input(BAD_INPUT);
 		}
 		else
-			invalid_input("Fractal no valido\n");
+			invalid_input(BAD_INPUT);
 	}
 	return (0);
 }
