@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:30:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/01 10:56:22 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:22:44 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	create_limits(t_data *data)
 		(data->max_c.real - data->min_c.real) * HEIGHT / WIDTH;
 }
 
-t_data		init_mlx(t_data data)
+t_data	init_mlx(t_data data)
 {
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Fractalin");

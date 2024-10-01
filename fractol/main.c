@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 11:15:43 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/01 10:52:49 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:28:53 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ int	key_hook(int keycode, t_data *vars)
 {
 	if (keycode == K_ESC)
 	{
-		//mlx_destroy_window(vars->mlx, vars->win);
-		// exit(0);
-		close_win(0, vars);
+		close_win(vars);
 	}
 	else if (keycode == K_UP || keycode == K_LEFT \
 		|| keycode == K_RIGHT || keycode == K_DOWN)
@@ -54,7 +52,7 @@ int	frac_selected(char *arg)
 
 int	main(int argc, char **args)
 {
-	t_data		data = {0};
+	t_data	data;
 
 	data.fractal = -1;
 	if (argc <= 1)

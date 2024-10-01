@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/30 11:04:01 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:23:51 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			phoenix(t_complex c, t_data data);
 
 /*ERROR*/
 void		invalid_input(char *msg);
-int			close_win(int keycode, t_data *vars);
+int			close_win(t_data *vars);
 
 /*RENDER*/
 int			get_color(int iter, int cp, t_data data);
@@ -88,7 +88,6 @@ t_data		init_mlx(t_data data);
 int			get_input(t_data *data, int argc, char **args);
 
 /*HOOKS*/
-int			close_win(int keycode, t_data *vars);
 int			hook_mouse(int button, int x, int y, t_data *mlx);
 int			key_hook(int keycode, t_data *vars);
 void		create_limits(t_data *data);
