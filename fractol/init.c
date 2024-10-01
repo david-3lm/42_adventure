@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:30:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/30 11:25:34 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/01 10:56:22 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ void	create_limits(t_data *data)
 		(data->max_c.real - data->min_c.real) * HEIGHT / WIDTH;
 }
 
-t_data	init_mlx(t_data data)
+t_data		init_mlx(t_data data)
 {
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Fractalin");
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
+	data.bits_per_pixel = 0;
+	data.line_length = 0;
+	data.endian = 0;
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
 		&data.line_length, &data.endian);
 	data.color_palette = 1;

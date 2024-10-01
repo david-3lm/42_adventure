@@ -76,4 +76,8 @@ norma:
 		fi \
 	done
 
+debug: CFLAGS += -g3 -fsanitize=address
+debug: re
+
+
 .PHONY: all clean fclean re exec norma
