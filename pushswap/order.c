@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   r_rotates.c                                        :+:      :+:    :+:   */
+/*   order.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 16:16:59 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/04 15:14:28 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/10/04 14:59:14 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/10/04 15:08:29 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	r_rotate_a(int *stack_a)
+void	order_three(t_data *data)
 {
-	int	n;
+	int	order;
 
-	n = pop_last(stack_a);
-	append(stack_a, n);
-}
-
-void	r_rotate_b(int *stack_b)
-{
-	int	n;
-
-	n = pop_last(stack_b);
-	append(stack_b, n);
-}
-
-void	r_rotate_s(int *stack_a, int *stack_b)
-{
-	r_rotate_a(stack_a);
-	r_rotate_b(stack_b);
+	order = check_order(data->stack_a);
+	if (order == 0)
+		return ;
+	if (order == 1)
+	{
+		swap_a(data->stack_a);
+		order_three(data);
+	}
+	if (order == 2)
+	{
+		r_rotate_a(data->stack_a);
+		order_three(data);
+	}
 }

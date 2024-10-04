@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:23:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/04 12:29:35 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:00:38 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ int	check_order(int *s)
 	int	i;
 
 	i = 0;
-	while (i < 3)
+	while (i < size(s) - 1)
 	{
 		if (s[i] > s[i + 1])
-			return (i);
+		{
+			return (i + 1);
+		}
 		i++;
 	}
 	return (0);

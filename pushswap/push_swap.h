@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/04 12:58:10 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:14:40 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_data
 	int	*stack_b;
 }				t_data;
 
-
 void	free_mem(int *ptr);
 void	push_swap(int *stack_a, int *stack_b);
 
@@ -38,6 +37,7 @@ int		pop(int *stack);
 void	append(int *stack, int num);
 int		pop_last(int *stack);
 void	put_last(int *stack, int num);
+int		size(int *stack);
 
 /*MOVES*/
 void	push_a(int *stack_a, int *stack_b);
@@ -54,6 +54,6 @@ void	r_rotate_s(int *stack_a, int *stack_b);
 
 /*ORDER*/
 int		check_order(int *s);
-
+void	order_three(t_data *data);
 
 #endif
