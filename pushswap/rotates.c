@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rotates.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:17:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/02 16:41:50 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:54:37 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 void	rotate_a(int *stack_a)
 {

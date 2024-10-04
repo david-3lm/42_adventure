@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:27:18 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/02 16:44:09 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/04 12:30:28 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 int	pop(int *stack)
 {
@@ -17,21 +19,21 @@ int	pop(int *stack)
 
 	num = stack[0];
 	i = 0;
-	while (stack[i + 1] != NULL)
+	while (stack[i + 1] != 0)
 	{
 		stack[i] = stack[i + 1];
 		i++;
 	}
-	stack[i] = NULL;
+	stack[i] = 0;
 	return (num);
 }
 
 void	append(int *stack, int num)
 {
 	int	i;
-	
+
 	i = 0;
-	while (stack[i] != NULL)
+	while (stack[i] != 0)
 		i++;
 	while (i > 0)
 	{
@@ -40,16 +42,18 @@ void	append(int *stack, int num)
 	}
 	stack[0] = num;
 }
+
 int	pop_last(int *stack)
 {
 	int	i;
 	int	num;
 
 	i = 0;
-	while (stack[i + 1] != NULL)
+	while (stack[i + 1] != 0)
 		i++;
 	num = stack[i];
-	stack[i] = NULL;
+	stack[i] = 0;
+	return (num);
 }
 
 void	put_last(int *stack, int num)
@@ -57,7 +61,17 @@ void	put_last(int *stack, int num)
 	int	i;
 
 	i = 0;
-	while (stack[i] != NULL)
+	while (stack[i] != 0)
 		i++;
 	stack[i] = num;
+}
+
+int	size(int *stack)
+{
+	int	i;
+
+	i = 0;
+	while (stack[i])
+		i++;
+	return (i);
 }
