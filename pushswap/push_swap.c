@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/04 15:14:17 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/07 12:14:46 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(int *stack_a, int *stack_b)
+void	push_swap(t_data *data)
 {
-	(void)stack_a;
-	(void)stack_b;
+	(void)data;
 }
 
 void	debug(t_data *data, int n)
@@ -40,17 +39,18 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		data.stack_a = ft_calloc(argc, sizeof(int));
-		if (!data.stack_a)
-			free_mem(data.stack_a);
 		data.stack_b = ft_calloc(argc, sizeof(int));
-		if (!data.stack_b)
-		{
-			free_mem(data.stack_a);
-			free_mem(data.stack_b);
-		}
+		if (!data.stack_a || !data.stack_b)
+			free_data(data);
 		init_a(&data, argc, argv);
-		order_three(&data);
+		if (argc == 4)
+			order_three(&data);
+		else if (argc >= 5)
+		{
+			start_algo(&data);
+		}
 		debug(&data, argc - 1);
+		free_data(data);
 	}
 	return (0);
 }

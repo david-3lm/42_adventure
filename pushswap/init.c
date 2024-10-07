@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:49:10 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/04 12:58:41 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/07 12:40:27 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	init_a(t_data *data, int argc, char **arg)
 			data->min = n;
 		i++;
 	}
+	update_data(data);
 }
