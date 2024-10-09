@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:49:10 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/07 12:40:27 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:52:23 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_a(t_data *data, int argc, char **arg)
 	i = 1;
 	data->max = INT_MIN;
 	data->min = INT_MAX;
+	data->numbers = argc - 1;
 	while (i < argc)
 	{
 		n = ft_atoi(arg[i]);

@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/07 12:15:07 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:51:25 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ int		check_order_desc(int *s);
 int		check_order_asc(int *s);
 void	order_three(t_data *data);
 int		get_correct_pos(int n, t_data *data);
+int		get_correct_pos_b(int n, t_data *data);
 
 /*ALGORYTHM*/
 void	start_algo(t_data *data);
 
+void	debug(t_data *data, int n);
 
 #endif
