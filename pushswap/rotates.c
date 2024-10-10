@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotates.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:17:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/07 11:43:25 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:05:16 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ void	rotate_b(t_data *data)
 
 void	rotate_s(t_data *data)
 {
-	rotate_a(data);
-	rotate_b(data);
+	int	n;
+
+	n = pop(data->stack_a);
+	put_last(data->stack_a, n);
+	n = pop(data->stack_b);
+	put_last(data->stack_b, n);
 	write(1, "rr\n", 3);
 }

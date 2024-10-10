@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/09 10:51:25 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/10 14:34:51 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ typedef struct s_data
 	int	*stack_b;
 	int	numbers;
 	int	size_a;
-	int size_b;
+	int	size_b;
+	int	reverse;
+	int	idx;
 }				t_data;
 
 void	update_data(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_order.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:23:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/08 10:47:14 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:56:51 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	get_correct_pos_b(int n, t_data *data)
 			return (i + 1);
 		if (n < data->min_b && data->stack_b[i] == data->min_b)
 			return (i + 1);
-		if (n > data->max_b && data->stack_a[i] == data->max_b)
+		if (n > data->max_b && data->stack_b[i] == data->max_b)
 			return (i);
 		i++;
 	}

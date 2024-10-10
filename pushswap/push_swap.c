@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/07 12:14:46 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/10 15:50:27 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ void	push_swap(t_data *data)
 {
 	(void)data;
 }
+
+void	order_two(t_data *data)
+{
+	if (data->stack_a[0] > data->stack_a[1])
+		swap_a(data);
+}
+
 
 void	debug(t_data *data, int n)
 {
@@ -43,13 +50,15 @@ int	main(int argc, char **argv)
 		if (!data.stack_a || !data.stack_b)
 			free_data(data);
 		init_a(&data, argc, argv);
+		if (argc == 3)
+			order_two(&data);
 		if (argc == 4)
 			order_three(&data);
 		else if (argc >= 5)
 		{
 			start_algo(&data);
 		}
-		debug(&data, argc - 1);
+		//debug(&data, argc - 1);
 		free_data(data);
 	}
 	return (0);
