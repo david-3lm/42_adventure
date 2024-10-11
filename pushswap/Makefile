@@ -1,6 +1,6 @@
 NAME = push_swap
 SRC = push_swap.c mem_utils.c init.c pushes.c r_rotates.c rotates.c stack_utils.c swaps.c \
-	order.c check_order.c data_utils.c algo.c
+	order.c check_order.c data_utils.c idx_utils.c algo.c
 HEADERS = push_swap.h
 OBJ = $(SRC:.c=.o)
 LIBFTPRINTF_DIR = ./ft_printf

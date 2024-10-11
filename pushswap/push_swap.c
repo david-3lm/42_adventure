@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/10 15:50:27 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:18:55 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,6 @@ void	push_swap(t_data *data)
 {
 	(void)data;
 }
-
-void	order_two(t_data *data)
-{
-	if (data->stack_a[0] > data->stack_a[1])
-		swap_a(data);
-}
-
 
 void	debug(t_data *data, int n)
 {
@@ -58,7 +51,6 @@ int	main(int argc, char **argv)
 		{
 			start_algo(&data);
 		}
-		//debug(&data, argc - 1);
 		free_data(data);
 	}
 	return (0);

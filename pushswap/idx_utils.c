@@ -1,35 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   idx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 19:49:10 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/11 12:19:14 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/10/11 12:06:50 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/10/11 12:17:03 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_a(t_data *data, int argc, char **arg)
+int	get_min_idx(int *stack, int size)
 {
 	int	i;
-	int	n;
+	int	min;
+	int	idx;
 
-	i = 1;
-	data->max = INT_MIN;
-	data->min = INT_MAX;
-	data->numbers = argc - 1;
-	while (i < argc)
+	i = 0;
+	min = INT_MAX;
+	idx = 0;
+	while (i < size)
 	{
-		n = ft_atoi(arg[i]);
-		data->stack_a[i - 1] = n;
-		if (n > data->max)
-			data->max = n;
-		if (n < data->min)
-			data->min = n;
+		if (stack[i] < min)
+		{
+			min = stack[i];
+			idx = i;
+		}
 		i++;
 	}
-	update_data(data);
+	return (idx);
+}
+
+int	get_max_idx(int *stack, int size)
+{
+	int	i;
+	int	max;
+	int	idx;
+
+	i = 0;
+	max = INT_MIN;
+	idx = 0;
+	while (i < size)
+	{
+		if (stack[i] > max)
+		{
+			max = stack[i];
+			idx = i;
+		}
+		i++;
+	}
+	return (idx);
 }

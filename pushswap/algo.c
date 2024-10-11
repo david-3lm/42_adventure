@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:29:44 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/10 15:03:07 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:13:50 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	get_opt_step(t_data *data)
 	data->idx = 0;
 	while (i < data->size_a)
 	{
-		aux = get_correct_pos_b(data->stack_a[i], data);
-		aux += i;
+		aux = get_correct_pos_b(data->stack_a[i], data) + i;
 		if (aux < opt)
 		{
 			if (aux > data->size_b / 2)
@@ -93,7 +92,7 @@ void	start_algo(t_data *data)
 	int	idx;
 
 	idx = 0;
-	while (data->size_a > 3)
+	while (data->size_a > 5)
 	{
 		data->reverse = 0;
 		idx = get_opt_step(data);
@@ -102,7 +101,9 @@ void	start_algo(t_data *data)
 			if (data->idx > 0 && idx > 0 && !data->reverse)
 				rotate_s(data);
 			else if (data->idx > 0)
+			{
 				rotate_a(data);
+			}
 			else if (data->reverse)
 				r_rotate_b(data);
 			else
@@ -112,9 +113,8 @@ void	start_algo(t_data *data)
 		}
 		push_b(data);
 	}
-	order_three(data);
+	order_five(data);
 	max_to_top(data);
-	//debug(data, data->numbers);
 	while (data->size_b != 0)
 	{
 		data->reverse = 0;

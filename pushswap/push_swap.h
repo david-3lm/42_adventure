@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/10 14:34:51 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:18:32 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_data
 	int	size_b;
 	int	reverse;
 	int	idx;
+	int	median;
 }				t_data;
 
 void	update_data(t_data *data);
@@ -52,6 +53,9 @@ void	append(int *stack, int num);
 int		pop_last(int *stack);
 void	put_last(int *stack, int num);
 int		size(int *stack);
+int		get_min_idx(int *stack, int size);
+int		get_max_idx(int *stack, int size);
+
 
 /*MOVES*/
 void	push_a(t_data *data);
@@ -69,7 +73,10 @@ void	r_rotate_s(t_data *data);
 /*ORDER*/
 int		check_order_desc(int *s);
 int		check_order_asc(int *s);
+void	order_two(t_data *data);
 void	order_three(t_data *data);
+void	order_four(t_data *data);
+void	order_five(t_data *data);
 int		get_correct_pos(int n, t_data *data);
 int		get_correct_pos_b(int n, t_data *data);
 
