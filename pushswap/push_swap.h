@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/11 12:18:32 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:19:20 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ typedef struct s_data
 	int	numbers;
 	int	size_a;
 	int	size_b;
-	int	reverse;
+	int	reverse_a;
+	int	reverse_b;
 	int	idx;
 	int	median;
 }				t_data;
