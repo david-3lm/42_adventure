@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:29:44 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/11 15:16:40 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:13:50 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,23 @@ int	get_opt_step(t_data *data)
 	int	aux;
 	int	opt;
 	int	i;
-	int	idx;
 
 	i = 0;
 	opt = INT_MAX;
 	data->idx = 0;
 	while (i < data->size_a)
 	{
-		idx = i;
-		aux = get_correct_pos_b(data->stack_a[i], data);
-		aux += idx;
+		aux = get_correct_pos_b(data->stack_a[i], data) + i;
 		if (aux < opt)
 		{
-			data->reverse_a = (idx > data->size_a / 2);
-			data->reverse_b = (aux > data->size_b / 2);
-			if (data->reverse_b)
+			if (aux > data->size_b / 2)
+			{
 				aux = data->size_b - aux;
-			if (data->reverse_a)
-				idx = data->size_a - idx;
-			data->idx = idx;
+				data->reverse = 1;
+			}
+			else
+				data->reverse = 0;
+			data->idx = i;
 			opt = aux;
 		}
 		i++;
@@ -48,17 +46,17 @@ void	max_to_top(t_data *data)
 	int	i;
 
 	i = 0;
-	data->reverse_b = 0;
+	data->reverse = 0;
 	while (data->stack_b[i] != data->max_b)
 		i++;
 	if (i > data->size_b / 2)
 	{
 		i = data->size_b - i;
-		data->reverse_b = 1;
+		data->reverse = 1;
 	}
 	while (i > 0)
 	{
-		if (data->reverse_b)
+		if (data->reverse)
 			r_rotate_b(data);
 		else
 			rotate_b(data);
@@ -71,17 +69,17 @@ void	min_to_top(t_data *data)
 	int	i;
 
 	i = 0;
-	data->reverse_a = 0;
+	data->reverse = 0;
 	while (data->stack_a[i] != data->min_a)
 		i++;
 	if (i > data->size_a / 2)
 	{
 		i = data->size_a - i;
-		data->reverse_a = 1;
+		data->reverse = 1;
 	}
 	while (i > 0)
 	{
-		if (data->reverse_a)
+		if (data->reverse)
 			r_rotate_a(data);
 		else
 			rotate_a(data);
@@ -96,36 +94,17 @@ void	start_algo(t_data *data)
 	idx = 0;
 	while (data->size_a > 5)
 	{
-		data->reverse_a = 0;
-		data->reverse_b = 0;
+		data->reverse = 0;
 		idx = get_opt_step(data);
 		while (idx > 0 || data->idx > 0)
 		{
-			if (data->idx > 0 && idx > 0)
-			{
-				if (data->reverse_a && data->reverse_b)
-					r_rotate_s(data);
-				else if (!data->reverse_a && !data->reverse_b)
-					rotate_s(data);
-				else if (!data->reverse_a)
-				{
-					rotate_a(data);
-					r_rotate_b(data);
-				}
-				else
-				{
-					rotate_b(data);
-					r_rotate_a(data);
-				}
-			}
+			if (data->idx > 0 && idx > 0 && !data->reverse)
+				rotate_s(data);
 			else if (data->idx > 0)
 			{
-				if (data->reverse_a)
-					r_rotate_a(data);
-				else
-					rotate_a(data);
+				rotate_a(data);
 			}
-			else if (data->reverse_b)
+			else if (data->reverse)
 				r_rotate_b(data);
 			else
 				rotate_b(data);
@@ -138,16 +117,16 @@ void	start_algo(t_data *data)
 	max_to_top(data);
 	while (data->size_b != 0)
 	{
-		data->reverse_a = 0;
+		data->reverse = 0;
 		idx = get_correct_pos(data->stack_b[0], data);
 		if (idx > data->size_a / 2)
 		{
 			idx = data->size_a - idx;
-			data->reverse_a = 1;
+			data->reverse = 1;
 		}
 		while (idx > 0)
 		{
-			if (data->reverse_a)
+			if (data->reverse)
 				r_rotate_a(data);
 			else
 				rotate_a(data);
