@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:29:44 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/11 14:13:50 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:20:35 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ void	start_algo(t_data *data)
 		push_b(data);
 	}
 	order_five(data);
-	max_to_top(data);
+	if (data->size_b != 0)
+		max_to_top(data);
 	while (data->size_b != 0)
 	{
 		data->reverse = 0;

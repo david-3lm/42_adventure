@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/11 12:18:55 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/14 10:52:35 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ int	main(int argc, char **argv)
 		data.stack_b = ft_calloc(argc, sizeof(int));
 		if (!data.stack_a || !data.stack_b)
 			free_data(data);
-		init_a(&data, argc, argv);
-		if (argc == 3)
+		if (!init_a(&data, argc, argv))
+			print_error();
+		else if (argc == 3)
 			order_two(&data);
-		if (argc == 4)
+		else if (argc == 4)
 			order_three(&data);
-		else if (argc >= 5)
-		{
+		else if (argc == 5)
+			order_four(&data);
+		else if (argc >= 6)
 			start_algo(&data);
-		}
 		free_data(data);
 	}
 	return (0);

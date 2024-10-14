@@ -6,11 +6,16 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:43:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/07 10:59:22 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:21:09 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_error(void)
+{
+	write(2, "Error\n", 6);
+}
 
 void	free_mem(int *ptr)
 {

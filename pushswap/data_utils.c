@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:54:11 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/11 12:20:03 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:20:53 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	upd_a(t_data *data)
 			data->max_a = data->stack_a[i];
 		if (data->stack_a[i] < data->min_a)
 			data->min_a = data->stack_a[i];
-		i++;	
+		i++;
 	}
 	return (i);
 }
