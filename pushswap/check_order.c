@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:23:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/10 12:56:51 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:36:49 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ int	get_correct_pos_b(int n, t_data *data)
 
 	i = 0;
 	s = size(data->stack_b);
+	if (s == 0)
+		return (0);
 	if (n > data->stack_b[i] && n < data->stack_b[s - 1])
 		return (0);
-	while (i < s)
+	while (i < s - 1)
 	{
 		if (data->stack_b[i] > n && n > data->stack_b[i + 1])
 			return (i + 1);

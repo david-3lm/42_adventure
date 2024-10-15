@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:27:18 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/04 12:30:28 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:35:46 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	size(int *stack)
 	int	i;
 
 	i = 0;
-	while (stack[i])
+	while (stack[i] != '\0')
 		i++;
 	return (i);
 }

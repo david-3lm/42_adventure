@@ -3,39 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/14 10:52:35 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:57:06 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_data *data)
-{
-	(void)data;
-}
-
-void	debug(t_data *data, int n)
+int	count_args(char **argv)
 {
 	int	i;
 
 	i = 0;
-	ft_printf("_____size: %d_______\n", n);
-	ft_printf("min: %d_______\n", data->min);
-	ft_printf("max: %d_______\n", data->max);
-	while (i < n)
-	{
-		ft_printf("%d\t%d\n", data->stack_a[i], data->stack_b[i]);
+	while (argv[i])
 		i++;
+	return (i);
+}
+
+char	**parse(int *argc, char **argv)
+{
+	if (*argc == 2)
+	{
+		argv = ft_split(argv[1], ' ');
+		*argc = count_args(argv);
 	}
+	return (argv);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	argv = parse(&argc, argv);
 	if (argc > 1)
 	{
 		data.stack_a = ft_calloc(argc, sizeof(int));

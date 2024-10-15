@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:49:10 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/14 10:40:37 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:46:22 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	init_a(t_data *data, int argc, char **arg)
 	int	i;
 	int	n;
 
-	i = 1;
 	data->max = INT_MIN;
 	data->min = INT_MAX;
 	data->numbers = argc - 1;
+	i = 1;
 	while (i < argc)
 	{
 		if (!ft_isnumber(arg[i]))
