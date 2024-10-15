@@ -21,17 +21,14 @@
             }
           },
           {
-            "id": "a5931a7260bcf454",
+            "id": "200f89618819a305",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Fractol/a.canvas",
-                "viewState": {
-                  "x": -260.5320215573588,
-                  "y": -433.14081138137016,
-                  "zoom": 0.6
-                }
+                "file": "minitalk/Funciones.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -119,7 +116,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Fractol/a.canvas",
+                "file": "minitalk/Funciones.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -136,7 +133,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Fractol/a.canvas",
+                "file": "minitalk/Funciones.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -159,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Fractol/a.canvas"
+                "file": "minitalk/Funciones.md"
               }
             }
           }
@@ -180,12 +177,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a5931a7260bcf454",
+  "active": "200f89618819a305",
   "lastOpenFiles": [
-    "Fractol/MiniLibX - Function Documentation.md",
-    "Fractol/a.canvas",
-    "Fractol",
     "GNL/Get_next_line.md",
+    "minitalk/Funciones.md",
+    "minitalk",
+    "Fractol/a.canvas",
+    "Fractol/MiniLibX - Function Documentation.md",
+    "Fractol",
     "MinilibX",
     "Libft/Libft.md",
     "ft_printf/ft_printf.md",
