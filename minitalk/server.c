@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/17 13:15:01 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:24:08 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ void	action(int signal, siginfo_t *info, void *context)
 	static char	current_c = 0;
 	static int	bit_idx = 0;
 	static int	client_pid = 0;
-	//static int	char_idx = 0;
 
 	(void)context;
-	(void)info;
 	if (!client_pid)
 		client_pid = info->si_pid;
 	if (signal == SIGUSR1)
@@ -35,16 +33,18 @@ void	action(int signal, siginfo_t *info, void *context)
 		if (current_c == '\0')
 		{
 			write(1, "\n", 1);
-			ft_printf("Espera... \n");
-			usleep(1000);
+			usleep(500);
 			ft_printf("Enviando confirmacion a cliente: %d\n", client_pid);
 			kill(client_pid, SIGUSR1);
 			client_pid = 0;
 		}
+		if (client_pid)
+			kill(client_pid, SIGUSR2);
 		bit_idx = 0;
 		current_c = 0;
 	}
-	client_pid = 0;
+	else
+		kill(client_pid, SIGUSR2);
 }
 
 int	main(void)

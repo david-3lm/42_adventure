@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/17 13:13:30 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:09:46 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 void	action(int signal)
 {
-	printf("Action recibida");
 	if (signal == SIGUSR1)
 	{
-		printf("RECIBIDO SIGUSR1");
+		ft_printf("El servidor ha recibido el mensaje correctamente :D\n");
+		_exit(0);	
 	}
 }
 
@@ -35,9 +35,11 @@ void	send_char(int pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(500);
+		pause();
+		usleep(300);
 		i++;
 	}
+	i = 0;
 }
 
 void	ft_kill(int pid, char *str)
@@ -64,7 +66,7 @@ int	main(int argc, char **argv)
 	sigemptyset(&s_sigaction.sa_mask);
 	s_sigaction.sa_flags = 0;
 	sigaction(SIGUSR1, &s_sigaction, NULL);
+	sigaction(SIGUSR2, &s_sigaction, NULL);
 	ft_kill(ft_atoi(argv[1]), argv[2]);
-	pause();
 	return (0);
 }
