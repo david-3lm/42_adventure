@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/15 19:57:24 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:58:12 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,29 @@
 
 void	action(int signal, siginfo_t *info, void *context)
 {
+	static char	current_c = 0;
+	static int	bit_idx = 0;
+	static int	client_pid = 0;
+	//static int	char_idx = 0;
+
 	(void)context;
-	(void) info;
+	(void)info;
+	if (!client_pid)
+		client_pid = info->si_pid;
 	if (signal == SIGUSR1)
+		current_c |= (1 << (7 - bit_idx));
+	bit_idx++;
+	if (bit_idx == 8)
 	{
-		ft_printf("RECIBIDO SIGUSR1\n");
+		write(1, &current_c, 1);
+		if (current_c == '\0')
+		{
+			write(1, "\n", 1);
+			ft_printf("%d", client_pid);
+			kill(client_pid, SIGUSR1);
+		}
+		bit_idx = 0;
+		current_c = 0;
 	}
 }
 
