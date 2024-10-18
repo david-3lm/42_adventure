@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/17 18:09:46 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:45:26 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void	send_char(int pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		pause();
-		usleep(300);
+		usleep(3000);
 		i++;
 	}
 	i = 0;
