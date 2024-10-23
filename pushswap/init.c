@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:49:10 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/15 15:46:22 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:17:08 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_isnumber(char *c)
 	int	i;
 
 	i = 0;
+	if(c[i] == '-' || c[i] == '+')
+		i++;
 	while (c[i])
 	{
 		if (!ft_isdigit(c[i]))
@@ -33,14 +35,16 @@ int	init_a(t_data *data, int argc, char **arg)
 
 	data->max = INT_MIN;
 	data->min = INT_MAX;
-	data->numbers = argc - 1;
-	i = 1;
+	data->numbers = argc;
+	i = 0;
 	while (i < argc)
 	{
-		if (!ft_isnumber(arg[i]))
+		if (ft_isnumber(arg[i]) == FALSE)
 			return (FALSE);
 		n = ft_atoi(arg[i]);
-		data->stack_a[i - 1] = n;
+		if (find_in_stack(data->stack_a, n))
+			return (FALSE);
+		data->stack_a[i] = n;
 		if (n > data->max)
 			data->max = n;
 		if (n < data->min)

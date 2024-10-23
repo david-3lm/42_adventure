@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/15 15:42:09 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:32:41 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	put_last(int *stack, int num);
 int		size(int *stack);
 int		get_min_idx(int *stack, int size);
 int		get_max_idx(int *stack, int size);
+int		find_in_stack(int *stack, int n);
+
 
 /*MOVES*/
 void	push_a(t_data *data);

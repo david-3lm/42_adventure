@@ -18,6 +18,7 @@ YELLOW = \e[1;33m
 BLUE = \033[0;34m
 CIAN = \e[7;36m
 
+TEST_FILE = tests
 
 all: $(NAME)
 
@@ -73,6 +74,12 @@ norma:
 debug: CFLAGS += -g3 -O0
 debug: re
 # gdb 
+
+test:
+	while read line; do \
+		echo "\nTesting with: $$line"; \
+		./$(NAME) "$$line" | ./checker_linux "$$line"; \
+	done < $(TEST_FILE)
 
 
 .PHONY: all clean fclean re exec norma debug
