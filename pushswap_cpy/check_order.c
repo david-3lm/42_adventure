@@ -6,21 +6,21 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:23:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/24 20:41:24 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:43:18 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //returns 0 if it is in order else returns the first wrong number
-int	check_order_desc(int *s)
+int	check_order_desc(t_number *s)
 {
 	int	i;
 
 	i = 0;
 	while (i < size(s) - 1)
 	{
-		if (s[i] > s[i + 1])
+		if (s[i].value > s[i + 1].value)
 		{
 			return (i + 1);
 		}
@@ -29,14 +29,14 @@ int	check_order_desc(int *s)
 	return (0);
 }
 
-int	check_order_asc(int *s)
+int	check_order_asc(t_number *s)
 {
 	int	i;
 
 	i = 0;
 	while (i < size(s) - 1)
 	{
-		if (s[i] < s[i + 1])
+		if (s[i].value < s[i + 1].value)
 		{
 			return (i + 1);
 		}
@@ -52,19 +52,19 @@ int	get_correct_pos(int n, t_data *data)
 
 	i = 0;
 	s = size(data->stack_a);
-	if (n < data->stack_a[i] && n > data->stack_a[s - 1])
+	if (n < data->stack_a[i].value && n > data->stack_a[s - 1].value)
 		return (0);
 	while (i < s)
 	{
-		if (data->stack_a[i] < n && n < data->stack_a[i + 1])
+		if (data->stack_a[i].value < n && n < data->stack_a[i + 1].value)
 			return (i + 1);
-		if (n < data->min_a && data->stack_a[i] == data->min_a)
+		if (n < data->min_a && data->stack_a[i].value == data->min_a)
 			return (i);
-		if (n > data->max_a && data->stack_a[i] == data->max_a)
+		if (n > data->max_a && data->stack_a[i].value == data->max_a)
 			return (i + 1);
 		i++;
 	}
-	if (data->stack_a[s - 1] < n)
+	if (data->stack_a[s - 1].value < n)
 		return (0);
 	return (0);
 }
@@ -78,19 +78,19 @@ int	get_correct_pos_b(int n, t_data *data)
 	s = size(data->stack_b);
 	if (s == 0)
 		return (0);
-	if (n > data->stack_b[i] && n < data->stack_b[s - 1])
+	if (n > data->stack_b[i].value && n < data->stack_b[s - 1].value)
 		return (0);
 	while (i < s - 1)
 	{
-		if (data->stack_b[i] > n && n > data->stack_b[i + 1])
+		if (data->stack_b[i].value > n && n > data->stack_b[i + 1].value)
 			return (i + 1);
-		if (n < data->min_b && data->stack_b[i] == data->min_b)
+		if (n < data->min_b && data->stack_b[i].value == data->min_b)
 			return (i + 1);
-		if (n > data->max_b && data->stack_b[i] == data->max_b)
+		if (n > data->max_b && data->stack_b[i].value == data->max_b)
 			return (i);
 		i++;
 	}
-	if (data->stack_b[s - 1] > n)
+	if (data->stack_b[s - 1].value > n)
 		return (0);
 	return (0);
 }

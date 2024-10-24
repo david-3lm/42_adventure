@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:29:44 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/24 20:18:52 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/24 20:46:34 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	get_opt_step(t_data *data)
 	data->idx = 0;
 	while (i < data->size_a)
 	{
-		aux = get_correct_pos_b(data->stack_a[i], data) + i;
+		aux = get_correct_pos_b(data->stack_a[i].value, data) + i;
 		if (aux < opt)
 		{
 			if (aux > data->size_b / 2)
@@ -47,7 +47,7 @@ void	max_to_top(t_data *data)
 
 	i = 0;
 	data->reverse = 0;
-	while (data->stack_b[i] != data->max_b)
+	while (data->stack_b[i].value != data->max_b)
 		i++;
 	if (i > data->size_b / 2)
 	{
@@ -70,7 +70,7 @@ void	min_to_top(t_data *data)
 
 	i = 0;
 	data->reverse = 0;
-	while (data->stack_a[i] != data->min_a)
+	while (data->stack_a[i].value != data->min_a)
 		i++;
 	if (i > data->size_a / 2)
 	{
@@ -90,10 +90,12 @@ void	min_to_top(t_data *data)
 void	start_algo(t_data *data)
 {
 	int	idx;
+	//int	k;
 
 	idx = 0;
 	while (data->size_a > 5)
 	{
+		//k = sqrt(i) * 133 / 100;
 		data->reverse = 0;
 		idx = get_opt_step(data);
 		while (idx > 0 || data->idx > 0)
@@ -119,7 +121,7 @@ void	start_algo(t_data *data)
 	while (data->size_b != 0)
 	{
 		data->reverse = 0;
-		idx = get_correct_pos(data->stack_b[0], data);
+		idx = get_correct_pos(data->stack_b[0].value, data);
 		if (idx > data->size_a / 2)
 		{
 			idx = data->size_a - idx;
