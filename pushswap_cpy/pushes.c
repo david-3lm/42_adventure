@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:17:18 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/07 12:02:54 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:39:41 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 void	push_a(t_data *data)
 {
-	int	n;
+	t_number	n;
 
-	n = pop(data->stack_b);
-	append(data->stack_a, n);
+	n = pop(data->stack_b, data);
+	append(data->stack_a, data, n);
+	data->size_a++;
+	data->size_b--;
 	update_data(data);
 	write(1, "pa\n", 3);
 }
 
 void	push_b(t_data *data)
 {
-	int	n;
+	t_number	n;
 
-	n = pop(data->stack_a);
-	append(data->stack_b, n);
+	n = pop(data->stack_a, data);
+	append(data->stack_b, data, n);
+	data->size_a--;
+	data->size_b++;
 	update_data(data);
 	write(1, "pb\n", 3);
 }

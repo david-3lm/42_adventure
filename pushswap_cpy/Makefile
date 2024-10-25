@@ -23,7 +23,7 @@ TEST_FILE = tests
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFTPRINTF)
-	$(CC) $(OBJ) $(LIBFTPRINTF) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFTPRINTF) -o $(NAME) -lm
 
 $(LIBFTPRINTF):
 	@$(MAKE) -C $(LIBFTPRINTF_DIR)

@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:16:59 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/07 11:43:40 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:06:34 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	r_rotate_a(t_data *data)
 {
-	int	n;
+	t_number	n;
 
-	n = pop_last(data->stack_a);
-	append(data->stack_a, n);
+	n = pop_last(data->stack_a, data);
+	append(data->stack_a, data, n);
 	write(1, "rra\n", 4);
 }
 
 void	r_rotate_b(t_data *data)
 {
-	int	n;
+	t_number	n;
 
-	n = pop_last(data->stack_b);
-	append(data->stack_b, n);
+	n = pop_last(data->stack_b, data);
+	append(data->stack_b, data, n);
 	write(1, "rrb\n", 4);
 }
 

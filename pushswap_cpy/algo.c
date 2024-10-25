@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:29:44 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/24 20:46:34 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/25 20:22:28 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <math.h>
 
 int	get_opt_step(t_data *data)
 {
@@ -89,37 +90,32 @@ void	min_to_top(t_data *data)
 
 void	start_algo(t_data *data)
 {
+	int	k;
+	int	i;
 	int	idx;
-	//int	k;
 
-	idx = 0;
+	i = 0;
 	while (data->size_a > 5)
 	{
-		//k = sqrt(i) * 133 / 100;
-		data->reverse = 0;
-		idx = get_opt_step(data);
-		while (idx > 0 || data->idx > 0)
+		k = sqrt(data->stack_a[0].idx) * 1.33;
+		if (data->stack_a[0].idx <= data->size_b)
+			push_b(data);
+		else if (data->stack_a[0].idx <= (data->size_b + k))
 		{
-			if (data->idx > 0 && idx > 0 && !data->reverse)
+			push_b(data);
+			if (data->stack_a[0].idx > (data->size_b + sqrt(data->stack_a[0].idx) * 1.33))
 				rotate_s(data);
-			else if (data->idx > 0)
-			{
-				rotate_a(data);
-			}
-			else if (data->reverse)
-				r_rotate_b(data);
 			else
 				rotate_b(data);
-			data->idx--;
-			idx--;
 		}
-		push_b(data);
+		else
+			rotate_a(data);
+		i++;
 	}
 	order_five(data);
-	if (data->size_b != 0)
-		max_to_top(data);
-	while (data->size_b != 0)
+	while (data->size_b > 0)
 	{
+		max_to_top(data);
 		data->reverse = 0;
 		idx = get_correct_pos(data->stack_b[0].value, data);
 		if (idx > data->size_a / 2)

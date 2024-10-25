@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/23 19:42:48 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:26:18 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	main(int argc, char **argv)
 	argv = parse(&argc, argv);
 	if (argc > 1)
 	{
-		data.stack_a = ft_calloc(argc, sizeof(int));
-		data.stack_b = ft_calloc(argc, sizeof(int));
+		data.stack_a = ft_calloc(argc, sizeof(t_number));
+		data.stack_b = ft_calloc(argc, sizeof(t_number));
 		if (!data.stack_a || !data.stack_b)
 			free_data(data);
 		if (!init_a(&data, argc, argv))

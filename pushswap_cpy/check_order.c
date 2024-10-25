@@ -3,24 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   check_order.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:23:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/24 20:43:18 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:42:08 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //returns 0 if it is in order else returns the first wrong number
-int	check_order_desc(t_number *s)
+int	check_order_desc(t_data *data)
 {
 	int	i;
+	int	s;
 
 	i = 0;
-	while (i < size(s) - 1)
+	s = data->size_b;
+	while (i < s - 1)
 	{
-		if (s[i].value > s[i + 1].value)
+		if (data->stack_b[i].value < data->stack_b[i + 1].value)
 		{
 			return (i + 1);
 		}
@@ -29,20 +31,32 @@ int	check_order_desc(t_number *s)
 	return (0);
 }
 
-int	check_order_asc(t_number *s)
+int	check_order_asc(t_data *data)
 {
 	int	i;
+	int	s;
 
 	i = 0;
-	while (i < size(s) - 1)
+	s = data->size_a;
+	while (i < s)
 	{
-		if (s[i].value < s[i + 1].value)
+		if (data->stack_a[i].value > data->stack_a[i + 1].value)
 		{
 			return (i + 1);
 		}
 		i++;
 	}
 	return (0);
+}
+void debug(t_data *data)
+{
+	int i = 0;
+
+	while (i < data->size_a)
+	{
+		i++;
+	}
+	
 }
 
 int	get_correct_pos(int n, t_data *data)
@@ -51,10 +65,10 @@ int	get_correct_pos(int n, t_data *data)
 	int	s;
 
 	i = 0;
-	s = size(data->stack_a);
+	s = data->size_a;
 	if (n < data->stack_a[i].value && n > data->stack_a[s - 1].value)
 		return (0);
-	while (i < s)
+	while (i < s - 1)
 	{
 		if (data->stack_a[i].value < n && n < data->stack_a[i + 1].value)
 			return (i + 1);
@@ -75,7 +89,7 @@ int	get_correct_pos_b(int n, t_data *data)
 	int	s;
 
 	i = 0;
-	s = size(data->stack_b);
+	s = data->size_b;
 	if (s == 0)
 		return (0);
 	if (n > data->stack_b[i].value && n < data->stack_b[s - 1].value)

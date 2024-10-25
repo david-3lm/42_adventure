@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swaps.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:13:12 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/24 20:39:55 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:07:46 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 void	swap_a(t_data *data)
 {
-	int	aux;
+	t_number	aux;
 
-	aux = data->stack_a[0].value;
-	data->stack_a[0].value = data->stack_a[1].value;
-	data->stack_a[1].value = aux;
+	aux = data->stack_a[0];
+	data->stack_a[0] = data->stack_a[1];
+	data->stack_a[1] = aux;
 	write(1, "sa\n", 3);
 }
 
 void	swap_b(t_data *data)
 {
-	int	aux;
+	t_number	aux;
 
-	aux = data->stack_b[0].value;
-	data->stack_b[0].value = data->stack_b[1].value;
-	data->stack_b[1].value = aux;
+	aux = data->stack_b[0];
+	data->stack_b[0] = data->stack_b[1];
+	data->stack_b[1] = aux;
 	write(1, "sb\n", 3);
 }
 

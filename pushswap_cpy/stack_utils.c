@@ -3,83 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:27:18 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/24 20:38:46 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:37:14 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	pop(t_number *stack)
+t_number	pop(t_number *stack, t_data *data)
 {
-	int	num;
-	int	i;
-	int	s;
+	t_number	num;
+	int			i;
+	int			s;
 
-	num = stack[0].value;
+	num = stack[0];
 	i = 0;
-	s = size(stack);
-	while (i < s)
+	s = size(stack, data);
+	while (i < s - 1)
 	{
-		stack[i].value = stack[i + 1].value;
+		stack[i] = stack[i + 1];
 		i++;
 	}
-	stack[i].value = 0;
+	stack[i] = (t_number){0, 0};
 	return (num);
 }
 
-void	append(t_number *stack, int num)
+void	append(t_number *stack, t_data *data, t_number num)
 {
 	int	i;
 	int	s;
 
 	i = 0;
-	s = size(stack);
-	while (i < s - 1)
+	s = size(stack, data);
+	while (i < s)
 		i++;
 	while (i > 0)
 	{
-		stack[i].value = stack[i - 1].value;
+		stack[i] = stack[i - 1];
 		i--;
 	}
-	stack[0].value = num;
+	stack[0] = num;
 }
 
-int	pop_last(t_number *stack)
+t_number	pop_last(t_number *stack, t_data *data)
 {
-	int	i;
-	int	num;
-	int	s;
+	t_number	num;
+	int			i;
+	int			s;
 
 	i = 0;
-	s = size(stack);
-	while (i < s)
+	s = size(stack, data);
+	while (i < s - 1)
 		i++;
-	num = stack[i].value;
-	stack[i].value = 0;
+	num = stack[i];
+	stack[i] = (t_number){0, 0};
 	return (num);
 }
 
-void	put_last(t_number *stack, int num)
+void	put_last(t_number *stack, t_data *data, t_number num)
 {
 	int	i;
 	int	s;
 
 	i = 0;
-	s = size(stack);
+	s = size(stack, data);
 	while (i < s - 1)
 		i++;
-	stack[i].value = num;
+	stack[i] = num;
 }
 
-int	size(t_number *stack)
+int	size(t_number *stack, t_data *data)
 {
-	int	i;
-
-	i = 0;
-	while (&stack[i] != (t_number *)NULL)
-		i++;
-	return (i);
+	if (stack == data->stack_a)
+		return (data->size_a);
+	return (data->size_b);
 }

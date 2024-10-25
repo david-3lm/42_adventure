@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/24 20:43:56 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:23:04 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 # define FALSE 0
 # include "ft_printf/ft_printf.h"
 
+
 typedef struct s_number
 {
-	int	idx;
 	int	value;
+	int	idx;
 }				t_number;
 
 typedef struct s_data
@@ -43,52 +44,54 @@ typedef struct s_data
 	int			median;
 }				t_data;
 
-void	update_data(t_data *data);
+void			update_data(t_data *data);
 
-void	free_mem(int *ptr);
-void	free_data(t_data data);
-void	push_swap(t_data *data);
-void	print_error(void);
+void			free_mem(int *ptr);
+void			free_data(t_data data);
+void			push_swap(t_data *data);
+void			print_error(void);
 
 /*INIT*/
-int		init_a(t_data *a, int argc, char **arg);
+int				init_a(t_data *a, int argc, char **arg);
 void	init_stacks(int *a, int *b, int argc, char **arg);
 
 /*UTILS*/
-int		pop(t_number *stack);
-void	append(t_number *stack, int num);
-int		pop_last(t_number *stack);
-void	put_last(t_number *stack, int num);
-int		size(t_number *stack);
-int		get_min_idx(t_number *stack, int size);
-int		get_max_idx(t_number *stack, int size);
-int		find_in_stack(t_number *stack, int n);
+t_number		pop(t_number *stack, t_data *data);
+t_number		pop_last(t_number *stack, t_data *data);
+void			append(t_number *stack, t_data *data, t_number num);
+void			put_last(t_number *stack, t_data *data, t_number num);
+int				size(t_number *stack, t_data *data);
+int				get_min_idx(t_number *stack, int size);
+int				get_max_idx(t_number *stack, int size);
+int				find_in_stack(t_number *stack, int n, int size);
 
 
 /*MOVES*/
-void	push_a(t_data *data);
-void	push_b(t_data *data);
-void	swap_a(t_data *data);
-void	swap_b(t_data *data);
-void	swap_s(t_data *data);
-void	rotate_a(t_data *data);
-void	rotate_b(t_data *data);
-void	rotate_s(t_data *data);
-void	r_rotate_a(t_data *data);
-void	r_rotate_b(t_data *data);
-void	r_rotate_s(t_data *data);
+void			push_a(t_data *data);
+void			push_b(t_data *data);
+void			swap_a(t_data *data);
+void			swap_b(t_data *data);
+void			swap_s(t_data *data);
+void			rotate_a(t_data *data);
+void			rotate_b(t_data *data);
+void			rotate_s(t_data *data);
+void			r_rotate_a(t_data *data);
+void			r_rotate_b(t_data *data);
+void			r_rotate_s(t_data *data);
 
 /*ORDER*/
-int		check_order_desc(t_number *s);
-int		check_order_asc(t_number *s);
-void	order_two(t_data *data);
-void	order_three(t_data *data);
-void	order_four(t_data *data);
-void	order_five(t_data *data);
-int		get_correct_pos(int n, t_data *data);
-int		get_correct_pos_b(int n, t_data *data);
+int				check_order_desc(t_data *data);
+int				check_order_asc(t_data *data);
+void			order_two(t_data *data);
+void			order_three(t_data *data);
+void			order_four(t_data *data);
+void			order_five(t_data *data);
+int				get_correct_pos(int n, t_data *data);
+int				get_correct_pos_b(int n, t_data *data);
 
 /*ALGORYTHM*/
-void	start_algo(t_data *data);
+void			start_algo(t_data *data);
+void	 debug(t_data *data);
+
 
 #endif
