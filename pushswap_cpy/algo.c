@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:29:44 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/25 20:22:28 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/27 10:21:22 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	get_opt_step(t_data *data)
 	i = 0;
 	opt = INT_MAX;
 	data->idx = 0;
-	while (i < data->size_a)
+	while (i < data->size_b)
 	{
-		aux = get_correct_pos_b(data->stack_a[i].value, data) + i;
+		aux = get_correct_pos(data->stack_b[i].value, data) + i;
 		if (aux < opt)
 		{
-			if (aux > data->size_b / 2)
+			if (aux > data->size_a / 2)
 			{
-				aux = data->size_b - aux;
+				aux = data->size_a - aux;
 				data->reverse = 1;
 			}
 			else
@@ -118,6 +118,7 @@ void	start_algo(t_data *data)
 		max_to_top(data);
 		data->reverse = 0;
 		idx = get_correct_pos(data->stack_b[0].value, data);
+		//idx = get_opt_step(data);
 		if (idx > data->size_a / 2)
 		{
 			idx = data->size_a - idx;
@@ -125,7 +126,7 @@ void	start_algo(t_data *data)
 		}
 		while (idx > 0)
 		{
-			if (data->reverse)
+			if (data->reverse)	
 				r_rotate_a(data);
 			else
 				rotate_a(data);

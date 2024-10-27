@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:23:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/25 19:42:08 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/27 10:09:20 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ int	get_correct_pos(int n, t_data *data)
 	s = data->size_a;
 	if (n < data->stack_a[i].value && n > data->stack_a[s - 1].value)
 		return (0);
+	if (n < data->min_a)
+		return (get_min_idx(data->stack_a, data->size_a));
+	if (n > data->max_a)
+		return (get_max_idx(data->stack_a, data->size_a) + 1);
 	while (i < s - 1)
 	{
 		if (data->stack_a[i].value < n && n < data->stack_a[i + 1].value)
-			return (i + 1);
-		if (n < data->min_a && data->stack_a[i].value == data->min_a)
-			return (i);
-		if (n > data->max_a && data->stack_a[i].value == data->max_a)
 			return (i + 1);
 		i++;
 	}
