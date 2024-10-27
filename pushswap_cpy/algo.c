@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:29:44 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/27 10:21:22 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/27 10:25:24 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ void	start_algo(t_data *data)
 		max_to_top(data);
 		data->reverse = 0;
 		idx = get_correct_pos(data->stack_b[0].value, data);
-		//idx = get_opt_step(data);
 		if (idx > data->size_a / 2)
 		{
 			idx = data->size_a - idx;

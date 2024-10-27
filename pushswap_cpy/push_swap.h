@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/25 19:23:04 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/27 10:42:47 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ typedef struct s_data
 
 void			update_data(t_data *data);
 
-void			free_mem(int *ptr);
-void			free_data(t_data data);
+void			free_mem(void *ptr);
+void			free_pptr(char **ptr, int size);
+void			free_data(t_data *data);
 void			push_swap(t_data *data);
 void			print_error(void);
 

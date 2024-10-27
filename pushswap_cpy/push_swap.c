@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/25 15:26:18 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/27 10:42:30 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,16 @@ int	count_args(char **argv)
 
 char	**parse(int *argc, char **argv)
 {
-	int	i;
+	int		i;
+	char	**old_arg;
 
 	i = 0;
 	if (*argc == 2)
+	{
+		old_arg = argv;
 		argv = ft_split(argv[1], ' ');
+		free(old_arg);
+	}
 	else if (*argc > 2)
 	{
 		while (i++ < *argc)
@@ -49,7 +54,7 @@ int	main(int argc, char **argv)
 		data.stack_a = ft_calloc(argc, sizeof(t_number));
 		data.stack_b = ft_calloc(argc, sizeof(t_number));
 		if (!data.stack_a || !data.stack_b)
-			free_data(data);
+			free_data(&data);
 		if (!init_a(&data, argc, argv))
 			print_error();
 		else if (argc == 2)
@@ -60,7 +65,8 @@ int	main(int argc, char **argv)
 			order_four(&data);
 		else if (argc >= 5)
 			start_algo(&data);
-		free_data(data);
+		free_data(&data);
+		free_pptr(argv, argc);
 	}
 	return (0);
 }
