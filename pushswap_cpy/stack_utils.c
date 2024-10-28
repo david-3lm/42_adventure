@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:27:18 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/25 19:37:14 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:57:43 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ void	append(t_number *stack, t_data *data, t_number num)
 	int	i;
 	int	s;
 
-	i = 0;
 	s = size(stack, data);
-	while (i < s)
-		i++;
-	while (i > 0)
+	if (s != 0)
 	{
-		stack[i] = stack[i - 1];
-		i--;
+		i = s;
+		while (i > 0)
+		{
+			stack[i] = stack[i - 1];
+			i--;
+		}
 	}
 	stack[0] = num;
 }
@@ -53,8 +54,8 @@ t_number	pop_last(t_number *stack, t_data *data)
 	int			i;
 	int			s;
 
-	i = 0;
 	s = size(stack, data);
+	i = 0;
 	while (i < s - 1)
 		i++;
 	num = stack[i];
@@ -67,10 +68,9 @@ void	put_last(t_number *stack, t_data *data, t_number num)
 	int	i;
 	int	s;
 
-	i = 0;
 	s = size(stack, data);
-	while (i < s - 1)
-		i++;
+	i = 0;
+	i = s;
 	stack[i] = num;
 }
 

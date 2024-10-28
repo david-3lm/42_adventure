@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/27 10:42:30 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:32:38 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,31 @@ int	count_args(char **argv)
 
 char	**parse(int *argc, char **argv)
 {
-	int		i;
-	char	**old_arg;
+    char **new_argv;
+    int i;
 
-	i = 0;
-	if (*argc == 2)
+    if (*argc == 2) 
 	{
-		old_arg = argv;
-		argv = ft_split(argv[1], ' ');
-		free(old_arg);
-	}
-	else if (*argc > 2)
+        new_argv = ft_split(argv[1], ' ');
+        *argc = count_args(new_argv); // Actualiza argc con el número de argumentos
+    }
+    else if (*argc > 2) 
 	{
-		while (i++ < *argc)
-			argv[i - 1] = argv[i];
-		argv[i] = NULL;
-	}
-	*argc = count_args(argv);
-	return (argv);
+        new_argv = ft_calloc((*argc), sizeof(char *));
+        if (!new_argv)
+            return NULL;
+		i = 1;
+        while (i < *argc)
+		{
+            new_argv[i - 1] = argv[i];
+			i++;
+		}
+        new_argv[*argc - 1] = NULL;
+        (*argc)--;
+    }
+    else
+        new_argv = argv;
+    return (new_argv);
 }
 
 int	main(int argc, char **argv)

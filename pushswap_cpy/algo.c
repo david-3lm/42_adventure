@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:29:44 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/27 10:25:24 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:58:27 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	get_opt_step(t_data *data)
 	}
 	return (opt - data->idx);
 }
+
 
 void	max_to_top(t_data *data)
 {

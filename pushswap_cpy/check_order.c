@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:23:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/27 10:09:20 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:52:16 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ int	check_order_asc(t_data *data)
 void debug(t_data *data)
 {
 	int i = 0;
-
-	while (i < data->size_a)
+	ft_printf("a\tb\n______________\n");
+	while (i < data->numbers)
 	{
+		ft_printf("%d\t%d\n", data->stack_a[i].value, data->stack_b[i].value);
 		i++;
 	}
 	

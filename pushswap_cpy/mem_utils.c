@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:43:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/27 10:43:00 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:28:15 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@ void	free_pptr(char **ptr, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (ptr[i])
-		{
-			free(ptr[i]);
-			ptr[i] = NULL;
-		}
+		// if (ptr[i])
+		// {
+		// 	free(ptr[i]);
+		// 	ptr[i] = NULL;
+		// }
 		i++;
 	}
 	free(ptr);
+	ptr = NULL;
 }
 
 int	find_in_stack(t_number *stack, int n, int size)
