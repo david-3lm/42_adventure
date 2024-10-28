@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:49:10 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/25 16:39:12 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:05:10 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_isnumber(char *c)
 	i = 0;
 	if(c[i] == '-' || c[i] == '+')
 		i++;
+	if (!ft_isdigit(c[i]))
+		return (FALSE);
 	while (c[i])
 	{
 		if (!ft_isdigit(c[i]))
@@ -59,8 +61,8 @@ void	init_index(t_data *data)
 
 int	init_a(t_data *data, int argc, char **arg)
 {
-	int	i;
-	int	n;
+	int		i;
+	long	n;
 
 	data->max = INT_MIN;
 	data->min = INT_MAX;
@@ -73,13 +75,15 @@ int	init_a(t_data *data, int argc, char **arg)
 		if (ft_isnumber(arg[i]) == FALSE)
 			return (FALSE);
 		n = ft_atoi(arg[i]);
-		if (find_in_stack(data->stack_a, n, i))
+		if (n < INT_MIN || n > INT_MAX)
 			return (FALSE);
-		data->stack_a[i].value = n;
-		if (n > data->max)
-			data->max = n;
-		if (n < data->min)
-			data->min = n;
+		if (find_in_stack(data->stack_a, (int)n, i))
+			return (FALSE);
+		data->stack_a[i].value = (int)n;
+		if ((int)n > data->max)
+			data->max = (int)n;
+		if ((int)n < data->min)
+			data->min = (int)n;
 		i++;
 	}
 	init_index(data);

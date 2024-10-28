@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:43:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/28 10:28:15 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:38:45 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_error(void)
 {
-	write(2, "Error\n", 6);
+	write(STDERR_FILENO, "Error\n", 6);
 }
 
 void	free_mem(void *ptr)

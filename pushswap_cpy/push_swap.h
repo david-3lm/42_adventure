@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/27 10:42:47 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:01:39 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # define EMPTY 0
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
+# define LONG_MIN -9223372036854775808
+# define LONG_MAX 9223372036854775807
 # define TRUE 1
 # define FALSE 0
 # include "ft_printf/ft_printf.h"
