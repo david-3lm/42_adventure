@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/29 10:14:09 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/29 18:51:52 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "ft_printf/ft_printf.h"
+#include "client.h"
 
-int	ready_to_continue;
+t_global	g_server;
 
 void	action(int signal)
 {
@@ -26,7 +23,7 @@ void	action(int signal)
 	}
 	else if (signal == SIGUSR2)
 	{
-		ready_to_continue = 1;
+		g_server.ready_to_continue = 1;
 	}
 }
 
@@ -42,9 +39,9 @@ void	send_char(int pid, char c)
 			err = kill(pid, SIGUSR1);
 		else
 			err = kill(pid, SIGUSR2);
-		while (!ready_to_continue)
+		while (!g_server.ready_to_continue)
 			usleep(3000);
-		ready_to_continue = 0;
+		g_server.ready_to_continue = 0;
 		i++;
 		if (err)
 			ft_printf("Erroooor\n");
