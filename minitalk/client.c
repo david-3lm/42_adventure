@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/18 11:45:26 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/29 10:14:09 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <stdio.h>
 #include "ft_printf/ft_printf.h"
 
+int	ready_to_continue;
+
 void	action(int signal)
 {
 	if (signal == SIGUSR1)
@@ -22,21 +24,30 @@ void	action(int signal)
 		ft_printf("El servidor ha recibido el mensaje correctamente :D\n");
 		_exit(0);	
 	}
+	else if (signal == SIGUSR2)
+	{
+		ready_to_continue = 1;
+	}
 }
 
 void	send_char(int pid, char c)
 {
 	int	i;
+	int	err;
 
 	i = 0;
 	while (i < 8)
 	{
 		if (c & (1 << (7 - i)))
-			kill(pid, SIGUSR1);
+			err = kill(pid, SIGUSR1);
 		else
-			kill(pid, SIGUSR2);
-		usleep(3000);
+			err = kill(pid, SIGUSR2);
+		while (!ready_to_continue)
+			usleep(3000);
+		ready_to_continue = 0;
 		i++;
+		if (err)
+			ft_printf("Erroooor\n");
 	}
 	i = 0;
 }
