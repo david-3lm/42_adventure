@@ -3,31 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/29 18:51:52 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:22:52 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-t_global	g_server;
+t_global	g_client;
 
 void	action(int signal)
 {
 	if (signal == SIGUSR1)
 	{
-		ft_printf("El servidor ha recibido el mensaje correctamente :D\n");
-		_exit(0);	
+		if (!g_client.connection)
+		{
+			ft_printf("Server busy...\n");
+			return ;
+		}
+		if (!g_client.size_sent)
+			g_client.size_sent = 1;
+		else
+		{
+			g_client.msg_sent = 1;
+			ft_printf("El servidor ha recibido el mensaje correctamente :D\n");
+			_exit(0);	
+		}
+		ft_printf("Servidor ha recibido el size\n");
+		g_client.ready_to_continue = 1;
 	}
 	else if (signal == SIGUSR2)
 	{
-		g_server.ready_to_continue = 1;
+		if (!g_client.connection)
+		{
+			g_client.connection = 1;
+			ft_printf("Connected!\n");
+			return ;
+		}
+		g_client.ready_to_continue = 1;
 	}
 }
 
-void	send_char(int pid, char c)
+void	send_char(int pid, int c)
 {
 	int	i;
 	int	err;
@@ -39,9 +58,9 @@ void	send_char(int pid, char c)
 			err = kill(pid, SIGUSR1);
 		else
 			err = kill(pid, SIGUSR2);
-		while (!g_server.ready_to_continue)
+		while (!g_client.ready_to_continue)
 			usleep(3000);
-		g_server.ready_to_continue = 0;
+		g_client.ready_to_continue = 0;
 		i++;
 		if (err)
 			ft_printf("Erroooor\n");
@@ -62,6 +81,21 @@ void	ft_kill(int pid, char *str)
 	send_char(pid, 0);
 }
 
+void	handle_signals(int pid, char **argv)
+{
+	while (!g_client.connection)
+	{
+		kill(pid, SIGUSR1);
+		sleep(2);
+	}
+	// SI SE PASA DE TIEMPO EXIT
+	if (!g_client.size_sent)
+		send_char(pid, ft_strlen(argv[2]));
+	else
+		ft_kill(pid, argv[2]);
+
+}
+
 int	main(int argc, char **argv)
 {
 	struct sigaction	s_sigaction;
@@ -74,6 +108,12 @@ int	main(int argc, char **argv)
 	s_sigaction.sa_flags = 0;
 	sigaction(SIGUSR1, &s_sigaction, NULL);
 	sigaction(SIGUSR2, &s_sigaction, NULL);
-	ft_kill(ft_atoi(argv[1]), argv[2]);
+	g_client.size_sent = 0;
+	g_client.msg_sent = 0;
+	while (!g_client.msg_sent)
+	{
+		handle_signals(ft_atoi(argv[1]), argv);
+	}
+	
 	return (0);
 }

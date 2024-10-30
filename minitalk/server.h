@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:23 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/29 18:41:49 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:11:36 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ typedef struct s_server
 typedef struct s_global
 {
 	volatile sig_atomic_t	client_id;
+	volatile int			size_recived;
 	t_msg					msg;
 }				t_global;
 
-extern t_global	g_client;
+extern t_global	g_server;
