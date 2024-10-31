@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/30 16:22:52 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/31 12:07:15 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,22 @@ void	ft_kill(int pid, char *str)
 
 void	handle_signals(int pid, char **argv)
 {
-	while (!g_client.connection)
+	int	tries;
+
+	tries = 0;
+	while (!g_client.connection && tries < 10)
 	{
 		kill(pid, SIGUSR1);
-		sleep(2);
+		usleep(2000);
+		tries++;
 	}
 	// SI SE PASA DE TIEMPO EXIT
+	if (tries >= 10)
+	{
+		ft_printf("Mensaje no enviado :(\n");
+		g_client.msg_sent = 1;
+		return ;
+	}
 	if (!g_client.size_sent)
 		send_char(pid, ft_strlen(argv[2]));
 	else

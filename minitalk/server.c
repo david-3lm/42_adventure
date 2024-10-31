@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/30 16:21:18 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/10/31 11:03:37 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ t_global	g_server;
 
 void	reset_all()
 {
-	g_server.client_id = 0;
 	ft_bzero(g_server.msg.content, g_server.msg.size);
 	g_server.msg.size = 0;
 	free(g_server.msg.content);
 	g_server.msg.content = NULL;
 	g_server.size_recived = 0;
+	g_server.client_id = 0;
 }
 
 void	handle_size(int signal)
@@ -42,7 +42,10 @@ void	handle_size(int signal)
 		g_server.size_recived = 1;
 		g_server.msg.content = ft_calloc(g_server.msg.size, 1);
 		if (!g_server.msg.content)
+		{
+			ft_printf("Fallo malloc maniiiiiin");
 			return ; //PROGRAMAR GESTION DE ERRORES
+		}
 		kill(g_server.client_id, SIGUSR1);
 	}
 	else
