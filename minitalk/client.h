@@ -6,14 +6,14 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:57 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/30 16:14:34 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/03 09:53:09 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
-#include "ft_printf/ft_printf.h"
+#include "libimp/libft.h"
 
 typedef struct s_client
 {

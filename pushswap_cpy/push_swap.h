@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/28 16:01:39 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/03 09:55:31 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # define LONG_MAX 9223372036854775807
 # define TRUE 1
 # define FALSE 0
-# include "ft_printf/ft_printf.h"
-
+# include "libimp/libft.h"
 
 typedef struct s_number
 {

@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 17:31:23 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/03 09:54:21 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/02/08 19:09:24 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/11/03 09:20:10 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "libimp/libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdarg.h>
+# include <unistd.h>
+# include "libft.h"
+# define ERROR	-1
 
-typedef struct s_msg
-{
-	int		size;
-	char *content;
-}	t_msg;
+int		ft_printf(char const *format, ...);
+int		ft_print_string(char *str);
+int		ft_print_nbr_dec(int nbr);
+int		ft_print_unsigned(unsigned int nbr);
+int		ft_print_hex(size_t arg, int caps);
+int		ft_print_ptr(size_t ptr);
 
-
-typedef struct s_server
-{
-	int		client_pid;
-	int		server_pid;
-	char	*msg;
-}				t_server;
-
-typedef struct s_global
-{
-	volatile sig_atomic_t	client_id;
-	volatile int			size_recived;
-	t_msg					msg;
-}				t_global;
-
-extern t_global	g_server;
+#endif

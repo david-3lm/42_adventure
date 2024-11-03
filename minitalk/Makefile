@@ -4,8 +4,8 @@ SRC = server.c
 OBJ = $(SRC:.c=.o)
 CLI = client.c
 CLIOBJ = $(CLI:.c=.o)
-LIBFTPRINTF_DIR = ./ft_printf
-LIBFTPRINTF = $(LIBFTPRINTF_DIR)/libftprintf.a
+LIB_DIR = ./libimp
+LIB = $(LIB_DIR)/libft.a
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
@@ -22,31 +22,31 @@ CIAN = \e[7;36m
 
 all: $(NAME) $(CLIN)
 
-$(NAME): $(OBJ) $(LIBFTPRINTF)
-	$(CC) $(OBJ) $(LIBFTPRINTF) -o $(NAME)
+$(NAME): $(OBJ) $(LIB)
+	$(CC) $(OBJ) $(LIB) -o $(NAME)
 
 
-$(CLIN): $(CLIOBJ) $(LIBFTPRINTF)
-	$(CC) $(CLIOBJ) $(LIBFTPRINTF) -o $(CLIN)
+$(CLIN): $(CLIOBJ) $(LIB)
+	$(CC) $(CLIOBJ) $(LIB) -o $(CLIN)
 	@clear
 	@echo "\n$(GREEN)Compliation completed $(COLOREND)"
 
 
-$(LIBFTPRINTF):
-	@$(MAKE) -C $(LIBFTPRINTF_DIR)
+$(LIB):
+	@$(MAKE) -C $(LIB_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ) $(CLIOBJ)
-	@$(MAKE) clean -C $(LIBFTPRINTF_DIR)
+	@$(MAKE) clean -C $(LIB_DIR)
 	@clear
 	@echo "$(BLUE)Limpio$(COLOREND)"
 
 fclean: clean
 	$(RM) $(NAME) $(CLIN)
-	@$(MAKE) fclean -C $(LIBFTPRINTF_DIR)
+	@$(MAKE) fclean -C $(LIB_DIR)
 	@clear
 	@echo "$(BLUE)Limpio$(COLOREND)"
 

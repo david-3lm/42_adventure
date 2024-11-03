@@ -3,8 +3,8 @@ SRC = push_swap.c mem_utils.c init.c pushes.c r_rotates.c rotates.c stack_utils.
 	order.c check_order.c data_utils.c idx_utils.c algo.c
 HEADERS = push_swap.h
 OBJ = $(SRC:.c=.o)
-LIBFTPRINTF_DIR = ./ft_printf
-LIBFTPRINTF = $(LIBFTPRINTF_DIR)/libftprintf.a
+LIB_DIR = ./libimp
+LIB = $(LIB_DIR)/libft.a
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
@@ -22,11 +22,11 @@ TEST_FILE = tests
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFTPRINTF)
-	$(CC) $(OBJ) $(LIBFTPRINTF) -o $(NAME) -lm
+$(NAME): $(OBJ) $(LIB)
+	$(CC) $(OBJ) $(LIB) -o $(NAME) -lm
 
-$(LIBFTPRINTF):
-	@$(MAKE) -C $(LIBFTPRINTF_DIR)
+$(LIB):
+	@$(MAKE) -C $(LIB_DIR)
 	@echo "\n$(GREEN)Compliation completed $(COLOREND)"
 
 %.o: %.c
@@ -34,12 +34,12 @@ $(LIBFTPRINTF):
 
 clean:
 	$(RM) $(OBJ)
-	@$(MAKE) clean -C $(LIBFTPRINTF_DIR)
+	@$(MAKE) clean -C $(LIB_DIR)
 	@echo "$(BLUE)Limpio$(COLOREND)"
 
 fclean: clean
 	$(RM) $(NAME)
-	@$(MAKE) fclean -C $(LIBFTPRINTF_DIR)
+	@$(MAKE) fclean -C $(LIB_DIR)
 	@echo "$(BLUE)Limpio$(COLOREND)"
 
 re: fclean all

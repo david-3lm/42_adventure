@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 17:31:23 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/03 09:54:21 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/01/25 23:54:32 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/01/25 23:54:32 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "libimp/libft.h"
+#include "libft.h"
 
-typedef struct s_msg
+t_list	*ft_lstlast(t_list *lst)
 {
-	int		size;
-	char *content;
-}	t_msg;
+	t_list	*aux;
 
-
-typedef struct s_server
-{
-	int		client_pid;
-	int		server_pid;
-	char	*msg;
-}				t_server;
-
-typedef struct s_global
-{
-	volatile sig_atomic_t	client_id;
-	volatile int			size_recived;
-	t_msg					msg;
-}				t_global;
-
-extern t_global	g_server;
+	aux = lst;
+	if (!aux)
+		return (0);
+	while (aux->next != NULL)
+		aux = aux->next;
+	return (aux);
+}
