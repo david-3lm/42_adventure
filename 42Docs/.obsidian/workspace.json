@@ -4,41 +4,8 @@
     "type": "split",
     "children": [
       {
-        "id": "589474a18a32d793",
-        "type": "tabs",
-        "dimension": 63.13451776649747,
-        "children": [
-          {
-            "id": "d6c2637583b54d05",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "GNL/Get_next_line.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "200f89618819a305",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "minitalk/Funciones.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          }
-        ],
-        "currentTab": 1
-      },
-      {
         "id": "869fbcc5383cdd4b",
         "type": "tabs",
-        "dimension": 36.86548223350254,
         "children": [
           {
             "id": "e1426ec14bb33365",
@@ -49,8 +16,21 @@
               "state": {},
               "pinned": true
             }
+          },
+          {
+            "id": "2945047d659a37f2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Push_swap/Push_swap.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -116,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "minitalk/Funciones.md",
+                "file": "Push_swap/Push_swap.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "minitalk/Funciones.md",
+                "file": "Push_swap/Push_swap.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -156,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "minitalk/Funciones.md"
+                "file": "Push_swap/Push_swap.md"
               }
             }
           }
@@ -177,12 +157,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "200f89618819a305",
+  "active": "2945047d659a37f2",
   "lastOpenFiles": [
-    "GNL/Get_next_line.md",
-    "minitalk/Funciones.md",
-    "minitalk",
     "Fractol/a.canvas",
+    "Push_swap/Push_swap.md",
+    "Push_swap",
+    "minitalk/Funciones.md",
+    "GNL/Get_next_line.md",
+    "minitalk",
     "Fractol/MiniLibX - Function Documentation.md",
     "Fractol",
     "MinilibX",
