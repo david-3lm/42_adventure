@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:09:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/02/22 17:48:00 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/03 09:20:10 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "libft.h"
 # define ERROR	-1
 
 int		ft_printf(char const *format, ...);
