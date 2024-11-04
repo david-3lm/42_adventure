@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/04 11:38:21 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/04 23:51:39 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ int	count_args(char **argv)
 	return (i);
 }
 
-char	**parse(int *argc, char **argv)
+char	**parse(int *argc, char **argv, t_data *data)
 {
 	char	**new_argv;
 	int		i;
 
+	data->splitted = (*argc == 2);
 	if (*argc == 2)
 	{
 		new_argv = ft_split(argv[1], ' ');
@@ -46,23 +47,23 @@ char	**parse(int *argc, char **argv)
 		new_argv[*argc - 1] = NULL;
 		(*argc)--;
 	}
-	else
-		new_argv = argv;
 	return (new_argv);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	char	**split;
 
-	argv = parse(&argc, argv);
-	if (argc >= 1)
+	if (argc != 1)
+		split = parse(&argc, argv, &data);
+	if (argc >= 1 && split)
 	{
 		data.stack_a = ft_calloc(argc, sizeof(t_number));
 		data.stack_b = ft_calloc(argc, sizeof(t_number));
 		if (!data.stack_a || !data.stack_b)
 			free_data(&data);
-		if (!init_a(&data, argc, argv))
+		if (!init_a(&data, argc, split))
 			print_error();
 		else if (argc == 2)
 			order_two(&data);
@@ -73,7 +74,7 @@ int	main(int argc, char **argv)
 		else if (argc >= 5)
 			start_algo(&data);
 		free_data(&data);
-		free_pptr(argv);
+		free_pptr(split, data.splitted);
 	}
 	return (0);
 }

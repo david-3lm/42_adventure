@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:59:14 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/25 18:19:36 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/04 23:33:34 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	order_three(t_data *data)
 	order = check_order_asc(data);
 	if (order == 0)
 		return ;
-	if (order == 1)
+	else if (order == 1)
 	{
 		swap_a(data);
 		order_three(data);
 	}
-	if (order == 2)
+	else if (order == 2)
 	{
 		r_rotate_a(data);
 		order_three(data);

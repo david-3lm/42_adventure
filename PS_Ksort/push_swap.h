@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/04 11:35:44 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/04 23:50:05 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ typedef struct s_data
 	int			reverse;
 	int			idx;
 	int			median;
+	int			splitted;
 }				t_data;
 
 void			update_data(t_data *data);
 
 void			free_mem(void *ptr);
-void			free_pptr(char **ptr);
+void			free_pptr(char **ptr, int splitted);
 void			free_data(t_data *data);
 void			print_error(void);
 

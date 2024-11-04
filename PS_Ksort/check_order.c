@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:23:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/04 11:01:49 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/04 23:37:12 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_order_asc(t_data *data)
 
 	i = 0;
 	s = data->size_a;
-	while (i < s)
+	while (i < s - 1)
 	{
 		if (data->stack_a[i].value > data->stack_a[i + 1].value)
 		{

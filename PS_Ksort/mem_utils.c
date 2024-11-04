@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:43:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/04 11:46:32 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/04 23:49:43 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,19 @@ void	free_data(t_data *data)
 	}
 }
 
-void	free_pptr(char **pptr)
+void	free_pptr(char **pptr, int splitted)
 {
 	int	i;
 
 	i = 0;
-	while (pptr[i])
+	if (splitted)
 	{
-		free(pptr[i]);
-		i++;
+		while (pptr[i])
+		{
+			if (pptr[i])
+				free(pptr[i]);
+			i++;
+		}
 	}
 	free(pptr);
 }
