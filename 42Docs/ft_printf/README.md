@@ -4,7 +4,7 @@
 El objetivo de este proyecto es clonar la funcionalidad de la función `printf` de la biblioteca estándar de C (`libc`). La implementación soporta varias especificaciones de formato, incluyendo caracteres, cadenas, números enteros en distintas bases y punteros.
 
 ## Dependencias
-Este proyecto depende de la biblioteca [[Libft]], una colección de funciones útiles que se utiliza comúnmente en proyectos de C. Asegúrate de tener  [[Libft]] disponible y correctamente compilada.
+Este proyecto depende de la biblioteca [[Libft/README]], una colección de funciones útiles que se utiliza comúnmente en proyectos de C. Asegúrate de tener  [[Libft/README]] disponible y correctamente compilada.
 
 ## Funcionalidades
 La función `ft_printf` replica el comportamiento de la `printf` original, soportando los siguientes especificadores de formato:
