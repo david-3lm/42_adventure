@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/28 10:32:38 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:38:21 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,31 @@ int	count_args(char **argv)
 
 char	**parse(int *argc, char **argv)
 {
-    char **new_argv;
-    int i;
+	char	**new_argv;
+	int		i;
 
-    if (*argc == 2) 
+	if (*argc == 2)
 	{
-        new_argv = ft_split(argv[1], ' ');
-        *argc = count_args(new_argv); // Actualiza argc con el número de argumentos
-    }
-    else if (*argc > 2) 
+		new_argv = ft_split(argv[1], ' ');
+		*argc = count_args(new_argv);
+	}
+	else if (*argc > 2)
 	{
-        new_argv = ft_calloc((*argc), sizeof(char *));
-        if (!new_argv)
-            return NULL;
+		new_argv = ft_calloc((*argc), sizeof(char *));
+		if (!new_argv)
+			return (NULL);
 		i = 1;
-        while (i < *argc)
+		while (i < *argc)
 		{
-            new_argv[i - 1] = argv[i];
+			new_argv[i - 1] = argv[i];
 			i++;
 		}
-        new_argv[*argc - 1] = NULL;
-        (*argc)--;
-    }
-    else
-        new_argv = argv;
-    return (new_argv);
+		new_argv[*argc - 1] = NULL;
+		(*argc)--;
+	}
+	else
+		new_argv = argv;
+	return (new_argv);
 }
 
 int	main(int argc, char **argv)
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	argv = parse(&argc, argv);
-	if (argc > 1)
+	if (argc >= 1)
 	{
 		data.stack_a = ft_calloc(argc, sizeof(t_number));
 		data.stack_b = ft_calloc(argc, sizeof(t_number));
@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 		else if (argc >= 5)
 			start_algo(&data);
 		free_data(&data);
-		free_pptr(argv, argc);
+		free_pptr(argv);
 	}
 	return (0);
 }

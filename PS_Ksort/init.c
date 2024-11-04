@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:49:10 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/28 16:05:10 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/04 10:46:02 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_isnumber(char *c)
 	int	i;
 
 	i = 0;
-	if(c[i] == '-' || c[i] == '+')
+	if (c[i] == '-' || c[i] == '+')
 		i++;
 	if (!ft_isdigit(c[i]))
 		return (FALSE);
@@ -29,6 +29,7 @@ int	ft_isnumber(char *c)
 	}
 	return (TRUE);
 }
+
 int	get_lower_nbr(t_data *data, int vaule)
 {
 	int	i;
@@ -59,16 +60,21 @@ void	init_index(t_data *data)
 	}
 }
 
-int	init_a(t_data *data, int argc, char **arg)
+void	start_data(t_data *data, int argc)
 {
-	int		i;
-	long	n;
-
 	data->max = INT_MIN;
 	data->min = INT_MAX;
 	data->numbers = argc;
 	data->size_a = data->numbers;
 	data->size_b = 0;
+}
+
+int	init_a(t_data *data, int argc, char **arg)
+{
+	int		i;
+	long	n;
+
+	start_data(data, argc);
 	i = 0;
 	while (i < argc)
 	{

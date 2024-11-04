@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:23:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/28 11:52:16 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:01:49 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,18 @@ int	check_order_asc(t_data *data)
 	}
 	return (0);
 }
-void debug(t_data *data)
+
+void	debug(t_data *data)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	ft_printf("a\tb\n______________\n");
 	while (i < data->numbers)
 	{
 		ft_printf("%d\t%d\n", data->stack_a[i].value, data->stack_b[i].value);
 		i++;
 	}
-	
 }
 
 int	get_correct_pos(int n, t_data *data)

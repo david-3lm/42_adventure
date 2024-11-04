@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:24 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/03 10:04:14 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:35:44 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,12 @@ typedef struct s_data
 void			update_data(t_data *data);
 
 void			free_mem(void *ptr);
-void			free_pptr(char **ptr, int size);
+void			free_pptr(char **ptr);
 void			free_data(t_data *data);
-void			push_swap(t_data *data);
 void			print_error(void);
 
 /*INIT*/
 int				init_a(t_data *a, int argc, char **arg);
-void	init_stacks(int *a, int *b, int argc, char **arg);
 
 /*UTILS*/
 t_number		pop(t_number *stack, t_data *data);
@@ -66,7 +64,8 @@ int				size(t_number *stack, t_data *data);
 int				get_min_idx(t_number *stack, int size);
 int				get_max_idx(t_number *stack, int size);
 int				find_in_stack(t_number *stack, int n, int size);
-
+int				calc_k(t_data *data);
+double			ft_sqrt(int n);
 
 /*MOVES*/
 void			push_a(t_data *data);
@@ -93,7 +92,6 @@ int				get_correct_pos_b(int n, t_data *data);
 
 /*ALGORYTHM*/
 void			start_algo(t_data *data);
-void	 debug(t_data *data);
-
+void			debug(t_data *data);
 
 #endif

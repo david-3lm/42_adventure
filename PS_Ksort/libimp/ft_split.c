@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid>       +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:30:34 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/01/25 16:29:12 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/04 11:32:49 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	idxnsize_next_word(char const *s, char c, int start, int *size)
 	return (i);
 }
 
-static int	free_mem(char **pptr, int i)
+static void	free_mem(char **pptr, int i)
 {
 	while (0 <= i)
 	{
@@ -62,7 +62,6 @@ static int	free_mem(char **pptr, int i)
 		i--;
 	}
 	free(pptr);
-	return (0);
 }
 
 static int	compute_array(char const *s, char c, char **pptr, int words)
@@ -80,7 +79,7 @@ static int	compute_array(char const *s, char c, char **pptr, int words)
 		pptr[i] = (char *) malloc(size + 1);
 		if (!pptr[i])
 		{
-			free_mem(pptr, i);
+			free_mem(pptr, i - 1);
 			return (0);
 		}
 		ft_strlcpy(pptr[i], &s[idx], (int) size + 1);
@@ -101,7 +100,10 @@ char	**ft_split(char const *s, char c)
 	if (!pptr)
 		return (0);
 	if (!compute_array(s, c, pptr, words))
+	{
+		free(pptr);
 		return (0);
+	}
 	pptr[words - 1] = 0;
 	return (pptr);
 }
