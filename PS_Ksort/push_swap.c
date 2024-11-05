@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/04 23:51:39 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/05 11:56:45 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ int	count_args(char **argv)
 	return (i);
 }
 
-char	**parse(int *argc, char **argv, t_data *data)
+char	**parse(int *argc, char **argv, t_data *data, int i)
 {
 	char	**new_argv;
-	int		i;
 
 	data->splitted = (*argc == 2);
+	if (*argc == 1)
+		return (NULL);
 	if (*argc == 2)
 	{
 		new_argv = ft_split(argv[1], ' ');
@@ -38,7 +39,6 @@ char	**parse(int *argc, char **argv, t_data *data)
 		new_argv = ft_calloc((*argc), sizeof(char *));
 		if (!new_argv)
 			return (NULL);
-		i = 1;
 		while (i < *argc)
 		{
 			new_argv[i - 1] = argv[i];
@@ -55,8 +55,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 	char	**split;
 
-	if (argc != 1)
-		split = parse(&argc, argv, &data);
+	split = parse(&argc, argv, &data, 1);
 	if (argc >= 1 && split)
 	{
 		data.stack_a = ft_calloc(argc, sizeof(t_number));
