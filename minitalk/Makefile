@@ -1,10 +1,10 @@
 NAME = server
 CLIN = client
-SRC = server.c
+SRC = ./server_src/server.c
 OBJ = $(SRC:.c=.o)
-CLI = client.c
+CLI = ./client_src/client.c
 CLIOBJ = $(CLI:.c=.o)
-LIB_DIR = ./libimp
+LIB_DIR = ../libimp
 LIB = $(LIB_DIR)/libft.a
 HEADERS = server.h client.h
 CC = gcc

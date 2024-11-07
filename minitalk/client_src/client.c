@@ -6,17 +6,17 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/31 12:07:15 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:47:55 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "client.h"
+#include "../inc/client.h"
 
 t_global	g_client;
 
 void	action(int signal)
 {
-	if (signal == SIGUSR1)
+	if (signal == CONNECTED)
 	{
 		if (!g_client.connection)
 		{

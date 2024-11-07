@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.h                                           :+:      :+:    :+:   */
+/*   server.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 17:31:57 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/07 12:00:53 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/10/29 17:31:23 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/11/07 12:46:51 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_H
-# define CLIENT_H
+#ifndef SERVER_H
+# define SERVER_H
 # include <signal.h>
 # include <unistd.h>
 # include <stdio.h>
-# include "libimp/libft.h"
+# include "../libimp/libft.h"
 # include "global.h"
 
-
-typedef struct s_client
+typedef struct s_msg
 {
-	pid_t	client_pid;
-	pid_t	server_pid;
+	int		size;
+	char	*content;
+}	t_msg;
+
+
+typedef struct s_server
+{
+	int		client_pid;
+	int		server_pid;
 	char	*msg;
-}	t_client;
+}				t_server;
 
 typedef struct s_global
 {
-	int						pid;
-	volatile sig_atomic_t	ready_to_continue;
-	volatile sig_atomic_t	size_sent;
-	volatile sig_atomic_t	msg_sent;
-	volatile sig_atomic_t	connection;
-}	t_global;
+	volatile sig_atomic_t	client_id;
+	volatile int			size_recived;
+	t_msg					msg;
+}				t_global;
 
-extern	t_global	g_client;
+extern t_global	g_server;
 #endif
