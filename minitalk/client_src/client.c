@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/07 12:47:55 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:36:59 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,55 @@ t_global	g_client;
 
 void	action(int signal)
 {
-	if (signal == CONNECTED)
+	if (!g_client.connection)
 	{
-		if (!g_client.connection)
-		{
-			ft_printf("Server busy...\n");
-			return ;
-		}
-		if (!g_client.size_sent)
-			g_client.size_sent = 1;
-		else
-		{
-			g_client.msg_sent = 1;
-			ft_printf("El servidor ha recibido el mensaje correctamente :D\n");
-			_exit(0);	
-		}
-		ft_printf("Servidor ha recibido el size\n");
-		g_client.ready_to_continue = 1;
+		handle_connection(signal);
+		return ;
 	}
-	else if (signal == SIGUSR2)
+	if (!g_client.size_sent)
 	{
-		if (!g_client.connection)
-		{
-			g_client.connection = 1;
-			ft_printf("Connected!\n");
-			return ;
-		}
-		g_client.ready_to_continue = 1;
+		handle_size(signal);
+		return ;
 	}
+	if (!g_client.msg_sent)
+	{
+		handle_msg(signal);
+		return ;
+	}
+	if (signal == SIGERR)
+	{
+		ft_printf("Errooor NOOOOOOOOOOOOOOOOOOO :&");
+		exit(0);
+	}
+	///////////////////////////
+	// if (signal == CONNECTED)
+	// {
+	// 	if (!g_client.connection)
+	// 	{
+	// 		ft_printf("Server busy...\n");
+	// 		return ;
+	// 	}
+	// 	if (!g_client.size_sent)
+	// 		g_client.size_sent = 1;
+	// 	else
+	// 	{
+	// 		g_client.msg_sent = 1;
+	// 		ft_printf("El servidor ha recibido el mensaje correctamente :D\n");
+	// 		_exit(0);	
+	// 	}
+	// 	ft_printf("Servidor ha recibido el size\n");
+	// 	g_client.ready_to_continue = 1;
+	// }
+	// else if (signal == SIGUSR2)
+	// {
+	// 	if (!g_client.connection)
+	// 	{
+	// 		g_client.connection = 1;
+	// 		ft_printf("Connected!\n");
+	// 		return ;
+	// 	}
+	// 	g_client.ready_to_continue = 1;
+	// }
 }
 
 void	send_char(int pid, int c)
@@ -55,9 +76,9 @@ void	send_char(int pid, int c)
 	while (i < 8)
 	{
 		if (c & (1 << (7 - i)))
-			err = kill(pid, SIGUSR1);
+			err = kill(pid, BIT1);
 		else
-			err = kill(pid, SIGUSR2);
+			err = kill(pid, BIT0);
 		while (!g_client.ready_to_continue)
 			usleep(3000);
 		g_client.ready_to_continue = 0;
@@ -65,6 +86,8 @@ void	send_char(int pid, int c)
 		if (err)
 			ft_printf("Erroooor\n");
 	}
+	if (!g_client.size_sent)
+		g_client.size_sent = 1;
 	i = 0;
 }
 
@@ -79,6 +102,7 @@ void	ft_kill(int pid, char *str)
 		i++;
 	}
 	send_char(pid, 0);
+	g_client.msg_sent = 1;
 }
 
 void	handle_signals(int pid, char **argv)
@@ -124,6 +148,6 @@ int	main(int argc, char **argv)
 	{
 		handle_signals(ft_atoi(argv[1]), argv);
 	}
-	
+	ft_printf("MENSAJE ENVVIADO :D\n");
 	return (0);
 }

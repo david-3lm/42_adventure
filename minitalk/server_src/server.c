@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/07 12:46:22 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:46:52 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	handle_size(int signal)
 	static int	current_n = 0;
 	static int	bit_idx = 0;
 
-	if (signal == SIGUSR1)
+	if (signal == BIT1)
 		current_n |= (1 << (7 - bit_idx));
 	bit_idx++;
 	if (bit_idx == 8)
@@ -46,10 +46,10 @@ void	handle_size(int signal)
 			ft_printf("Fallo malloc maniiiiiin");
 			return ; //PROGRAMAR GESTION DE ERRORES
 		}
-		kill(g_server.client_id, SIGUSR1);
+		kill(g_server.client_id, SIGSUCC);
 	}
 	else
-		kill(g_server.client_id, SIGUSR2);
+		kill(g_server.client_id, SIGSUCC);
 }
 
 void save_msg(char c)
@@ -72,22 +72,29 @@ void	handle_msg(int signal)
 	bit_idx++;
 	if (bit_idx == 8)
 	{
+		if (!ft_isprint(current_c) && current_c >= 32)
+		{
+			ft_printf("Error al recibir el mensaje! :(\n");
+			kill(g_server.client_id, SIGERR);
+			reset_all();
+			return ;
+		}
 		save_msg(current_c);
 		usleep(1000);
 		if (current_c == '\0')
 		{
 			ft_printf("%s", g_server.msg.content);
 			ft_printf("\nEnviando confirmacion a cliente: %d\n", g_server.client_id);
-			kill(g_server.client_id, SIGUSR1);
+			kill(g_server.client_id, SIGSUCC);
 			reset_all();
 		}
 		else
-			kill(g_server.client_id, SIGUSR2);
+			kill(g_server.client_id, SIGSUCC);
 		bit_idx = 0;
 		current_c = 0;
 	}
 	else
-		kill(g_server.client_id, SIGUSR2);
+		kill(g_server.client_id, SIGSUCC);
 }
 
 void	action(int signal, siginfo_t *info, void *context)
@@ -96,12 +103,12 @@ void	action(int signal, siginfo_t *info, void *context)
 	if (!g_server.client_id)
 	{
 		g_server.client_id = info->si_pid;	
-		kill(info->si_pid, SIGUSR2);
+		kill(info->si_pid, SERV_FREE);
 		return ;
 	}
 	else if (g_server.client_id != info->si_pid)
 	{
-		kill(info->si_pid, SIGUSR1);
+		kill(info->si_pid, SERV_OCC);
 		return ;	
 	}
 	if (!g_server.size_recived)

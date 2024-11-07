@@ -2,7 +2,7 @@ NAME = server
 CLIN = client
 SRC = ./server_src/server.c
 OBJ = $(SRC:.c=.o)
-CLI = ./client_src/client.c
+CLI = ./client_src/client.c ./client_src/cli_handlers.c
 CLIOBJ = $(CLI:.c=.o)
 LIB_DIR = ../libimp
 LIB = $(LIB_DIR)/libft.a
