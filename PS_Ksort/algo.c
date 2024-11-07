@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:29:44 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/04 11:00:10 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/07 11:53:22 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	start_algo(t_data *data)
 	int	i;
 
 	i = 0;
+	if (!check_order_asc(data))
+		return ;
 	while (data->size_a > 5)
 	{
 		k = calc_k(data);

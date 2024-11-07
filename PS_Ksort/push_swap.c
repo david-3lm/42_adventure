@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:32:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/06 10:23:57 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/07 11:55:02 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int	main(int argc, char **argv)
 		else if (argc >= 5)
 			start_algo(&data);
 		free_data(&data);
-		free_pptr(split, data.splitted);
 	}
+	if (data.splitted)
+		free_pptr(split, data.splitted);
 	return (0);
 }
