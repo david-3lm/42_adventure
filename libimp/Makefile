@@ -34,11 +34,29 @@ define progress_bar
 	printf "] $(CURRENT_FILE)/$(TOTAL_FILES)$(COLOREND)";
 endef
 
+define ascii_art
+	@printf "\n"
+	@printf "$(RED)░       ░░░        ░░  ░░░░  ░░  ░░░░░░░░░      ░░░       ░░░        ░\n"
+	@printf "$(RED)▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒▒▒▒▒▒  ▒▒\n"
+	@printf "$(RED)▓  ▓▓▓▓  ▓▓      ▓▓▓▓▓  ▓▓  ▓▓▓  ▓▓▓▓▓▓▓▓  ▓▓▓▓  ▓▓       ▓▓▓▓▓▓  ▓▓▓▓\n"
+	@printf "$(RED)█  ████  ██  ██████████    ████  ████████  ████  ██  █████████  ██████\n"
+	@printf "$(RED)█       ███        █████  █████        ███      ███  ████████        █\n"
+	@printf "$(RED)                                                                      \n"
+	@printf "$(BLUE)░       ░░░  ░░░░░░░░░      ░░░       ░░░        ░        ░░░  ░░░░░░░\n"
+	@printf "$(BLUE)▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒▒▒▒▒▒\n"
+	@printf "$(BLUE)▓  ▓▓▓▓  ▓▓  ▓▓▓▓▓▓▓▓  ▓▓▓▓  ▓▓       ▓▓▓      ▓▓▓▓▓▓  ▓▓   ▓  ▓▓▓▓▓▓▓\n"
+	@printf "$(BLUE)█  ████  ██  ████████  ████  ██  ████████  ████████  ████████  ███████\n"
+	@printf "$(BLUE)█       ███        ███      ███  ████████        █        ███        █\n"
+	@printf "$(BLUE)                                                                       \n"
+endef
+
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
-	@echo "$(GREEN)ft_printf compilado!$(COLOREND)"
+	@echo "$(GREEN)ft_printf compilado!$(COLOREND)\n"
+	$(ascii_art)
 
 %.o: %.c
 	@$(call progress_bar)
