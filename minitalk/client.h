@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   client.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:57 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/03 09:53:09 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:00:53 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "libimp/libft.h"
+#ifndef CLIENT_H
+# define CLIENT_H
+# include <signal.h>
+# include <unistd.h>
+# include <stdio.h>
+# include "libimp/libft.h"
+# include "global.h"
+
 
 typedef struct s_client
 {
@@ -32,3 +36,4 @@ typedef struct s_global
 }	t_global;
 
 extern	t_global	g_client;
+#endif

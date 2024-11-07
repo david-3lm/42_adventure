@@ -1,43 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   global.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 17:31:23 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/07 12:01:23 by dlopez-l         ###   ########.fr       */
+/*   Created: 2024/11/07 12:01:28 by dlopez-l          #+#    #+#             */
+/*   Updated: 2024/11/07 12:03:48 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
+#ifndef GLOBAL_H
+# define GLOBAL_H
 # include <signal.h>
-# include <unistd.h>
-# include <stdio.h>
-# include "libimp/libft.h"
-# include "global.h"
-
-typedef struct s_msg
-{
-	int		size;
-	char	*content;
-}	t_msg;
-
-
-typedef struct s_server
-{
-	int		client_pid;
-	int		server_pid;
-	char	*msg;
-}				t_server;
-
-typedef struct s_global
-{
-	volatile sig_atomic_t	client_id;
-	volatile int			size_recived;
-	t_msg					msg;
-}				t_global;
-
-extern t_global	g_server;
+# define WRONG_CHAR SIGUSR2
+# define ERROR SIGUSR2
+# define CONNECTED SIGUSR1
+# define CHAR_SENT SIGUSR1
 #endif
