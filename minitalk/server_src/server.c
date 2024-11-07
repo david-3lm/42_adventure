@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/07 17:45:11 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:24:21 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 t_global	g_server;
 
-void	reset_all()
+void	print_global(void)
+{
+	ft_printf("ID: %d\nMSG: %s\nSize: %d\n", g_server.client_id, g_server.msg, g_server.size_recived);
+}
+
+void	reset_all(void)
 {
 	ft_bzero(g_server.msg.content, g_server.msg.size);
 	g_server.msg.size = 0;
@@ -22,6 +27,7 @@ void	reset_all()
 	g_server.msg.content = NULL;
 	g_server.size_recived = 0;
 	g_server.client_id = 0;
+	print_global();
 }
 
 void	handle_size(int signal)
@@ -76,6 +82,7 @@ void	handle_msg(int signal)
 		{
 			ft_printf("Error al recibir el mensaje! :(\n");
 			kill(g_server.client_id, SIGERR);
+			save_msg(0);
 			reset_all();
 			bit_idx = 0;
 			current_c = 0;
@@ -105,6 +112,7 @@ void	action(int signal, siginfo_t *info, void *context)
 	if (!g_server.client_id)
 	{
 		g_server.client_id = info->si_pid;
+		print_global();
 		kill(info->si_pid, SERV_FREE);
 		return ;
 	}
