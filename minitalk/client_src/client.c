@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/07 15:36:59 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:29:06 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,35 +36,6 @@ void	action(int signal)
 		ft_printf("Errooor NOOOOOOOOOOOOOOOOOOO :&");
 		exit(0);
 	}
-	///////////////////////////
-	// if (signal == CONNECTED)
-	// {
-	// 	if (!g_client.connection)
-	// 	{
-	// 		ft_printf("Server busy...\n");
-	// 		return ;
-	// 	}
-	// 	if (!g_client.size_sent)
-	// 		g_client.size_sent = 1;
-	// 	else
-	// 	{
-	// 		g_client.msg_sent = 1;
-	// 		ft_printf("El servidor ha recibido el mensaje correctamente :D\n");
-	// 		_exit(0);	
-	// 	}
-	// 	ft_printf("Servidor ha recibido el size\n");
-	// 	g_client.ready_to_continue = 1;
-	// }
-	// else if (signal == SIGUSR2)
-	// {
-	// 	if (!g_client.connection)
-	// 	{
-	// 		g_client.connection = 1;
-	// 		ft_printf("Connected!\n");
-	// 		return ;
-	// 	}
-	// 	g_client.ready_to_continue = 1;
-	// }
 }
 
 void	send_char(int pid, int c)

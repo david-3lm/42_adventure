@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/07 15:46:52 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:45:11 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,13 @@ void	handle_msg(int signal)
 	bit_idx++;
 	if (bit_idx == 8)
 	{
-		if (!ft_isprint(current_c) && current_c >= 32)
+		if (current_c < 0 || current_c >= 127)
 		{
 			ft_printf("Error al recibir el mensaje! :(\n");
 			kill(g_server.client_id, SIGERR);
 			reset_all();
+			bit_idx = 0;
+			current_c = 0;
 			return ;
 		}
 		save_msg(current_c);
@@ -84,7 +86,7 @@ void	handle_msg(int signal)
 		if (current_c == '\0')
 		{
 			ft_printf("%s", g_server.msg.content);
-			ft_printf("\nEnviando confirmacion a cliente: %d\n", g_server.client_id);
+			ft_printf("\n-----------------Enviando confirmacion a cliente: %d ---------------------\n", g_server.client_id);
 			kill(g_server.client_id, SIGSUCC);
 			reset_all();
 		}
@@ -102,14 +104,14 @@ void	action(int signal, siginfo_t *info, void *context)
 	(void)context;
 	if (!g_server.client_id)
 	{
-		g_server.client_id = info->si_pid;	
+		g_server.client_id = info->si_pid;
 		kill(info->si_pid, SERV_FREE);
 		return ;
 	}
 	else if (g_server.client_id != info->si_pid)
 	{
 		kill(info->si_pid, SERV_OCC);
-		return ;	
+		return ;
 	}
 	if (!g_server.size_recived)
 		handle_size(signal);
