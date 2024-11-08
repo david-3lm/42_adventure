@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:23 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/07 12:46:51 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:17:03 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ typedef struct s_global
 	volatile int			size_recived;
 	t_msg					msg;
 }				t_global;
+
+void	handle_msg(int signal);
+void	handle_size(int signal);
+void	reset_all(void);
+void save_msg(char c);
 
 extern t_global	g_server;
 #endif
