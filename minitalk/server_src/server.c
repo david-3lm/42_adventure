@@ -6,18 +6,13 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 17:51:07 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:10:38 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/server.h"
 
 t_global	g_server;
-
-void	print_global(void)
-{
-	ft_printf("ID: %d\nMSG: %s\nSize: %d\n", g_server.client_id, g_server.msg, g_server.size_recived);
-}
 
 void	reset_all(void)
 {
@@ -29,11 +24,11 @@ void	reset_all(void)
 	g_server.client_id = 0;
 }
 
-void save_msg(char c)
+void	save_msg(char c)
 {
 	static int	i = 0;
 
-	if (i < g_server.msg.size) 
+	if (i < g_server.msg.size)
 	{
 		g_server.msg.content[i] = c;
 		i++;
@@ -42,9 +37,9 @@ void save_msg(char c)
 		i = 0;
 }
 
-void	action(int signal, siginfo_t *info, void *context)
+void	action(int signal, siginfo_t *info, void *ctx)
 {
-	(void)context;
+	(void)ctx;
 	if (!g_server.client_id)
 	{
 		g_server.client_id = info->si_pid;

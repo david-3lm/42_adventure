@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cli_handlers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:18:21 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/07 15:12:29 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:14:56 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	handle_msg(int signal)
 		if (g_client.msg_sent)
 		{
 			ft_printf("El servidor ha recibido el mensaje correctamente :D\n");
-			_exit(0);	
+			_exit(0);
 		}
 		g_client.ready_to_continue = 1;
 	}

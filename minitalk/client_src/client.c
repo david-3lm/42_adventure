@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/07 17:29:06 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:15:33 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	handle_signals(int pid, char **argv)
 		usleep(2000);
 		tries++;
 	}
-	// SI SE PASA DE TIEMPO EXIT
 	if (tries >= 10)
 	{
 		ft_printf("Mensaje no enviado :(\n");
@@ -98,7 +97,6 @@ void	handle_signals(int pid, char **argv)
 		send_char(pid, ft_strlen(argv[2]));
 	else
 		ft_kill(pid, argv[2]);
-
 }
 
 int	main(int argc, char **argv)

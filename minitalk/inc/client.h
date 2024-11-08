@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:57 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 17:33:11 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:17:25 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdio.h>
 # include "../libimp/libft.h"
 # include "../inc/global.h"
-
 
 typedef struct s_client
 {
@@ -39,6 +38,5 @@ void	handle_connection(int signal);
 void	handle_size(int signal);
 void	handle_msg(int signal);
 
-
-extern	t_global	g_client;
+extern t_global	g_client;
 #endif

@@ -6,7 +6,7 @@ CLI = ./client_src/client.c ./client_src/cli_handlers.c
 CLIOBJ = $(CLI:.c=.o)
 LIB_DIR = ../libimp
 LIB = $(LIB_DIR)/libft.a
-HEADERS = server.h client.h
+HEADERS = ./inc/server.h ./inc/client.h ./inc/global.h
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
 RM = rm -f

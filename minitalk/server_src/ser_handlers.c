@@ -6,11 +6,37 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:03:51 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 17:50:27 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:14:17 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/server.h"
+
+void	char_complete(char current_c, int bit_idx)
+{
+	if (current_c < 0 || current_c >= 127)
+	{
+		ft_printf("Error al recibir el mensaje! :(\n");
+		kill(g_server.client_id, SIGERR);
+		save_msg(0);
+		reset_all();
+		bit_idx = 0;
+		current_c = 0;
+		return ;
+	}
+	save_msg(current_c);
+	usleep(1000);
+	if (current_c == '\0')
+	{
+		ft_printf("%s", g_server.msg.content);
+		ft_printf("\n-----------------Enviando confirmacion a cliente:\
+			%d ---------------------\n", g_server.client_id);
+		kill(g_server.client_id, SIGSUCC);
+		reset_all();
+	}
+	else
+		kill(g_server.client_id, SIGSUCC);
+}
 
 void	handle_msg(int signal)
 {
@@ -22,27 +48,7 @@ void	handle_msg(int signal)
 	bit_idx++;
 	if (bit_idx == 8)
 	{
-		if (current_c < 0 || current_c >= 127)
-		{
-			ft_printf("Error al recibir el mensaje! :(\n");
-			kill(g_server.client_id, SIGERR);
-			save_msg(0);
-			reset_all();
-			bit_idx = 0;
-			current_c = 0;
-			return ;
-		}
-		save_msg(current_c);
-		usleep(1000);
-		if (current_c == '\0')
-		{
-			ft_printf("%s", g_server.msg.content);
-			ft_printf("\n-----------------Enviando confirmacion a cliente: %d ---------------------\n", g_server.client_id);
-			kill(g_server.client_id, SIGSUCC);
-			reset_all();
-		}
-		else
-			kill(g_server.client_id, SIGSUCC);
+		char_complete(current_c, bit_idx);
 		bit_idx = 0;
 		current_c = 0;
 	}
@@ -71,7 +77,7 @@ void	handle_size(int signal)
 		{
 			ft_printf("Fallo malloc maniiiiiin");
 			reset_all();
-			return ; //PROGRAMAR GESTION DE ERRORES
+			return ;
 		}
 		kill(g_server.client_id, SIGSUCC);
 	}
