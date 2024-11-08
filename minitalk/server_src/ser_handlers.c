@@ -6,13 +6,13 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:03:51 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 18:14:17 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:29:07 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/server.h"
 
-void	char_complete(char current_c, int bit_idx)
+int	char_complete(char current_c)
 {
 	if (current_c < 0 || current_c >= 127)
 	{
@@ -20,9 +20,8 @@ void	char_complete(char current_c, int bit_idx)
 		kill(g_server.client_id, SIGERR);
 		save_msg(0);
 		reset_all();
-		bit_idx = 0;
 		current_c = 0;
-		return ;
+		return (0);
 	}
 	save_msg(current_c);
 	usleep(1000);
@@ -36,6 +35,7 @@ void	char_complete(char current_c, int bit_idx)
 	}
 	else
 		kill(g_server.client_id, SIGSUCC);
+	return (1);
 }
 
 void	handle_msg(int signal)
@@ -48,7 +48,7 @@ void	handle_msg(int signal)
 	bit_idx++;
 	if (bit_idx == 8)
 	{
-		char_complete(current_c, bit_idx);
+		char_complete(current_c);
 		bit_idx = 0;
 		current_c = 0;
 	}
@@ -62,12 +62,12 @@ void	handle_size(int signal)
 	static int	bit_idx = 0;
 
 	if (signal == BIT1)
-		current_n |= (1 << (7 - bit_idx));
+		current_n |= (1 << (31 - bit_idx));
 	bit_idx++;
-	if (bit_idx == 8)
+	if (bit_idx == 32)
 	{
 		usleep(1000);
-		g_server.msg.size = (int) current_n;
+		g_server.msg.size = current_n;
 		ft_printf("Size of msg: %d\n", g_server.msg.size);
 		bit_idx = 0;
 		current_n = 0;

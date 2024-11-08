@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:57 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 18:17:25 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:33:46 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ typedef struct s_global
 void	handle_connection(int signal);
 void	handle_size(int signal);
 void	handle_msg(int signal);
+void	handle_signals(int pid, char **argv);
+void	ft_kill(int pid, char *str);
+void	send_char(int pid, int c);
+void	send_int(int pid, int value);
+void	action(int signal);
 
 extern t_global	g_client;
 #endif

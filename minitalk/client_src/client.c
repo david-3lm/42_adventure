@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 18:15:33 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 18:34:00 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,29 @@ void	action(int signal)
 		ft_printf("Errooor NOOOOOOOOOOOOOOOOOOO :&");
 		exit(0);
 	}
+}
+
+void	send_int(int pid, int value)
+{
+	int	i;
+	int	err;
+
+	i = 0;
+	while (i < 32)
+	{
+		if (value & (1 << (31 - i)))
+			err = kill(pid, BIT1);
+		else
+			err = kill(pid, BIT0);
+		while (!g_client.ready_to_continue)
+			usleep(3000);
+		g_client.ready_to_continue = 0;
+		i++;
+		if (err)
+			ft_printf("Erroooor\n");
+	}
+	if (!g_client.size_sent)
+		g_client.size_sent = 1;
 }
 
 void	send_char(int pid, int c)
@@ -74,29 +97,6 @@ void	ft_kill(int pid, char *str)
 	}
 	send_char(pid, 0);
 	g_client.msg_sent = 1;
-}
-
-void	handle_signals(int pid, char **argv)
-{
-	int	tries;
-
-	tries = 0;
-	while (!g_client.connection && tries < 10)
-	{
-		kill(pid, SIGUSR1);
-		usleep(2000);
-		tries++;
-	}
-	if (tries >= 10)
-	{
-		ft_printf("Mensaje no enviado :(\n");
-		g_client.msg_sent = 1;
-		return ;
-	}
-	if (!g_client.size_sent)
-		send_char(pid, ft_strlen(argv[2]));
-	else
-		ft_kill(pid, argv[2]);
 }
 
 int	main(int argc, char **argv)
