@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 11:42:27 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 17:51:07 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ void save_msg(char c)
 {
 	static int	i = 0;
 
-	g_server.msg.content[i] = c;
-	i++;
+	if (i < g_server.msg.size) 
+	{
+		g_server.msg.content[i] = c;
+		i++;
+	}
 	if (c == '\0')
 		i = 0;
 }
@@ -74,6 +77,6 @@ int	main(void)
 	sigaction(SIGUSR2, &s_sigaction, 0);
 	g_server.size_recived = 0;
 	while (1)
-		sleep(2);
+		usleep(2000);
 	return (0);
 }

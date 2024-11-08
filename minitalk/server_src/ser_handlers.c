@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:03:51 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 11:16:34 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/08 17:50:27 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	handle_size(int signal)
 		bit_idx = 0;
 		current_n = 0;
 		g_server.size_recived = 1;
-		g_server.msg.content = ft_calloc(g_server.msg.size, 1);
+		g_server.msg.content = ft_calloc(g_server.msg.size + 1, 1);
 		if (!g_server.msg.content)
 		{
 			ft_printf("Fallo malloc maniiiiiin");
