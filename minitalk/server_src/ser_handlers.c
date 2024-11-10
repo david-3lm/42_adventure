@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:03:51 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 18:29:07 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:45:09 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	char_complete(char current_c)
 		return (0);
 	}
 	save_msg(current_c);
-	usleep(1000);
 	if (current_c == '\0')
 	{
 		ft_printf("%s", g_server.msg.content);
@@ -45,6 +44,8 @@ void	handle_msg(int signal)
 
 	if (signal == SIGUSR1)
 		current_c |= (1 << (7 - bit_idx));
+	else
+		current_c &= ~(1 << (7 - bit_idx));
 	bit_idx++;
 	if (bit_idx == 8)
 	{
@@ -63,10 +64,11 @@ void	handle_size(int signal)
 
 	if (signal == BIT1)
 		current_n |= (1 << (31 - bit_idx));
+	else
+		current_n &= ~(1 << (31 - bit_idx));
 	bit_idx++;
 	if (bit_idx == 32)
 	{
-		usleep(1000);
 		g_server.msg.size = current_n;
 		ft_printf("Size of msg: %d\n", g_server.msg.size);
 		bit_idx = 0;
@@ -75,7 +77,6 @@ void	handle_size(int signal)
 		g_server.msg.content = ft_calloc(g_server.msg.size + 1, 1);
 		if (!g_server.msg.content)
 		{
-			ft_printf("Fallo malloc maniiiiiin");
 			reset_all();
 			return ;
 		}
