@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:03:51 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/10 11:45:09 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/12 23:58:15 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	handle_msg(int signal)
 	static char	current_c = 0;
 	static int	bit_idx = 0;
 
-	if (signal == SIGUSR1)
-		current_c |= (1 << (7 - bit_idx));
+	if (signal == BIT1)
+		current_c  = (current_c * 2) + 1;
 	else
-		current_c &= ~(1 << (7 - bit_idx));
+		current_c *= 2;
 	bit_idx++;
 	if (bit_idx == 8)
 	{
@@ -63,9 +63,9 @@ void	handle_size(int signal)
 	static int	bit_idx = 0;
 
 	if (signal == BIT1)
-		current_n |= (1 << (31 - bit_idx));
+		current_n  = (current_n * 2) + 1;
 	else
-		current_n &= ~(1 << (31 - bit_idx));
+		current_n *= 2;
 	bit_idx++;
 	if (bit_idx == 32)
 	{
