@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 15:48:18 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/08/22 15:48:22 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:42:48 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	main(void)
 {
-	int fd = open("prueba", O_RDONLY);
+	int fd = open("prueb", O_RDONLY);
 	int fd2 = open("prueba2", O_RDONLY);
 	char *line;
 
