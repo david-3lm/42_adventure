@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 21:03:52 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/09/30 11:04:24 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:42:33 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_color(int iter, int cp, t_data data)
 	if (cp == 3)
 		return ((r << 16) | (b << 8) | g);
 	if (cp == 4)
-		return (0xFFFF55 * t * (1 - t));
+		return ((r << 16) | (r << 8) | r);
 	return ((r << 16) | (g << 8) | b);
 }
 
