@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:03:51 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/14 11:53:39 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/14 11:55:33 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	handle_msg(int signal)
 	static int	bit_idx = 0;
 
 	if (signal == BIT1)
-		current_c  = (current_c * 2) + 1;
+		current_c = (current_c * 2) + 1;
 	else
 		current_c *= 2;
 	bit_idx++;
@@ -63,7 +63,7 @@ void	handle_size(int signal)
 	static int	bit_idx = 0;
 
 	if (signal == BIT1)
-		current_n  = (current_n * 2) + 1;
+		current_n = (current_n * 2) + 1;
 	else
 		current_n *= 2;
 	bit_idx++;
