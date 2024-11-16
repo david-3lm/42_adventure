@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/13 00:09:50 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/16 13:24:44 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	send_int(int pid, int value)
 		else
 			err = kill(pid, BIT0);
 		while (!g_client.ready_to_continue)
-			usleep(1);
+			usleep(100);
 		g_client.ready_to_continue = 0;
 		i--;
 		if (err)
