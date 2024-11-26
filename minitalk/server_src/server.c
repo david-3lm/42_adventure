@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 18:10:38 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/16 13:06:03 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	reset_all(void)
 	g_server.msg.content = NULL;
 	g_server.size_recived = 0;
 	g_server.client_id = 0;
+	ft_printf("Reseteado\n");
 }
 
 void	save_msg(char c)

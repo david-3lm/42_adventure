@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ser_handlers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:03:51 by dlopez-l          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/11/26 17:47:05 by dlopez-l         ###   ########.fr       */
+=======
+/*   Updated: 2024/11/16 13:52:59 by dlopez-l         ###   ########.fr       */
+>>>>>>> a84ac7338ffab4691a826433292b283d38d4d8b5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +63,8 @@ void	handle_msg(int signal)
 
 void	handle_size(int signal)
 {
-	static int	current_n = 0;
-	static int	bit_idx = 0;
+	static unsigned int	current_n = 0;
+	static int			bit_idx = 0;
 
 	if (signal == BIT1)
 		current_n = (current_n * 2) + 1;
