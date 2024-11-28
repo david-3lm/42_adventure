@@ -11,6 +11,9 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
 RM = rm -f
 
+NBONUS := server_bonus
+CBONUS := client_bonus
+
 # COLORES
 COLOREND = \033[0m
 GREEN = \033[1;32m
@@ -35,6 +38,16 @@ $(CLIN): $(CLIOBJ) $(LIB)
 $(LIB):
 	@$(MAKE) -C $(LIB_DIR)
 
+bonus: $(NBONUS) $(CBONUS)
+
+$(NBONUS): $(OBJ) $(LIB)
+	$(CC) $(OBJ) $(LIB) -o $(NBONUS)
+
+$(CBONUS): $(CLIOBJ) $(LIB)
+	$(CC) $(CLIOBJ) $(LIB) -o $(CBONUS)
+	@clear
+	@echo "\n$(GREEN)Bonus compilation completed $(COLOREND)"
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -45,7 +58,7 @@ clean:
 	@echo "$(BLUE)Limpio$(COLOREND)"
 
 fclean: clean
-	$(RM) $(NAME) $(CLIN)
+	$(RM) $(NAME) $(CLIN) $(NBONUS) $(CBONUS)
 	@$(MAKE) fclean -C $(LIB_DIR)
 	@clear
 	@echo "$(BLUE)Limpio$(COLOREND)"
@@ -93,5 +106,4 @@ debug: CFLAGS += -g3 -O0
 debug: re
 # gdb 
 
-
-.PHONY: all clean fclean re exec norma debug
+.PHONY: all clean fclean re exec norma debug bonus

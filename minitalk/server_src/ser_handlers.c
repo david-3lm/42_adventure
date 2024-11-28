@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:03:51 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/28 12:41:05 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:26:40 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 
 int	char_complete(char current_c)
 {
-	if (current_c < 0 || current_c >= 127)
-	{
-		ft_printf("Error al recibir el mensaje! :(\n");
-		kill(g_server.client_id, SIGERR);
-		save_msg(0);
-		reset_all();
-		current_c = 0;
-		return (0);
-	}
 	save_msg(current_c);
 	if (current_c == '\0')
 	{
@@ -30,8 +21,6 @@ int	char_complete(char current_c)
 		kill(g_server.client_id, SIGSUCC);
 		reset_all();
 	}
-	else
-		kill(g_server.client_id, SIGSUCC);
 	return (1);
 }
 
@@ -51,8 +40,6 @@ void	handle_msg(int signal)
 		bit_idx = 0;
 		current_c = 0;
 	}
-	else
-		kill(g_server.client_id, SIGSUCC);
 }
 
 void	handle_size(int signal)

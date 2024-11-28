@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/28 12:40:56 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:28:14 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,50 +35,6 @@ void	action(int signal)
 	{
 		ft_printf("Errooor NOOOOOOOOOOOOOOOOOOO :&");
 		exit(0);
-	}
-}
-
-void	send_int(int pid, int value)
-{
-	int	i;
-	int	err;
-
-	i = 31;
-	while (i >= 0)
-	{
-		if (value & (1 << i))
-			err = kill(pid, BIT1);
-		else
-			err = kill(pid, BIT0);
-		while (!g_client.ready_to_continue)
-			usleep(100);
-		g_client.ready_to_continue = 0;
-		i--;
-		if (err)
-			ft_printf("Erroooor\n");
-	}
-	if (!g_client.size_sent)
-		g_client.size_sent = 1;
-}
-
-void	send_char(int pid, int c)
-{
-	int	i;
-	int	err;
-
-	i = 7;
-	while (i >= 0)
-	{
-		if (c & (1 << i))
-			err = kill(pid, BIT1);
-		else
-			err = kill(pid, BIT0);
-		while (!g_client.ready_to_continue)
-			usleep(1);
-		g_client.ready_to_continue = 0;
-		i--;
-		if (err)
-			ft_printf("Erroooor\n");
 	}
 }
 

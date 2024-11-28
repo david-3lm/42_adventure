@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:57 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/28 12:19:30 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:27:56 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	handle_size(int signal);
 void	handle_msg(int signal);
 void	handle_signals(int pid, char **argv);
 void	ft_kill(int pid, char *str);
-void	send_char(int pid, int c);
-void	send_int(int pid, int value);
 void	send_sig(void *data, size_t length, int pid);
 void	action(int signal);
 
