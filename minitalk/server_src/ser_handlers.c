@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:03:51 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/16 13:52:59 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:34:23 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ int	char_complete(char current_c)
 	save_msg(current_c);
 	if (current_c == '\0')
 	{
-		ft_printf("%s", g_server.msg.content);
-		ft_printf("\n-----------------Enviando confirmacion a cliente:\
-			%d ---------------------\n", g_server.client_id);
+		ft_printf("%s\n", g_server.msg.content);
 		kill(g_server.client_id, SIGSUCC);
 		reset_all();
 	}
@@ -71,15 +69,15 @@ void	handle_size(int signal)
 	{
 		g_server.msg.size = current_n;
 		ft_printf("Size of msg: %d\n", g_server.msg.size);
-		bit_idx = 0;
-		current_n = 0;
-		g_server.size_recived = 1;
 		g_server.msg.content = ft_calloc(g_server.msg.size + 1, 1);
 		if (!g_server.msg.content)
 		{
 			reset_all();
 			return ;
 		}
+		bit_idx = 0;
+		current_n = 0;
+		g_server.size_recived = 1;
 		kill(g_server.client_id, SIGSUCC);
 	}
 	else

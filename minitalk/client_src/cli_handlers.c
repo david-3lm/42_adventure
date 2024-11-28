@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 14:18:21 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 18:32:49 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:26:26 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	handle_msg(int signal)
 
 void	handle_signals(int pid, char **argv)
 {
-	int	tries;
+	unsigned int	size;
+	int				tries;
 
 	tries = 0;
 	while (!g_client.connection && tries < 10)
@@ -67,7 +68,10 @@ void	handle_signals(int pid, char **argv)
 		return ;
 	}
 	if (!g_client.size_sent)
-		send_int(pid, ft_strlen(argv[2]));
+	{
+		size = ft_strlen(argv[2]);
+		send_sig(&(size), 32, pid);
+	}
 	else
 		ft_kill(pid, argv[2]);
 }

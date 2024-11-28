@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/16 13:24:44 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:27:11 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,31 @@ void	send_char(int pid, int c)
 		if (err)
 			ft_printf("Erroooor\n");
 	}
-	if (!g_client.size_sent)
+}
+
+void	send_sig(void *data, size_t length, int pid)
+{
+	unsigned long long	value;
+	int					i;
+
+	value = 0;
+	if (length == 8)
+		value = *((unsigned char *)data);
+	else if (length == 32)
+		value = *((unsigned int *)data);
+	i = length - 1;
+	while (i >= 0)
+	{
+		if (value & (1ULL << i))
+			kill(pid, BIT1);
+		else
+			kill(pid, BIT0);
+		i--;
+		while (!g_client.ready_to_continue)
+			usleep(100);
+		g_client.ready_to_continue = 0;
+	}
+	if (length == 32)
 		g_client.size_sent = 1;
 }
 
@@ -91,10 +115,10 @@ void	ft_kill(int pid, char *str)
 	i = 0;
 	while (str[i] != 0)
 	{
-		send_char(pid, str[i]);
+		send_sig(&str[i], 8, pid);
 		i++;
 	}
-	send_char(pid, 0);
+	send_sig(&str[i], 8, pid);
 	g_client.msg_sent = 1;
 }
 

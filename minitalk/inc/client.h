@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:31:57 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/08 18:33:46 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:19:30 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "../libimp/libft.h"
-# include "../inc/global.h"
+# include "global.h"
 
 typedef struct s_client
 {
@@ -41,6 +41,7 @@ void	handle_signals(int pid, char **argv);
 void	ft_kill(int pid, char *str);
 void	send_char(int pid, int c);
 void	send_int(int pid, int value);
+void	send_sig(void *data, size_t length, int pid);
 void	action(int signal);
 
 extern t_global	g_client;

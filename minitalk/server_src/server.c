@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/16 13:06:03 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:32:32 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	action(int signal, siginfo_t *info, void *ctx)
 	}
 	else if (g_server.client_id != info->si_pid)
 	{
-		kill(info->si_pid, SERV_OCC);
-		kill(g_server.client_id, SIGSUCC);
+		// kill(info->si_pid, SERV_OCC);
+		// kill(g_server.client_id, SIGSUCC);
 		return ;
 	}
 	if (!g_server.size_recived)

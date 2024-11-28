@@ -4,7 +4,7 @@ SRC = ./server_src/server.c ./server_src/ser_handlers.c
 OBJ = $(SRC:.c=.o)
 CLI = ./client_src/client.c ./client_src/cli_handlers.c
 CLIOBJ = $(CLI:.c=.o)
-LIB_DIR = ../libimp
+LIB_DIR = ./libimp
 LIB = $(LIB_DIR)/libft.a
 HEADERS = ./inc/server.h ./inc/client.h ./inc/global.h
 CC = gcc
