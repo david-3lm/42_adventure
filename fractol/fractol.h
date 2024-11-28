@@ -6,14 +6,14 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:33:04 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/10/01 12:23:51 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/11/26 20:18:02 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 4000
+# define HEIGHT 2000
 # define MAX_ITER 50
 # define BAD_INPUT "\033[1;31m Bad input!\033[0m\n To execute the fractal: \n\t \
 - Julia: ./fractol julia [(double)cR] [(double)cI] \n\t \
