@@ -13,6 +13,7 @@
 		"push_swap.h": "c",
 		"ft_printf.h": "c",
 		"signal.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"philo.h": "c"
 	} // Bold
 }
