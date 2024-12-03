@@ -17,21 +17,19 @@ CIAN = \e[7;36m
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIB)
-	$(CC) $(OBJ) $(LIB) -o $(NAME)
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(CLIOBJ)
-	@$(MAKE) clean -C $(LIB_DIR)
+	$(RM) $(OBJ)
 	@clear
 	@echo "$(BLUE)Limpio$(COLOREND)"
 
 fclean: clean
-	$(RM) $(NAME) $(CLIN) $(NBONUS) $(CBONUS)
-	@$(MAKE) fclean -C $(LIB_DIR)
+	$(RM) $(NAME)
 	@clear
 	@echo "$(BLUE)Limpio$(COLOREND)"
 

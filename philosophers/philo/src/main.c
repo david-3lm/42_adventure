@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:59:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/03 16:45:08 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:47:56 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 pthread_t	*init_threads(int n, pthread_attr_t attr, char **argv)
 {
 	int			i;
-	int			*arg;
+	t_params	*arg;
 	pthread_t	*threads;
-	t_params	*params;
 
 	i = 0;
 	threads = malloc(n * sizeof(pthread_t));
@@ -25,10 +24,13 @@ pthread_t	*init_threads(int n, pthread_attr_t attr, char **argv)
 		return (NULL);
 	while (i < n)
 	{
-		arg = malloc(sizeof(int));  // Crear una copia única
+		arg = malloc(sizeof(t_params));
 		if (!arg)
-			return (NULL);  // Manejar error de memoria
-		*arg = i;
+			return (NULL);
+		arg->idx = i;
+		arg->time_to_die = atoi(argv[2]);
+		arg->time_to_eat = atoi(argv[3]);
+		arg->time_to_sleep = atoi(argv[4]);
 		pthread_create(&threads[i], &attr, philo_start, arg);
 		i++;
 	}
