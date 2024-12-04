@@ -4,7 +4,7 @@
 MAKEFILE="Makefile"
 
 # Buscar todos los archivos .c en src y subcarpetas, y unirlos con espacios
-SRC_FILES=$(find ./src -type f -name "*.c" | tr '\n' ' ')
+SRC_FILES=$(find ./ -type f -name "*.c" | tr '\n' ' ')
 
 # Escapar caracteres especiales para evitar problemas en sed
 ESCAPED_SRC=$(echo "$SRC_FILES" | sed 's/\//\\\//g')
