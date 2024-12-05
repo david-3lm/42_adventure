@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/05 00:08:04 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:47:31 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,21 @@ t_table	*init_table(int n_philo)
 		curr->philo = malloc(sizeof(t_philo));
 		if (!curr->philo)
 			return (NULL);
-		curr->l_fork = init_fork();
-		curr->r_fork = init_fork();
+		if (i == 0)
+		{
+			curr->l_fork = init_fork();
+			curr->r_fork = init_fork();
+		}
+		else if (i == n_philo - 1)
+		{
+			curr->l_fork = curr->left->r_fork;
+			curr->r_fork = table->l_fork;
+		}
+		else
+		{
+			curr->l_fork = curr->left->r_fork;
+			curr->r_fork = init_fork();
+		}
 		if (!curr->l_fork || !curr->r_fork)
 			return (NULL);
 		if (i == n_philo - 1)
