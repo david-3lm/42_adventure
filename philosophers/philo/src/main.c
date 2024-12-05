@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:59:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/05 00:08:46 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:41:14 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 pthread_t	*init_threads(int n, pthread_attr_t attr, char **argv)
 {
-	int			i;
-	t_philo		*philo;
-	t_table		*table;
-	t_table		*curr;
-	pthread_t	*threads;
+	int				i;
+	t_philo			*philo;
+	t_table			*table;
+	t_table			*curr;
+	pthread_t		*threads;
 
 	i = 0;
 	table = init_table(n);

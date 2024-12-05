@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:01:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/05 00:05:13 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:42:18 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_H
 # include <unistd.h>
 # include <sys/types.h>
+# include <sys/time.h>
 # include <sys/timeb.h>
 # include <pthread.h>
 # include <stdio.h>
@@ -21,10 +22,10 @@
 
 typedef struct s_philo
 {
-	int		idx;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
+	int				idx;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 	struct s_table	*table;
 }	t_philo;
 
@@ -45,6 +46,10 @@ typedef struct s_table
 
 /*PHILO*/
 void	*philo_start(void *i);
+void	philo_loop(t_philo *philo);
+void	think(t_philo *philo);
+void	eat(t_philo *philo);
+void	die(t_philo *philo);
 
 /*TABLE*/
 t_table	*init_table(int n_philo);
