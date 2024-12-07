@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/05 17:47:31 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:23:19 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,25 @@
 
 t_table	*init_table(int n_philo)
 {
-	t_table	*table;
-	t_table	*curr;
+	t_table			*table;
+	t_table			*curr;
+	pthread_mutex_t	console;
 	int		i;
 
 	i = 0;
 	table = malloc(sizeof(t_table));
 	if (!table)
 		return (NULL);
+	pthread_mutex_init(&console, NULL);
 	curr = table;
+	table->n_philo = n_philo;
 	while (i < n_philo)
 	{
 		curr->philo = malloc(sizeof(t_philo));
 		if (!curr->philo)
 			return (NULL);
+		curr->philo->console_m = console;
+		curr->n_philo = n_philo;
 		if (i == 0)
 		{
 			curr->l_fork = init_fork();

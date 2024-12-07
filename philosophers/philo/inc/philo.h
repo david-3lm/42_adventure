@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:01:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/05 23:36:16 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:09:03 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_philo
 	int				time_to_sleep;
 	long long		time_last_eat;
 	struct s_table	*table;
+	int				is_dead;
+	pthread_mutex_t	console_m;
 }	t_philo;
 
 typedef struct s_fork
@@ -43,6 +45,7 @@ typedef struct s_table
 	t_fork			*r_fork;
 	struct s_table	*right;
 	struct s_table	*left;
+	int				n_philo;
 }	t_table;
 
 /*PHILO*/
@@ -58,6 +61,11 @@ t_table	*init_table(int n_philo);
 t_fork	*init_fork(void);
 void	take_fork(t_fork *fork);
 void	release_fork(t_fork *fork);
+
+/*DEATH*/
+void	*check_death(void *table);
+void	end_sim(t_table *table);
+
 
 /*UTILS*/
 int		ft_atoi(const char *nptr);

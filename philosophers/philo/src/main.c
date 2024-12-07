@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:59:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/05 12:41:14 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:40:10 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ pthread_t	*init_threads(int n, pthread_attr_t attr, char **argv)
 
 	i = 0;
 	table = init_table(n);
-	threads = malloc(n * sizeof(pthread_t));
+	threads = malloc((n + 1) * sizeof(pthread_t));
 	if (!threads || !table)
 		return (NULL);
 	curr = table;
@@ -34,10 +34,12 @@ pthread_t	*init_threads(int n, pthread_attr_t attr, char **argv)
 		philo->time_to_eat = ft_atoi(argv[3]);
 		philo->time_to_sleep = ft_atoi(argv[4]);
 		philo->table = curr;
+		philo->is_dead = 0;
 		pthread_create(&threads[i], &attr, philo_start, philo);
 		curr = curr->right;
 		i++;
 	}
+	pthread_create(&threads[i], &attr, check_death, table);
 	return (threads);
 }
 
