@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 14:59:14 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/04 23:33:34 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:20:02 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	order_four(t_data *data)
 {
 	int	min_idx;
 
+	if (!check_order_asc(data))
+		return ;
 	min_idx = get_min_idx(data->stack_a, data->size_a);
 	if (min_idx == 1)
 		swap_a(data);
