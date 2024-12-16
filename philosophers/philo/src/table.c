@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/07 19:23:19 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:21:41 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ t_table	*init_table(int n_philo)
 		curr->n_philo = n_philo;
 		if (i == 0)
 		{
-			curr->l_fork = init_fork();
+			if (n_philo > 1)
+				curr->l_fork = init_fork();
+			else
+				curr->l_fork = NULL;
 			curr->r_fork = init_fork();
 		}
 		else if (i == n_philo - 1)
@@ -48,7 +51,7 @@ t_table	*init_table(int n_philo)
 			curr->l_fork = curr->left->r_fork;
 			curr->r_fork = init_fork();
 		}
-		if (!curr->l_fork || !curr->r_fork)
+		if ((!curr->l_fork && n_philo > 1)|| !curr->r_fork)
 			return (NULL);
 		if (i == n_philo - 1)
 		{
@@ -57,6 +60,10 @@ t_table	*init_table(int n_philo)
 		}
 		else
 		{
+			if (n_philo == 1)
+			{
+				curr->right = curr;
+			}
 			curr->right = malloc(sizeof(t_table));
 			if (!curr->right)
 				return (NULL);

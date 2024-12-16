@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:17:37 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/05 17:43:18 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:21:34 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	take_fork(t_fork *fork)
 {
-	pthread_mutex_lock(&fork->mutex);
+	if (fork)
+		pthread_mutex_lock(&fork->mutex);
 }
 
 void	release_fork(t_fork *fork)
 {
-	pthread_mutex_unlock(&fork->mutex);
+	if (fork)
+		pthread_mutex_unlock(&fork->mutex);
 }
 
 t_fork	*init_fork(void)

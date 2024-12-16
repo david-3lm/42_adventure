@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:29:41 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/07 19:57:38 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/11 12:21:14 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 void	eat(t_philo *p)
 {
 	struct timeval tv;
-	
+
+	if (!p->table->l_fork || !p->table->r_fork)
+		return ;	
 	if (p->idx % 2)
 	{
 		take_fork(p->table->l_fork);
