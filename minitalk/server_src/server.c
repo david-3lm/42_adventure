@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:08 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/16 11:22:02 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:13:30 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ t_global	g_server;
 
 void	reset_all(void)
 {
+	save_msg(0);
 	ft_bzero(g_server.msg.content, g_server.msg.size);
 	g_server.msg.size = 0;
+	handle_msg(0);
 	free(g_server.msg.content);
 	g_server.msg.content = NULL;
 	g_server.size_recived = 0;

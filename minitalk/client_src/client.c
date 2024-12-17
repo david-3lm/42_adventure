@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:18:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/28 18:28:14 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/17 11:58:56 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ t_global	g_client;
 
 void	action(int signal)
 {
+	if (signal == SIGERR)
+	{
+		ft_printf("Errooor NOOOOOOOOOOOOOOOOOOO :&");
+		exit(0);
+	}
 	if (!g_client.connection)
 	{
 		handle_connection(signal);
@@ -30,11 +35,6 @@ void	action(int signal)
 	{
 		handle_msg(signal);
 		return ;
-	}
-	if (signal == SIGERR)
-	{
-		ft_printf("Errooor NOOOOOOOOOOOOOOOOOOO :&");
-		exit(0);
 	}
 }
 

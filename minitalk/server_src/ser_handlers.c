@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ser_handlers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:03:51 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/11/28 18:26:40 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:13:16 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ void	handle_msg(int signal)
 	static char	current_c = 0;
 	static int	bit_idx = 0;
 
+	if (g_server.msg.size == 0)
+	{
+		current_c = 0;
+		bit_idx = 0;
+		return ;
+	}
 	if (signal == BIT1)
 		current_c = (current_c * 2) + 1;
 	else
