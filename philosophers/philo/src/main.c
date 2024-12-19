@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:59:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/07 19:40:10 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:09:16 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ pthread_t	*init_threads(int n, pthread_attr_t attr, char **argv)
 	while (i < n)
 	{
 		philo = curr->philo;
-		philo->idx = i;
+		philo->idx = i + 1;
 		philo->time_to_die = ft_atoi(argv[2]);
 		philo->time_to_eat = ft_atoi(argv[3]);
 		philo->time_to_sleep = ft_atoi(argv[4]);

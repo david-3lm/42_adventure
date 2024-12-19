@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/11 12:21:41 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:27:21 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ t_table	*init_table(int n_philo)
 	t_table			*table;
 	t_table			*curr;
 	pthread_mutex_t	console;
-	int		i;
+	int				i;
 
 	i = 0;
 	table = malloc(sizeof(t_table));
 	if (!table)
 		return (NULL);
+	gettimeofday(&table->start_time, NULL);
 	pthread_mutex_init(&console, NULL);
 	curr = table;
 	table->n_philo = n_philo;
@@ -51,7 +52,7 @@ t_table	*init_table(int n_philo)
 			curr->l_fork = curr->left->r_fork;
 			curr->r_fork = init_fork();
 		}
-		if ((!curr->l_fork && n_philo > 1)|| !curr->r_fork)
+		if ((!curr->l_fork && n_philo > 1) || !curr->r_fork)
 			return (NULL);
 		if (i == n_philo - 1)
 		{

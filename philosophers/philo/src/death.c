@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   death.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 18:04:14 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/07 19:58:29 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:27:02 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	end_sim(t_table *table)
+void	end_sim(t_table *table, struct timeval tv)
 {
 	t_table	*curr;
 	int		i;
 
 	i = 0;
 	curr = table;
-	printf("%d died.\n", curr->philo->idx);
+	printf("%ld%d died.\n", calc_timestamp(table->start_time, tv), curr->philo->idx);
 	while (i < table->n_philo)
 	{
 		curr->philo->is_dead = 1;
@@ -42,9 +42,9 @@ void	*check_death(void *table)
 		if (curr_time - curr->philo->time_last_eat > curr->philo->time_to_die)
 		{
 			pthread_mutex_lock(&curr->philo->console_m);
-			end_sim(curr);
+			end_sim(curr, tv);
 			pthread_mutex_unlock(&curr->philo->console_m);
-			break;
+			break ;
 		}
 		curr = curr->right;
 	}

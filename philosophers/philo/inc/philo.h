@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:01:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/07 19:09:03 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:23:55 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_table
 	struct s_table	*right;
 	struct s_table	*left;
 	int				n_philo;
+	struct timeval	start_time;
 }	t_table;
 
 /*PHILO*/
@@ -64,10 +65,11 @@ void	release_fork(t_fork *fork);
 
 /*DEATH*/
 void	*check_death(void *table);
-void	end_sim(t_table *table);
+void	end_sim(t_table *table, struct timeval tv);
 
 
 /*UTILS*/
 int		ft_atoi(const char *nptr);
+long	calc_timestamp(struct timeval start, struct timeval actual);
 
 #endif
