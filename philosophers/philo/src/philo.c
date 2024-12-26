@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:17:01 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/07 19:58:37 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:22:30 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ void	philo_loop(t_philo *philo)
 void	*philo_start(void *params)
 {
 	t_philo	*p;
-	struct timeval tv;
 
 	p = (t_philo *)params;
-	gettimeofday(&tv, NULL);
-	p->time_last_eat = (tv.tv_sec * 1000LL) + (tv.tv_usec / 1000);
+	p->time_last_eat = timestamp();
 	philo_loop(p);	
 	return (NULL);
 }

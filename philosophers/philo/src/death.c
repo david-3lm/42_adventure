@@ -6,20 +6,20 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 18:04:14 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/21 13:15:21 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:21:22 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	end_sim(t_table *table, struct timeval tv)
+void	end_sim(t_table *table, long long tv)
 {
 	t_table	*curr;
 	int		i;
 
 	i = 0;
 	curr = table;
-	printf("%ld %d died.\n", calc_timestamp(table->start_time, tv), curr->philo->idx);
+	printf("%lld %d died.\n", calc_timestamp(table->start_time, tv), curr->philo->idx);
 	while (i < table->n_philo)
 	{
 		curr->philo->is_dead = 1;
@@ -31,18 +31,15 @@ void	end_sim(t_table *table, struct timeval tv)
 void	*check_death(void *table)
 {
 	t_table			*curr;
-	struct timeval	tv;
-	long long		curr_time;
 
 	curr = (t_table *)table;
 	while (1)
 	{
-		gettimeofday(&tv, NULL);
-		curr_time = (tv.tv_sec * 1000LL) + (tv.tv_usec / 1000);
-		if (curr_time - curr->philo->time_last_eat > curr->philo->time_to_die)
+		if (calc_timestamp(curr->philo->time_last_eat, timestamp()) > curr->philo->time_to_die)
 		{
+			printf("DEAD OCCURRED at idx: %d / cause time => %lld \n", curr->philo->idx, calc_timestamp(curr->philo->time_last_eat, timestamp()));
 			pthread_mutex_lock(&curr->philo->console_m);
-			end_sim(curr, tv);
+			end_sim(curr, timestamp());
 			pthread_mutex_unlock(&curr->philo->console_m);
 			break ;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:01:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/19 16:23:55 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:02:46 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,33 @@ typedef struct s_table
 	struct s_table	*right;
 	struct s_table	*left;
 	int				n_philo;
-	struct timeval	start_time;
+	long long		start_time;
 }	t_table;
 
 /*PHILO*/
-void	*philo_start(void *i);
-void	philo_loop(t_philo *philo);
-void	eat(t_philo *philo);
-void	die(t_philo *philo);
+void		*philo_start(void *i);
+void		philo_loop(t_philo *philo);
+void		eat(t_philo *philo);
+void		die(t_philo *philo);
 
 /*TABLE*/
-t_table	*init_table(int n_philo);
+t_table		*init_table(int n_philo);
 
 /*FORKS*/
-t_fork	*init_fork(void);
-void	take_fork(t_fork *fork);
-void	release_fork(t_fork *fork);
+t_fork		*init_fork(void);
+void		take_fork(t_fork *fork);
+void		release_fork(t_fork *fork);
 
 /*DEATH*/
-void	*check_death(void *table);
-void	end_sim(t_table *table, struct timeval tv);
+void		*check_death(void *table);
+void		end_sim(t_table *table, long long tv);
 
 
 /*UTILS*/
-int		ft_atoi(const char *nptr);
-long	calc_timestamp(struct timeval start, struct timeval actual);
+int			ft_atoi(const char *nptr);
+void		ft_sleep(long long time, t_philo *p);
+long long	calc_timestamp(long long start, long long actual);
+long long	timestamp(void);
+
 
 #endif

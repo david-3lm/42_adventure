@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/21 13:19:28 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/26 12:00:48 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_table	*init_table(int n_philo)
 	table = malloc(sizeof(t_table));
 	if (!table)
 		return (NULL);
-	gettimeofday(&table->start_time, NULL);
+	table->start_time = timestamp();
 	pthread_mutex_init(&console, NULL);
 	curr = table;
 	table->n_philo = n_philo;
