@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   death.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 18:04:14 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/19 16:27:02 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/21 13:15:21 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	end_sim(t_table *table, struct timeval tv)
 
 	i = 0;
 	curr = table;
-	printf("%ld%d died.\n", calc_timestamp(table->start_time, tv), curr->philo->idx);
+	printf("%ld %d died.\n", calc_timestamp(table->start_time, tv), curr->philo->idx);
 	while (i < table->n_philo)
 	{
 		curr->philo->is_dead = 1;

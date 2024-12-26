@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/19 16:27:21 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/21 13:19:28 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_table	*init_table(int n_philo)
 			return (NULL);
 		curr->philo->console_m = console;
 		curr->n_philo = n_philo;
+		curr->start_time = table->start_time;
 		if (i == 0)
 		{
 			if (n_philo > 1)

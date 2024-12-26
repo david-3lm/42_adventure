@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:29:41 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/11 12:21:14 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2024/12/21 13:26:44 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	eat(t_philo *p)
 			pthread_mutex_unlock(&p->console_m);
 			return ;
 		}
-		printf("%d has taken a fork.\n", p->idx);
+		gettimeofday(&tv, NULL);
+		printf("%ld %d has taken a fork.\n", calc_timestamp(p->table->start_time, tv), p->idx);
 		pthread_mutex_unlock(&p->console_m);
 		take_fork(p->table->r_fork);
 		pthread_mutex_lock(&p->console_m);
@@ -40,7 +41,8 @@ void	eat(t_philo *p)
 			pthread_mutex_unlock(&p->console_m);
 			return ;
 		}
-		printf("%d has taken a fork.\n", p->idx);
+		gettimeofday(&tv, NULL);
+		printf("%ld %d has taken a fork.\n", calc_timestamp(p->table->start_time, tv), p->idx);
 		pthread_mutex_unlock(&p->console_m);
 	}
 	else
@@ -53,7 +55,8 @@ void	eat(t_philo *p)
 			pthread_mutex_unlock(&p->console_m);
 			return ;
 		}
-		printf("%d has taken a fork.\n", p->idx);
+		gettimeofday(&tv, NULL);
+		printf("%ld %d has taken a fork.\n", calc_timestamp(p->table->start_time, tv), p->idx);
 		pthread_mutex_unlock(&p->console_m);
 		take_fork(p->table->l_fork);
 		pthread_mutex_lock(&p->console_m);
@@ -64,7 +67,8 @@ void	eat(t_philo *p)
 			pthread_mutex_unlock(&p->console_m);
 			return ;
 		}
-		printf("%d has taken a fork.\n", p->idx);
+		gettimeofday(&tv, NULL);
+		printf("%ld %d has taken a fork.\n", calc_timestamp(p->table->start_time, tv), p->idx);
 		pthread_mutex_unlock(&p->console_m);
 	}
 	if (p->is_dead)
@@ -81,7 +85,8 @@ void	eat(t_philo *p)
 		pthread_mutex_unlock(&p->console_m);
 		return ;
 	}
-	printf("%d is eating.\n", p->idx);
+	gettimeofday(&tv, NULL);
+	printf("%ld %d is eating.\n", calc_timestamp(p->table->start_time, tv), p->idx);
 	pthread_mutex_unlock(&p->console_m);
 	usleep(p->time_to_eat * 1000);
 	pthread_mutex_lock(&p->console_m);
@@ -92,7 +97,8 @@ void	eat(t_philo *p)
 		pthread_mutex_unlock(&p->console_m);
 		return ;
 	}
-	printf("%d is sleeping.\n", p->idx);
+	gettimeofday(&tv, NULL);
+	printf("%ld %d is sleeping.\n", calc_timestamp(p->table->start_time, tv), p->idx);
 	pthread_mutex_unlock(&p->console_m);
 	release_fork(p->table->r_fork);
 	release_fork(p->table->l_fork);
