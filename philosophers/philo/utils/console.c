@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   console.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 16:17:01 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/07 12:29:37 by dlopez-l         ###   ########.fr       */
+/*   Created: 2025/01/07 12:30:32 by dlopez-l          #+#    #+#             */
+/*   Updated: 2025/01/07 16:07:07 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	philo_loop(t_philo *philo)
+void	write_cmd(t_philo *p, const char *str)
 {
-	if (philo->idx % 2)
-		usleep(15000);
-	while (!philo->is_dead)
-	{
-		eat(philo);
-	}
-}
-
-void	*philo_start(void *params)
-{
-	t_philo	*p;
-
-	p = (t_philo *)params;
-	p->time_last_eat = timestamp();
-	philo_loop(p);
-	return (NULL);
+	pthread_mutex_lock(&p->console_m);
+	if (!p->is_dead)
+		printf("%lld %d %s\n", \
+		calc_timestamp(p->table->start_time, timestamp()), p->idx, str);
+	pthread_mutex_unlock(&p->console_m);
 }

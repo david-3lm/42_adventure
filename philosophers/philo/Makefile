@@ -1,9 +1,9 @@
 NAME = philo
-SRC = ./src/death.c ./src/main.c ./src/philo.c ./src/forks.c ./src/table.c ./utils/ft_atoi.c ./utils/timing.c ./actions/die.c ./actions/sleep.c ./actions/eat.c 
+SRC = ./src/main.c ./src/forks.c ./src/death.c ./src/philo.c ./src/table.c ./src/meals.c ./utils/ft_atoi.c ./utils/timing.c ./utils/console.c ./utils/cleaner.c ./actions/die.c ./actions/eat.c ./actions/sleep.c 
 OBJ = $(SRC:.c=.o)
 HEADERS = ./inc/philo.h
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -O0 #-fsanitize=address -g3
 RM = rm -f
 
 # COLORES

@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 16:17:01 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/07 12:29:37 by dlopez-l         ###   ########.fr       */
+/*   Created: 2025/01/07 15:34:30 by dlopez-l          #+#    #+#             */
+/*   Updated: 2025/01/07 16:06:44 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	philo_loop(t_philo *philo)
+
+void	clean_table(t_table *table)
 {
-	if (philo->idx % 2)
-		usleep(15000);
-	while (!philo->is_dead)
+	t_table	*curr;
+	int		i;
+
+	i = 0;
+	curr = table->right;
+	while (i < table->n_philo)
 	{
-		eat(philo);
+		free(curr->philo);
+		curr = curr->right;
+		i++;
 	}
-}
-
-void	*philo_start(void *params)
-{
-	t_philo	*p;
-
-	p = (t_philo *)params;
-	p->time_last_eat = timestamp();
-	philo_loop(p);
-	return (NULL);
 }

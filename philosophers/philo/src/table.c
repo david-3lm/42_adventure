@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   table.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/26 12:00:48 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:59:32 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-t_table	*init_table(int n_philo)
+t_table	*init_table(int n_philo, int min_meals)
 {
 	t_table			*table;
 	t_table			*curr;
@@ -34,6 +34,7 @@ t_table	*init_table(int n_philo)
 			return (NULL);
 		curr->philo->console_m = console;
 		curr->n_philo = n_philo;
+		curr->min_meals = min_meals;
 		curr->start_time = table->start_time;
 		if (i == 0)
 		{

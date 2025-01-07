@@ -1,53 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   death.c                                            :+:      :+:    :+:   */
+/*   meals.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 18:04:14 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/07 16:19:17 by dlopez-l         ###   ########.fr       */
+/*   Created: 2025/01/07 16:03:21 by dlopez-l          #+#    #+#             */
+/*   Updated: 2025/01/07 16:18:05 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	end_sim(t_table *table, long long tv)
+void	finished_eat(t_table *table)
 {
 	t_table	*curr;
 	int		i;
 
 	i = 0;
 	curr = table;
-	printf("%lld %d died.\n", calc_timestamp(table->start_time, tv), curr->philo->idx);
+	pthread_mutex_lock(&table->philo->console_m);
+	if (!table->philo->is_dead)
+		printf("Philosophers finished eating!\n");
 	while (i < table->n_philo)
 	{
 		curr->philo->is_dead = 1;
 		curr = curr->right;
 		i++;
 	}
+	pthread_mutex_unlock(&table->philo->console_m);
 }
 
-void	*check_death(void *table)
+int	check_meals(t_table *table)
 {
-	t_table			*curr;
+	t_table	*curr;
+	int		count;
+	int		i;
 
-	curr = (t_table *)table;
-	while (1)
+	i = 0;
+	count = 0;
+	curr = table;
+	while (i < table->n_philo)
 	{
-		if (curr->min_meals != -1)
-		{
-			if (check_meals((t_table *)table))
-				break ;
-		}
-		if (calc_timestamp(curr->philo->time_last_eat, timestamp()) > curr->philo->time_to_die)
-		{
-			pthread_mutex_lock(&curr->philo->console_m);
-			end_sim(curr, timestamp());
-			pthread_mutex_unlock(&curr->philo->console_m);
-			break ;
-		}
+		if (curr->philo->meals >= table->min_meals)
+			count++;
+		i++;
 		curr = curr->right;
 	}
-	return (NULL);
+	if (count >= table->n_philo)
+	{
+		finished_eat(table);
+		return (1);
+	}
+	return (0);
 }
