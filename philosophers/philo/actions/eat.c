@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:29:41 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/07 15:52:52 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:15:09 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	eat(t_philo *p)
 	take_fork(p->table->r_fork);
 	write_cmd(p, "has taken a fork");
 	p->time_last_eat = timestamp();
-	p->meals++;
 	write_cmd(p, "is eating");
 	ft_sleep(p->time_to_eat, p);
+	p->meals++;
 	release_fork(p->table->r_fork);
 	release_fork(p->table->l_fork);
 	write_cmd(p, "is sleeping");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:11:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/04 23:12:02 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:52:49 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_isdigit(int c)
 		return (0);
 	return (1);
 }
-
 
 int	ft_atoi(const char *nptr)
 {

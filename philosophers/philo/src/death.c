@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 18:04:14 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/07 16:19:17 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:53:52 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	end_sim(t_table *table, long long tv)
 
 	i = 0;
 	curr = table;
-	printf("%lld %d died.\n", calc_timestamp(table->start_time, tv), curr->philo->idx);
+	printf("%lld %d died.\n", \
+	calc_timestamp(table->start_time, tv), curr->philo->idx);
 	while (i < table->n_philo)
 	{
 		curr->philo->is_dead = 1;
@@ -40,7 +41,8 @@ void	*check_death(void *table)
 			if (check_meals((t_table *)table))
 				break ;
 		}
-		if (calc_timestamp(curr->philo->time_last_eat, timestamp()) > curr->philo->time_to_die)
+		if (calc_timestamp(curr->philo->time_last_eat, timestamp()) \
+		> curr->philo->time_to_die)
 		{
 			pthread_mutex_lock(&curr->philo->console_m);
 			end_sim(curr, timestamp());
