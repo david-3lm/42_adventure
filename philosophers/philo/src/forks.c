@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:17:37 by dlopez-l          #+#    #+#             */
-/*   Updated: 2024/12/11 12:21:34 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/08 11:33:46 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 void	take_fork(t_fork *fork)
 {
-	if (fork)
-		pthread_mutex_lock(&fork->mutex);
+	pthread_mutex_lock(&fork->mutex);
 }
 
 void	release_fork(t_fork *fork)
 {
-	if (fork)
-		pthread_mutex_unlock(&fork->mutex);
+	pthread_mutex_unlock(&fork->mutex);
 }
 
 t_fork	*init_fork(void)
