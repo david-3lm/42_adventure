@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:01:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/07 16:18:24 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:03:10 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ long long	calc_timestamp(long long start, long long actual);
 long long	timestamp(void);
 void		write_cmd(t_philo *p, const char *str);
 void		clean_table(t_table *table);
+int			check_input(t_philo *philo);
 
 #endif

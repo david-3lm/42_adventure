@@ -16,6 +16,21 @@
 		"libft.h": "c",
 		"philo.h": "c",
 		"fractol.h": "c",
-		"keys.h": "c"
+		"keys.h": "c",
+		"cstdlib": "c",
+		"cassert": "c",
+		"climits": "c",
+		"cmath": "c",
+		"compare": "c",
+		"concepts": "c",
+		"cstdarg": "c",
+		"cstdio": "c",
+		"exception": "c",
+		"type_traits": "c",
+		"limits": "c",
+		"new": "c",
+		"*.tcc": "c",
+		"cstdint": "c",
+		"typeinfo": "c"
 	} // Bold
 }
