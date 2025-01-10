@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:59:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/09 12:48:57 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:43:42 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ pthread_t	*init_threads(int n, pthread_attr_t attr, char **argv, int argc, t_tab
 		philo->time_to_die = ft_atoi(argv[2]);
 		philo->time_to_eat = ft_atoi(argv[3]);
 		philo->time_to_sleep = ft_atoi(argv[4]);
-		if (!check_input(philo))
-		{
-			free(threads);
-			return (0);
-		}
 		philo->table = curr;
 		philo->is_dead = 0;
 		philo->meals = 0;
@@ -63,7 +58,7 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	table = NULL;
-	if (argc < 5 || argc > 7 || ft_atoi(argv[1]) <= 0)
+	if (argc < 5 || argc > 7 || !check_input(argc, argv))
 		return (1);
 	pthread_attr_init(&attr);
 	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
@@ -78,6 +73,7 @@ int	main(int argc, char **argv)
 	pthread_mutex_destroy(&table->philo->console_m);
 	clean_table(table);
 	pthread_attr_destroy(&attr);
+	free(threads);
 	pthread_exit (NULL);
 	return (0);
 }

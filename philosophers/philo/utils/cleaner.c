@@ -3,24 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:34:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/09 12:29:50 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:37:39 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-int	check_input(t_philo *philo)
+int	check_input(int argc, char **argv)
 {
-	if (philo->time_last_eat < 0)
+	if (ft_atoi(argv[1]) < 0)
 		return (0);
-	if (philo->time_to_eat < 0)
+	if (ft_atoi(argv[2]) < 0)
 		return (0);
-	if (philo->time_to_die < 0)
+	if (ft_atoi(argv[3]) < 0)
 		return (0);
-	if (philo->time_to_sleep < 0)
+	if (ft_atoi(argv[4]) < 0)
+		return (0);
+	if (argc == 6 && ft_atoi(argv[5]) < 0)
 		return (0);
 	return (1);
 }
@@ -28,15 +30,25 @@ int	check_input(t_philo *philo)
 void	clean_table(t_table *table)
 {
 	t_table	*curr;
+	t_table	*temp;
 	int		i;
+	int		n;
 
 	i = 0;
+	n = table->n_philo;
 	curr = table->right;
-	while (i < table->n_philo)
+	while (i < n)
 	{
+		if (i < n - 1)
+			temp = curr->right;
 		free(curr->philo);
+		curr->philo = NULL;
 		pthread_mutex_destroy(&curr->l_fork->mutex);
-		curr = curr->right;
+		free(curr->l_fork);
+		free(curr);
+		curr = NULL;
+		if (i < n - 1)
+			curr = temp;
 		i++;
 	}
 }
