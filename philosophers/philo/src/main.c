@@ -6,46 +6,49 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:59:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/10 17:43:42 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/11 23:31:02 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-pthread_t	*init_threads(int n, pthread_attr_t attr, char **argv, int argc, t_table **table)
+void	init_philo(t_philo **philo, char **argv, t_table *table, int i)
+{
+	(*philo)->idx = i + 1;
+	(*philo)->time_to_die = ft_atoi(argv[2]);
+	(*philo)->time_to_eat = ft_atoi(argv[3]);
+	(*philo)->time_to_sleep = ft_atoi(argv[4]);
+	(*philo)->table = table;
+	(*philo)->is_dead = 0;
+	(*philo)->meals = 0;
+	(*philo)->time_last_eat = timestamp();
+}
+
+pthread_t	*init_thr(pthread_attr_t attr, char **argv, int c, t_table **t)
 {
 	int				i;
 	t_philo			*philo;
 	t_table			*curr;
 	pthread_t		*threads;
+	int				n;
 
 	i = 0;
-	if (argc == 6)
-	{
-		if (ft_atoi(argv[5]) < 0)
-			return (0);
-		*table = init_table(n, ft_atoi(argv[5]));
-	}
+	n = ft_atoi(argv[1]);
+	if (c == 6)
+		*t = init_table(n, ft_atoi(argv[5]));
 	else
-		*table = init_table(n, -1);
+		*t = init_table(n, -1);
 	threads = malloc((n + 1) * sizeof(pthread_t));
-	curr = *table;
+	curr = *t;
 	while (i < n)
 	{
 		philo = curr->philo;
-		philo->idx = i + 1;
-		philo->time_to_die = ft_atoi(argv[2]);
-		philo->time_to_eat = ft_atoi(argv[3]);
-		philo->time_to_sleep = ft_atoi(argv[4]);
-		philo->table = curr;
-		philo->is_dead = 0;
-		philo->meals = 0;
-		philo->time_last_eat = timestamp();
+		init_philo(&philo, argv, curr, i);
 		pthread_create(&threads[i], &attr, philo_start, philo);
 		curr = curr->right;
 		i++;
 	}
-	pthread_create(&threads[i], &attr, check_death, *table);
+	pthread_create(&threads[i], &attr, check_death, *t);
 	return (threads);
 }
 
@@ -62,7 +65,7 @@ int	main(int argc, char **argv)
 		return (1);
 	pthread_attr_init(&attr);
 	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-	threads = init_threads(ft_atoi(argv[1]), attr, argv, argc, &table);
+	threads = init_thr(attr, argv, argc, &table);
 	if (!threads)
 		return (1);
 	while (i < ft_atoi(argv[1]) + 1)

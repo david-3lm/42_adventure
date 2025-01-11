@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:01:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/10 17:36:07 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/11 23:23:02 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void		eat(t_philo *philo);
 void		die(t_philo *philo);
 
 /*TABLE*/
-t_table		*init_table(int n_philo, int min_meals);
 int			check_meals(t_table *table);
+t_table		*init_table(int n_philo, int min_meals);
 
 /*FORKS*/
 t_fork		*init_fork(void);
@@ -71,11 +71,11 @@ void		end_sim(t_table *table, long long tv);
 
 /*UTILS*/
 int			ft_atoi(const char *nptr);
+int			check_input(int argc, char **argv);
 void		ft_sleep(long long time, t_philo *p);
-long long	calc_timestamp(long long start, long long actual);
-long long	timestamp(void);
 void		write_cmd(t_philo *p, const char *str);
 void		clean_table(t_table *table);
-int			check_input(int argc, char **argv);
+long long	calc_timestamp(long long start, long long actual);
+long long	timestamp(void);
 
 #endif

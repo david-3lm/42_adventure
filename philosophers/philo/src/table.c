@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/10 16:38:23 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/11 23:34:11 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ t_table	*init_table(int n_philo, int min_meals)
 		else
 		{
 			if (n_philo == 1)
-			{
 				curr->right = curr;
-			}
 			curr->right = malloc(sizeof(t_table));
 			if (!curr->right)
 				return (NULL);
