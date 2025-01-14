@@ -6,11 +6,51 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/14 16:02:40 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:51:55 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
+
+t_table	*handle_forks(t_table *table, t_table *curr, int i)
+{
+	if (i == 0)
+	{
+		if (table->n_philo > 1)
+			curr->l_fork = init_fork();
+		else
+			curr->l_fork = NULL;
+		curr->r_fork = init_fork();
+	}
+	else if (i == table->n_philo - 1)
+	{
+		curr->l_fork = curr->left->r_fork;
+		curr->r_fork = table->l_fork;
+	}
+	else
+	{
+		curr->l_fork = curr->left->r_fork;
+		curr->r_fork = init_fork();
+	}
+	if ((!curr->l_fork && table->n_philo > 1) || !curr->r_fork)
+		return (NULL);
+	if (i == table->n_philo - 1)
+	{
+		curr->right = table;
+		table->left = curr;
+	}
+	else
+	{
+		if (table->n_philo == 1)
+			curr->right = curr;
+		curr->right = malloc(sizeof(t_table));
+		if (!curr->right)
+			return (NULL);
+		curr->right->left = curr;
+		curr = curr->right;
+	}
+	return (curr);
+}
 
 t_table	*init_table(int n_philo, int min_meals)
 {
@@ -37,41 +77,9 @@ t_table	*init_table(int n_philo, int min_meals)
 		curr->n_philo = n_philo;
 		curr->min_meals = min_meals;
 		curr->start_time = table->start_time;
-		if (i == 0)
-		{
-			if (n_philo > 1)
-				curr->l_fork = init_fork();
-			else
-				curr->l_fork = NULL;
-			curr->r_fork = init_fork();
-		}
-		else if (i == n_philo - 1)
-		{
-			curr->l_fork = curr->left->r_fork;
-			curr->r_fork = table->l_fork;
-		}
-		else
-		{
-			curr->l_fork = curr->left->r_fork;
-			curr->r_fork = init_fork();
-		}
-		if ((!curr->l_fork && n_philo > 1) || !curr->r_fork)
+		curr = handle_forks(table, curr, i);
+		if (!curr)
 			return (NULL);
-		if (i == n_philo - 1)
-		{
-			curr->right = table;
-			table->left = curr;
-		}
-		else
-		{
-			if (n_philo == 1)
-				curr->right = curr;
-			curr->right = malloc(sizeof(t_table));
-			if (!curr->right)
-				return (NULL);
-			curr->right->left = curr;
-			curr = curr->right;
-		}
 		i++;
 	}
 	return (table);
