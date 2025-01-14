@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/11 23:34:11 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:02:40 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_table	*init_table(int n_philo, int min_meals)
 {
 	t_table			*table;
 	t_table			*curr;
-	pthread_mutex_t	console;
+	pthread_mutex_t	*console;
 	int				i;
 
 	i = 0;
@@ -24,7 +24,8 @@ t_table	*init_table(int n_philo, int min_meals)
 	if (!table)
 		return (NULL);
 	table->start_time = timestamp();
-	pthread_mutex_init(&console, NULL);
+	console = malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(console, NULL);
 	curr = table;
 	table->n_philo = n_philo;
 	while (i < n_philo)

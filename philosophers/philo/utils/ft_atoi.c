@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:11:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/07 17:52:49 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:19:37 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_atoi(const char *nptr)
 			nptr++;
 	}
 	if (!ft_isdigit(*nptr))
-		return (0);
+		return (-1);
 	while (ft_isdigit(*nptr))
 	{
 		aux = aux * 10 + (*nptr - '0');

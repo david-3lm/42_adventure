@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   death.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 18:04:14 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/08 11:37:33 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:47:18 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	*check_death(void *table)
 		if (calc_timestamp(curr->philo->time_last_eat, timestamp()) \
 		> curr->philo->time_to_die)
 		{
-			pthread_mutex_lock(&curr->philo->console_m);
+			pthread_mutex_lock(curr->philo->console_m);
 			end_sim(curr, timestamp());
-			pthread_mutex_unlock(&curr->philo->console_m);
+			pthread_mutex_unlock(curr->philo->console_m);
 			break ;
 		}
 		curr = curr->right;

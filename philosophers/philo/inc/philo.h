@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:01:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/11 23:23:02 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:46:29 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_philo
 	struct s_table	*table;
 	int				is_dead;
 	int				meals;
-	pthread_mutex_t	console_m;
+	pthread_mutex_t	*console_m;
 }	t_philo;
 
 typedef struct s_fork

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:34:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/10 17:37:39 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:19:48 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	clean_table(t_table *table)
 	i = 0;
 	n = table->n_philo;
 	curr = table->right;
+	free(table->philo->console_m);
 	while (i < n)
 	{
 		if (i < n - 1)

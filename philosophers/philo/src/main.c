@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:59:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/11 23:31:02 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:01:42 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 		pthread_join(threads[i], NULL);
 		i++;
 	}
-	pthread_mutex_destroy(&table->philo->console_m);
+	pthread_mutex_destroy(table->philo->console_m);
 	clean_table(table);
 	pthread_attr_destroy(&attr);
 	free(threads);
