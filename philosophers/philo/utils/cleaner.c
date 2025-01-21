@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:34:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/14 16:19:48 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:22:11 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	clean_table(t_table *table)
 			temp = curr->right;
 		free(curr->philo);
 		curr->philo = NULL;
-		pthread_mutex_destroy(&curr->l_fork->mutex);
-		free(curr->l_fork);
+		pthread_mutex_destroy(&curr->r_fork->mutex);
+		free(curr->r_fork);
 		free(curr);
 		curr = NULL;
 		if (i < n - 1)
