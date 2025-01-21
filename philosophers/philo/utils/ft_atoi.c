@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:11:05 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/14 16:19:37 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:43:59 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,24 @@ int	ft_isdigit(int c)
 	return (1);
 }
 
+int	ft_isalpha(int c)
+{
+	if (c < 'A' || (c > 'Z' && c < 'a') || c > 'z')
+		return (0);
+	return (1);
+}
+
 int	ft_atoi(const char *nptr)
 {
 	int	aux;
-	int	neg;
 
 	aux = 0;
 	while (ft_isspace(*nptr))
 		nptr++;
 	if (*nptr == '-')
-	{
-		neg = -1;
-		nptr++;
-	}
+		return (-1);
 	else
 	{
-		neg = 1;
 		if (*nptr == '+')
 			nptr++;
 	}
@@ -54,5 +56,7 @@ int	ft_atoi(const char *nptr)
 		aux = aux * 10 + (*nptr - '0');
 		nptr++;
 	}
-	return (aux * neg);
+	if (ft_isalpha(*nptr))
+		return (-1);
+	return (aux);
 }
