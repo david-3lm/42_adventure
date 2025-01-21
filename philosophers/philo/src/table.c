@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:43:00 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/16 12:14:54 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:04:03 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,7 @@
 
 t_table	*handle_forks(t_table *table, t_table *curr, int i)
 {
-	if (i == 0)
-	{
-		if (table->n_philo > 1)
-			curr->l_fork = init_fork();
-		else
-			curr->l_fork = NULL;
-		curr->r_fork = init_fork();
-	}
-	else if (i == table->n_philo - 1)
-	{
-		curr->l_fork = curr->left->r_fork;
-		curr->r_fork = table->l_fork;
-	}
-	else
-	{
-		curr->l_fork = curr->left->r_fork;
-		curr->r_fork = init_fork();
-	}
+	init_forks(&curr, table, i);
 	if ((!curr->l_fork && table->n_philo > 1) || !curr->r_fork)
 		return (NULL);
 	if (i == table->n_philo - 1)
@@ -49,6 +32,18 @@ t_table	*handle_forks(t_table *table, t_table *curr, int i)
 		curr->right->left = curr;
 		curr = curr->right;
 	}
+	return (curr);
+}
+
+t_table	*handle_table(pthread_mutex_t *c, int m, t_table *curr, t_table *table)
+{
+	curr->philo = malloc(sizeof(t_philo));
+	if (!curr->philo)
+		return (NULL);
+	curr->philo->console_m = c;
+	curr->n_philo = table->n_philo;
+	curr->min_meals = m;
+	curr->start_time = table->start_time;
 	return (curr);
 }
 
@@ -70,13 +65,7 @@ t_table	*init_table(int n_philo, int min_meals)
 	table->n_philo = n_philo;
 	while (i < n_philo)
 	{
-		curr->philo = malloc(sizeof(t_philo));
-		if (!curr->philo)
-			return (NULL);
-		curr->philo->console_m = console;
-		curr->n_philo = n_philo;
-		curr->min_meals = min_meals;
-		curr->start_time = table->start_time;
+		curr = handle_table(console, min_meals, curr, table);
 		curr = handle_forks(table, curr, i);
 		if (!curr)
 			return (NULL);

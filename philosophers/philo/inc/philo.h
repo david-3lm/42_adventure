@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:01:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/14 15:46:29 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:04:22 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_table		*init_table(int n_philo, int min_meals);
 t_fork		*init_fork(void);
 void		take_fork(t_fork *fork);
 void		release_fork(t_fork *fork);
+void		init_forks(t_table **curr, t_table *table, int i);
 
 /*DEATH*/
 void		*check_death(void *table);
