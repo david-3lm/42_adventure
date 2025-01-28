@@ -1,5 +1,5 @@
 NAME = philo
-SRC = ./src/main.c ./src/forks.c ./src/death.c ./src/philo.c ./src/table.c ./src/meals.c ./utils/ft_atoi.c ./utils/timing.c ./utils/console.c ./utils/cleaner.c ./actions/die.c ./actions/eat.c ./actions/sleep.c 
+SRC = ./src/main.c ./src/forks.c ./src/death.c ./src/philo.c ./src/table.c ./src/meals.c ./utils/ft_atoi.c ./utils/timing.c ./utils/console.c ./utils/cleaner.c ./actions/eat.c ./actions/sleep.c 
 OBJ = $(SRC:.c=.o)
 HEADERS = ./inc/philo.h
 CC = gcc

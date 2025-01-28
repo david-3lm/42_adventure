@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:59:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/14 16:01:42 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:02:59 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_philo(t_philo **philo, char **argv, t_table *table, int i)
 	(*philo)->time_last_eat = timestamp();
 }
 
-pthread_t	*init_thr(pthread_attr_t attr, char **argv, int c, t_table **t)
+pthread_t	*init_thr(char **argv, int c, t_table **t)
 {
 	int				i;
 	t_philo			*philo;
@@ -44,18 +44,17 @@ pthread_t	*init_thr(pthread_attr_t attr, char **argv, int c, t_table **t)
 	{
 		philo = curr->philo;
 		init_philo(&philo, argv, curr, i);
-		pthread_create(&threads[i], &attr, philo_start, philo);
+		pthread_create(&threads[i], NULL, philo_start, philo);
 		curr = curr->right;
 		i++;
 	}
-	pthread_create(&threads[i], &attr, check_death, *t);
+	pthread_create(&threads[i], NULL, check_death, *t);
 	return (threads);
 }
 
 int	main(int argc, char **argv)
 {
 	int				i;
-	pthread_attr_t	attr;
 	pthread_t		*threads;
 	t_table			*table;
 
@@ -63,9 +62,7 @@ int	main(int argc, char **argv)
 	table = NULL;
 	if (argc < 5 || argc > 7 || !check_input(argc, argv))
 		return (1);
-	pthread_attr_init(&attr);
-	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-	threads = init_thr(attr, argv, argc, &table);
+	threads = init_thr(argv, argc, &table);
 	if (!threads)
 		return (1);
 	while (i < ft_atoi(argv[1]) + 1)
@@ -75,7 +72,6 @@ int	main(int argc, char **argv)
 	}
 	pthread_mutex_destroy(table->philo->console_m);
 	clean_table(table);
-	pthread_attr_destroy(&attr);
 	free(threads);
 	pthread_exit (NULL);
 	return (0);

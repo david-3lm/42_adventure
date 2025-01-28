@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:01:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/21 13:04:22 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:03:43 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_table
 void		*philo_start(void *i);
 void		philo_loop(t_philo *philo);
 void		eat(t_philo *philo);
-void		die(t_philo *philo);
 
 /*TABLE*/
 int			check_meals(t_table *table);
