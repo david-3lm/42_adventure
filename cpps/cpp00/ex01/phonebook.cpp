@@ -12,6 +12,11 @@ void Phonebook::AddContact(Contact c)
 	{
 		aux = contacts[i];
 		contacts[i] = c;
-		aux = c;
+		c = aux;
 	}
+}
+
+Contact Phonebook::GetContact(int i)
+{
+	return (contacts[i]);
 }

@@ -17,7 +17,37 @@ void Add(Phonebook *p)
 	std::cin >> nick;
 	c = new Contact(first, last, nick);
 	p->AddContact(*c);
-	std::cout << "Contacto añadido";
+	std::cout << "Contacto añadido" << std::endl;
+}
+
+std::string TrimString(std::string str)
+{
+	size_t size = 10;
+	std::string aux;
+
+	if (str.size() > size)
+	{
+		aux = str.substr(0, size - 1);
+		aux = aux.append(".");
+	}
+	else
+	{
+		aux = std::string(size - str.size(), ' ').append(str);
+	}
+	return (aux);
+}
+
+void Search(Phonebook *p)
+{
+	for (size_t i = 0; i < 8; i++)
+	{
+		if (p->GetContact(i).GetFirstName() != "")
+		{
+			std::cout << i << " | " << TrimString(p->GetContact(i).GetFirstName()) << " | " 
+				<< TrimString(p->GetContact(i).GetLastName()) << " | " << TrimString(p->GetContact(i).GetNickName()) << std::endl;
+		}
+	}
+	
 }
 
 int main(void)
@@ -32,7 +62,7 @@ int main(void)
 		if (input == "ADD")
 			Add(phonebook);
 		else if (input == "SEARCH")
-			std::cout << "Elegiste add" << std::endl;
+			Search(phonebook);
 		else if (input != "EXIT")
 			std::cout << "Entrada no valida" << std::endl;
 	}

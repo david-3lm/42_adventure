@@ -9,4 +9,5 @@ public:
 	Phonebook();
 	~Phonebook();
 	void AddContact(Contact c);
+	Contact GetContact(int i);
 };
