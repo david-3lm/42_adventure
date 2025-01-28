@@ -31,6 +31,7 @@
 		"new": "c",
 		"*.tcc": "c",
 		"cstdint": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"iostream": "cpp"
 	} // Bold
 }
