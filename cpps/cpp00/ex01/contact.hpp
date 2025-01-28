@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 
 class Contact
@@ -8,16 +9,7 @@ private:
 	std::string nickName;
 public:
 	Contact(std::string fName, std::string lName, std::string nName);
+	Contact();
 	~Contact();
 };
 
-Contact::Contact(std::string fName, std::string lName, std::string nName)
-{
-	firstName = fName;
-	lastName = lName;
-	nickName = nName;
-}
-
-Contact::~Contact()
-{
-}

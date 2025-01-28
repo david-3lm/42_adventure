@@ -1,5 +1,5 @@
 NAME = phonebook
-SRC = phonebook.cpp
+SRC = main.cpp phonebook.cpp contact.cpp
 OBJ = $(SRC:.cpp=.o)
 HEADERS =
 CC = g++
@@ -18,7 +18,7 @@ CIAN = \e[7;36m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 %.o: %.c
 	$(CC) $(CPPFLAGS) -c $< -o $@

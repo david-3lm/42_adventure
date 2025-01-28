@@ -1,3 +1,4 @@
+#pragma once
 #include "contact.hpp"
 
 class Phonebook
@@ -7,19 +8,5 @@ private:
 public:
 	Phonebook();
 	~Phonebook();
-	AddContact(Contact c);
+	void AddContact(Contact c);
 };
-
-Phonebook::Phonebook()
-{
-
-}
-
-Phonebook::~Phonebook()
-{
-}
-
-void AddContact(Contact c)
-{
-	
-}
