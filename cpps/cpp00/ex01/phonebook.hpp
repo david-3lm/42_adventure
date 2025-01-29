@@ -6,6 +6,7 @@ class Phonebook
 private:
 	Contact contacts[8];
 public:
+	int		n_contacts;
 	Phonebook();
 	~Phonebook();
 	void AddContact(Contact c);

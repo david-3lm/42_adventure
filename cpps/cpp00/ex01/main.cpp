@@ -7,15 +7,29 @@ void Add(Phonebook *p)
 	std::string first;
 	std::string last;
 	std::string nick;
-	Contact *c;
+	int			number;
+	std::string secret;
+	Contact 	*c;
 
+	std::cin.ignore(10000, '\n');
 	std::cout << "Introduce first name => ";
-	std::cin >> first; 
+	std::getline(std::cin, first);
 	std::cout << "Introduce last name => ";
-	std::cin >> last; 
+	std::getline(std::cin, last);
 	std::cout << "Introduce nickname => ";
-	std::cin >> nick;
-	c = new Contact(first, last, nick);
+	std::getline(std::cin, nick);
+	std::cout << "Introduce el número de telefono => ";
+	std::cin >> number;
+	if (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cout << "Necesito que introduzcas un numero" << std::endl;
+		return ;
+	}
+	std::cin.ignore(10000, '\n');
+	std::cout << "Introduce el secreto => ";
+	std::getline(std::cin, secret);
+	c = new Contact(first, last, nick, number, secret);
 	p->AddContact(*c);
 	std::cout << "Contacto añadido" << std::endl;
 }
@@ -39,6 +53,8 @@ std::string TrimString(std::string str)
 
 void Search(Phonebook *p)
 {
+	int idx;
+
 	for (size_t i = 0; i < 8; i++)
 	{
 		if (p->GetContact(i).GetFirstName() != "")
@@ -47,7 +63,17 @@ void Search(Phonebook *p)
 				<< TrimString(p->GetContact(i).GetLastName()) << " | " << TrimString(p->GetContact(i).GetNickName()) << std::endl;
 		}
 	}
-	
+	std::cout << "Introduce el índice del contacto a revisar => ";
+	std::cin >> idx;
+	if (std::cin.fail() || idx >= p->n_contacts)
+	{
+		std::cin.clear();
+		Search(p);
+	}
+	else
+	{
+		std::cout << p->GetContact(idx).ToString();
+	}
 }
 
 int main(void)

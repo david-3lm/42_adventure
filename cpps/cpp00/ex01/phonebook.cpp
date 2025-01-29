@@ -1,6 +1,6 @@
 #include "phonebook.hpp"
 
-Phonebook::Phonebook() {}
+Phonebook::Phonebook() { n_contacts = 0; }
 
 Phonebook::~Phonebook() {}
 
@@ -14,6 +14,8 @@ void Phonebook::AddContact(Contact c)
 		contacts[i] = c;
 		c = aux;
 	}
+	if (n_contacts <= 8)
+		n_contacts++;
 }
 
 Contact Phonebook::GetContact(int i)
