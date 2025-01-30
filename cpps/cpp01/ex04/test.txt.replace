@@ -1,0 +1,17 @@
+Hola adio como está todo el  mundo adio (Mundano adio)
+    while ((idx = newLine.find(s2, idx)) != std::string::npos)  // Find each occurrence of s2
+    {
+        std::cout << "ENCONTRO en la posición " << idx << std::endl;
+
+        // Replace the occurrence
+        newLine.erase(idx, s2.length());  // Erase the found substring
+        newLine.insert(idx, s1);  // Insert the replacement string at the same position
+
+        // Continue searching after the last replaced position
+        idx += s1.length();  // Move index forward to avoid infinite loop
+
+        // Optionally, write the updated line immediately or collect the entire result
+        handler.getOstream().write(newLine.c_str(), newLine.length());
+    }
+MUNDO
+adio
