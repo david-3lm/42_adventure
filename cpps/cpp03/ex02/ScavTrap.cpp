@@ -3,11 +3,17 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::cout << "I'm ScavTrap, my own constructor itself!" << std::endl;
+	this->_hitP = 100;
+	this->_energyP = 50;
+	this->_attackD = 20;
 }
 
 ScavTrap::ScavTrap(const std::string n) : ClapTrap(n)
 {
 	std::cout << "I'm ScavTrap " << n << " and I am independant to ClapTrap! >:(" << std::endl;
+	this->_hitP = 100;
+	this->_energyP = 50;
+	this->_attackD = 20;
 }
  
 ScavTrap::ScavTrap(const ScavTrap &s) : ClapTrap(s)
