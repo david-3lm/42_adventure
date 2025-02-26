@@ -20,6 +20,8 @@ int main( void )
 	std::cout << ">>> randomChump: " << std::endl;
 	z3->randomChump("Randomzzzzzzzzzz");
 	std::cout << ">> delete;" << std::endl;
+	delete z1;
+	delete z2;
 	delete z3;
 	return 0;
 }

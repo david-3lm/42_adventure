@@ -53,6 +53,11 @@ unsigned int ClapTrap::getAttackD(void) const
 	return this->_attackD;
 }
 
+void ClapTrap::setName(const std::string n)
+{
+	this->name = n;
+}
+
 void ClapTrap::setHitP(const unsigned int amount)
 {
 	this->_hitP = amount;

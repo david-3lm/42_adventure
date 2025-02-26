@@ -1,12 +1,11 @@
 #include <iostream>
 
-typedef std::string str;
 
 int main( void )
 {
-	str s = "HI THIS IS BRAIN";
-	str* sPTR = &s;
-	str& sREF = s;
+	std::string s = "HI THIS IS BRAIN";
+	std::string* sPTR = &s;
+	std::string& sREF = s;
 
 	std::cout << "ADDRESS OF VARIABLE => " << &s << std::endl;
 	std::cout << "ADDRESS OF POINTER => " << sPTR << std::endl;

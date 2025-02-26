@@ -2,6 +2,7 @@
 #include "Contact.hpp"
 #include <iostream>
 
+
 void Add(Phonebook *p)
 {
 	std::string first;
@@ -32,6 +33,7 @@ void Add(Phonebook *p)
 	c = new Contact(first, last, nick, number, secret);
 	p->AddContact(*c);
 	std::cout << "Contacto añadido" << std::endl;
+	delete c;
 }
 
 std::string TrimString(std::string str)
@@ -92,6 +94,6 @@ int main(void)
 		else if (input != "EXIT")
 			std::cout << "Entrada no valida" << std::endl;
 	}
-	
+	delete phonebook;
 	return 0;
 }

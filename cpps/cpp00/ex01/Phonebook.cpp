@@ -2,7 +2,7 @@
 
 Phonebook::Phonebook() { n_contacts = 0; }
 
-Phonebook::~Phonebook() {}
+Phonebook::~Phonebook() { }
 
 void Phonebook::AddContact(Contact c)
 {
