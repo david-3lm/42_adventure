@@ -17,3 +17,9 @@ void Cat::makeSound() const
 {
 	std::cout << "marramiau :3" << std::endl;
 }
+
+
+Brain *Cat::getBrain() const
+{
+	return this->brain;
+}

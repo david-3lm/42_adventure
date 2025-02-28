@@ -13,6 +13,8 @@ public:
 
 	using Animal::operator=;
 	using Animal::getType;
+	
+	Brain *getBrain() const;
 	void makeSound() const;
 };
 

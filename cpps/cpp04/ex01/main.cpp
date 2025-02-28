@@ -16,8 +16,10 @@ int main()
 		list[i] = new Cat();
 	}
 	
-	std::cout << ((Dog *)list[30])->getBrain()->getIdea(30) << std::endl;
-
+	std::cout << "Idea de perro: " << ((Dog *)list[30])->getBrain()->getIdea(30) << std::endl;
+	std::cout << "Idea de gato: "<< ((Cat *)list[60])->getBrain()->getIdea(60) << std::endl;
+	
+	
 	for (size_t i = 0; i < 100; i++)
 	{
 		delete list[i];
