@@ -3,7 +3,7 @@ SRC = ./src/main.c ./src/forks.c ./src/death.c ./src/philo.c ./src/table.c ./src
 OBJ = $(SRC:.c=.o)
 HEADERS = ./inc/philo.h
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -O0 #-fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -O0 #-fsanitize=thread -fPIE -pie -g
 RM = rm -f
 
 # COLORES
