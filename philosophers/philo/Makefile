@@ -2,8 +2,8 @@ NAME = philo
 SRC = ./src/main.c ./src/forks.c ./src/death.c ./src/philo.c ./src/table.c ./src/meals.c ./utils/ft_atoi.c ./utils/timing.c ./utils/console.c ./utils/cleaner.c ./actions/eat.c ./actions/sleep.c 
 OBJ = $(SRC:.c=.o)
 HEADERS = ./inc/philo.h
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -O0 #-fsanitize=thread -fPIE -pie -g
+CC = cc
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=thread -fPIE -pie -g
 RM = rm -f
 
 # COLORES
@@ -21,7 +21,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -g -O0 -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)

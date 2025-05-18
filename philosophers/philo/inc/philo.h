@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:01:13 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/28 13:03:43 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/05/18 18:50:55 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_philo
 	int				is_dead;
 	int				meals;
 	pthread_mutex_t	*console_m;
+	pthread_mutex_t	*data_m;
 }	t_philo;
 
 typedef struct s_fork

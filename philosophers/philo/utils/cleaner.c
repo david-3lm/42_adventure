@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:34:30 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/21 14:22:11 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/05/18 18:51:34 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	clean_table(t_table *table)
 	n = table->n_philo;
 	curr = table->right;
 	free(table->philo->console_m);
+	free(table->philo->data_m);
 	while (i < n)
 	{
 		if (i < n - 1)
