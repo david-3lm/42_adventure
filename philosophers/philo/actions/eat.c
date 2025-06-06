@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 23:29:41 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/05/18 19:22:12 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/06/06 11:19:25 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	eat(t_philo *p)
 	pthread_mutex_unlock(p->data_m);
 	write_cmd(p, "is eating");
 	ft_sleep(p->time_to_eat, p);
+	pthread_mutex_lock(p->data_m);
 	p->meals++;
+	pthread_mutex_unlock(p->data_m);
 	release_fork(p->table->r_fork);
 	release_fork(p->table->l_fork);
 	write_cmd(p, "is sleeping");

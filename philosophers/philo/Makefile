@@ -3,7 +3,7 @@ SRC = ./src/main.c ./src/forks.c ./src/death.c ./src/philo.c ./src/table.c ./src
 OBJ = $(SRC:.c=.o)
 HEADERS = ./inc/philo.h
 CC = cc
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=thread -fPIE -pie -g
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
 # COLORES
@@ -18,10 +18,10 @@ CIAN = \e[7;36m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -fsanitize=address -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -g -O0 -c $< -o $@
+	$(CC) $(CFLAGS) -fsanitize=address -g -O0 -c $< -o $@
 
 clean:
 	$(RM) $(OBJ)

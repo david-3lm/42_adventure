@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 15:59:07 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/05/18 18:51:22 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/06/06 11:12:29 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,5 @@ int	main(int argc, char **argv)
 	pthread_mutex_destroy(table->philo->data_m);
 	clean_table(table);
 	free(threads);
-	pthread_exit (NULL);
 	return (0);
 }

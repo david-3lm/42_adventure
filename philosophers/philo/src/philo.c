@@ -6,7 +6,7 @@
 /*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:17:01 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/05/18 18:55:40 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/06/06 11:18:01 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@ void	philo_loop(t_philo *philo)
 {
 	if (philo->idx % 2)
 		usleep(15000);
+	pthread_mutex_lock(philo->data_m);
 	while (!philo->is_dead)
 	{
+		pthread_mutex_unlock(philo->data_m);
 		eat(philo);
+		if (philo->idx % 2)
+			usleep(1000);
+		pthread_mutex_lock(philo->data_m);
 	}
+	pthread_mutex_unlock(philo->data_m);
 }
 
 void	*philo_start(void *params)

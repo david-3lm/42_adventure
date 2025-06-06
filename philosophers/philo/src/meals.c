@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   meals.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dlopez-l <dlopez-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dlopez-l <dlopez-l@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:03:21 by dlopez-l          #+#    #+#             */
-/*   Updated: 2025/01/14 15:47:25 by dlopez-l         ###   ########.fr       */
+/*   Updated: 2025/06/06 11:22:01 by dlopez-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	finished_eat(t_table *table)
 		printf("Philosophers finished eating!\n");
 	while (i < table->n_philo)
 	{
+		pthread_mutex_lock(curr->philo->data_m);
 		curr->philo->is_dead = 1;
+		pthread_mutex_unlock(curr->philo->data_m);
 		curr = curr->right;
 		i++;
 	}
@@ -40,8 +42,10 @@ int	check_meals(t_table *table)
 	curr = table;
 	while (i < table->n_philo)
 	{
+		pthread_mutex_lock(curr->philo->data_m);
 		if (curr->philo->meals >= table->min_meals)
 			count++;
+		pthread_mutex_unlock(curr->philo->data_m);
 		i++;
 		curr = curr->right;
 	}
