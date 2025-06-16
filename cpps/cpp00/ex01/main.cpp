@@ -13,12 +13,24 @@ void Add(Phonebook *p)
 	Contact 	*c;
 
 	std::cin.ignore(10000, '\n');
-	std::cout << "Introduce first name => ";
-	std::getline(std::cin, first);
-	std::cout << "Introduce last name => ";
-	std::getline(std::cin, last);
-	std::cout << "Introduce nickname => ";
-	std::getline(std::cin, nick);
+	while (first == "")
+	{	
+		std::cout << "Introduce first name => ";
+		std::getline(std::cin, first);
+	}
+
+	while (last == "")
+	{
+		std::cout << "Introduce last name => ";
+		std::getline(std::cin, last);
+	}
+
+	while (nick == "")
+	{
+		std::cout << "Introduce nickname => ";
+		std::getline(std::cin, nick);
+	}
+
 	std::cout << "Introduce el número de telefono => ";
 	std::cin >> number;
 	if (std::cin.fail())
@@ -28,8 +40,11 @@ void Add(Phonebook *p)
 		return ;
 	}
 	std::cin.ignore(10000, '\n');
-	std::cout << "Introduce el secreto => ";
-	std::getline(std::cin, secret);
+	while (secret == "")
+	{
+		std::cout << "Introduce el secreto => ";
+		std::getline(std::cin, secret);
+	}
 	c = new Contact(first, last, nick, number, secret);
 	p->AddContact(*c);
 	std::cout << "Contacto añadido" << std::endl;
