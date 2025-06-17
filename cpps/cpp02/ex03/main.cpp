@@ -20,11 +20,15 @@ int main( void )
 	Point		B(10.f, 30.f);
 	Point		C(20.f, 0.f);
 	Point		P(16.f, 1.f);
+	Point		P2(30.f, 100.f);
 	std::string	answer;
 
 	answer = bsp(A, B, C, P) ? " " : " not ";
 	printData(A, B, C, P);
 	std::cout << "Point P is" << answer << "in the triangle ABC!" << std::endl;
+	answer = bsp(A, B, C, P2) ? " " : " not ";
+	printData(A, B, C, P2);
+	std::cout << "Point P2 is" << answer << "in the triangle ABC!" << std::endl;
 
 	return 0;
 }
