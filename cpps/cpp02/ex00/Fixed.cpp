@@ -24,17 +24,17 @@ Fixed &Fixed::operator=(const Fixed &f)
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &f)
 	{
-		_value = f._value;
+		_value = f.getRawBits();
 	}
 	return *this;
 }
-//Returns the raw value of the fixed-point number
+
 int Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits called" << std::endl;
 	return _value;
 }
-//sets the raw value of the fixed-point number
+
 void Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits called" << std::endl;

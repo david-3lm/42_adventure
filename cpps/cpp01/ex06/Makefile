@@ -1,4 +1,4 @@
-NAME = ex06
+NAME = harlFilter
 SRC = main.cpp Harl.cpp
 OBJ = $(SRC:.cpp=.o)
 HEADERS =
