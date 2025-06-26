@@ -1,8 +1,8 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _hitP(100), _energyP(100), _attackD(30)
+ClapTrap::ClapTrap() : _hitP(100), _energyP(50), _attackD(20)
 {
-	std::cout << "Empty constructor called!" << std::endl;
+	std::cout << "ClapTrap constructor called!" << std::endl;
 	this->name = "ClapTrap";
 }
 
@@ -12,15 +12,15 @@ ClapTrap::ClapTrap(const ClapTrap &c)
 	*this = c;
 }
 
-ClapTrap::ClapTrap(const std::string n) : _hitP(100), _energyP(100), _attackD(30)
+ClapTrap::ClapTrap(const std::string n) : _hitP(100), _energyP(50), _attackD(20)
 {
-	std::cout << "Constructor with name " << n << " called!" << std::endl;
+	std::cout << "ClapTrap Constructor with name " << n << " called!" << std::endl;
 	this->name = n;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor called!" << std::endl;
+	std::cout << "ClapTrap Destructor called!" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &c)
