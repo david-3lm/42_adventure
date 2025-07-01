@@ -16,23 +16,27 @@ void Add(Phonebook *p)
 	while (first == "")
 	{	
 		std::cout << "Introduce first name => ";
-		std::getline(std::cin, first);
+		if (!std::getline(std::cin, first))
+			return ;
 	}
 
 	while (last == "")
 	{
 		std::cout << "Introduce last name => ";
-		std::getline(std::cin, last);
+		if (!std::getline(std::cin, last))
+			return ;
 	}
 
 	while (nick == "")
 	{
 		std::cout << "Introduce nickname => ";
-		std::getline(std::cin, nick);
+		if (!std::getline(std::cin, nick))
+			return ;
 	}
 
 	std::cout << "Introduce el número de telefono => ";
-	std::cin >> number;
+	if (!(std::cin >> number))
+		return ;
 	if (std::cin.fail())
 	{
 		std::cin.clear();
@@ -43,7 +47,8 @@ void Add(Phonebook *p)
 	while (secret == "")
 	{
 		std::cout << "Introduce el secreto => ";
-		std::getline(std::cin, secret);
+		if (!std::getline(std::cin, secret))
+			return ;
 	}
 	c = new Contact(first, last, nick, number, secret);
 	p->AddContact(*c);
@@ -70,7 +75,7 @@ std::string TrimString(std::string str)
 
 void Search(Phonebook *p)
 {
-	int idx;
+	std::string idx;
 
 	for (size_t i = 0; i < 8; i++)
 	{
@@ -80,16 +85,26 @@ void Search(Phonebook *p)
 				<< TrimString(p->GetContact(i).GetLastName()) << " | " << TrimString(p->GetContact(i).GetNickName()) << std::endl;
 		}
 	}
-	std::cout << "Introduce el índice del contacto a revisar => ";
-	std::cin >> idx;
-	if (std::cin.fail() || idx >= p->n_contacts)
+	if (p->n_contacts == 0)
 	{
-		std::cin.clear();
-		Search(p);
+		std::cout << "No hay contactos" << std::endl;
+		return ;
 	}
-	else
+	while (true)
 	{
-		std::cout << p->GetContact(idx).ToString();
+		std::cout << "Introduce el índice del contacto a revisar => ";
+		std::cin >> idx;
+		std::cout << "INDX = " << atoi(idx.c_str()) << std::endl;
+		if (std::cin.fail() || atoi(idx.c_str()) >= p->n_contacts || atoi(idx.c_str()) < 0)
+		{
+			std::cin.clear();
+			std::cout << "		Índice inválido" << std::endl;
+		}
+		else
+		{
+			std::cout << p->GetContact(atoi(idx.c_str())).ToString();
+			break;
+		}
 	}
 }
 
@@ -101,7 +116,11 @@ int main(void)
 	while (input != "EXIT")
 	{
 		std::cout << "¿QUÉ QUIERES HACER? (ADD, SEARCH, EXIT) => ";
-		std::cin >> input; 
+		if (!(std::cin >> input))
+		{
+			std::cout << "SALIMOOOOOOOOOOOS" << std::endl;
+			break ;
+		}
 		if (input == "ADD")
 			Add(phonebook);
 		else if (input == "SEARCH")
