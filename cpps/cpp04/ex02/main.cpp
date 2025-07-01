@@ -6,7 +6,10 @@
 
 int main()
 {
-	Cat *c = new Cat();
+	AAnimal *c = new Cat();
+	// AAnimal *c = new AAnimal(); // ERROR PORQUE ES ABSTRACTA
 
 	c->makeSound();
+
+	delete c;
 }

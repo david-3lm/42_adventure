@@ -2,7 +2,7 @@ NAME = ex00
 SRC = main.cpp ClapTrap.cpp
 OBJ = $(SRC:.cpp=.o)
 HEADERS =
-CC = g++
+CC = c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
@@ -20,7 +20,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:

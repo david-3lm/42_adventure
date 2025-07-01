@@ -13,7 +13,7 @@ Dog::~Dog()
 	delete brain;
 }
 
-void Dog::makeSound() const override
+void Dog::makeSound() const
 {
 	std::cout << "WOOF WOOF :D" << std::endl;
 }

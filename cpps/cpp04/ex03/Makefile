@@ -1,5 +1,5 @@
-NAME = ex01
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
+NAME = ex03
+SRC = main.cpp AMateria.cpp ICharacter.cpp
 OBJ = $(SRC:.cpp=.o)
 HEADERS =
 CC = c++
