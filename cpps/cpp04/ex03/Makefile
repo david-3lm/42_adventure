@@ -1,7 +1,17 @@
 NAME = ex03
-SRC = main.cpp AMateria.cpp ICharacter.cpp
-OBJ = $(SRC:.cpp=.o)
+
+# Archivos fuente
+SRC_DIR = src
+OBJ_DIR = obj
+
+SRC = $(SRC_DIR)/main.cpp \
+      $(SRC_DIR)/AMateria.cpp \
+      $(SRC_DIR)/ICharacter.cpp
+
+OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+
 HEADERS =
+
 CC = c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
@@ -14,13 +24,13 @@ YELLOW = \e[1;33m
 BLUE = \033[0;34m
 CIAN = \e[7;36m
 
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	$(CC) $(CPPFLAGS) -o $@ $(OBJ)
 
-%.o: %.cpp
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
@@ -40,6 +50,5 @@ exec:
 
 debug: CPPFLAGS += -g3 -O0
 debug: re
-# gdb 
 
 .PHONY: all clean fclean re exec norma debug bonus
