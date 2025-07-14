@@ -8,11 +8,10 @@ void Add(Phonebook *p)
 	std::string first;
 	std::string last;
 	std::string nick;
-	int			number;
+	std::string	number;
 	std::string secret;
 	Contact 	*c;
 
-	std::cin.ignore(10000, '\n');
 	while (first == "")
 	{	
 		std::cout << "Introduce first name => ";
@@ -33,17 +32,12 @@ void Add(Phonebook *p)
 		if (!std::getline(std::cin, nick))
 			return ;
 	}
-
-	std::cout << "Introduce el número de telefono => ";
-	if (!(std::cin >> number))
-		return ;
-	if (std::cin.fail())
+	while (number == "")
 	{
-		std::cin.clear();
-		std::cout << "Necesito que introduzcas un numero" << std::endl;
-		return ;
+		std::cout << "Introduce el número de telefono => ";
+		if (!std::getline(std::cin, number))
+			return ;
 	}
-	std::cin.ignore(10000, '\n');
 	while (secret == "")
 	{
 		std::cout << "Introduce el secreto => ";
@@ -90,22 +84,26 @@ void Search(Phonebook *p)
 		std::cout << "No hay contactos" << std::endl;
 		return ;
 	}
-	while (true)
+while (true)
+{
+	std::cout << "Introduce el índice del contacto a revisar => ";
+	if (!std::getline(std::cin, idx))
+		return;
+
+	int i = atoi(idx.c_str());
+	std::cout << "INDX = " << i << std::endl;
+
+	if (i >= p->n_contacts || i < 0)
 	{
-		std::cout << "Introduce el índice del contacto a revisar => ";
-		std::cin >> idx;
-		std::cout << "INDX = " << atoi(idx.c_str()) << std::endl;
-		if (std::cin.fail() || atoi(idx.c_str()) >= p->n_contacts || atoi(idx.c_str()) < 0)
-		{
-			std::cin.clear();
-			std::cout << "		Índice inválido" << std::endl;
-		}
-		else
-		{
-			std::cout << p->GetContact(atoi(idx.c_str())).ToString();
-			break;
-		}
+		std::cout << "		Índice inválido" << std::endl;
 	}
+	else
+	{
+		std::cout << p->GetContact(i).ToString();
+		break;
+	}
+}
+
 }
 
 int main(void)
@@ -116,11 +114,8 @@ int main(void)
 	while (input != "EXIT")
 	{
 		std::cout << "¿QUÉ QUIERES HACER? (ADD, SEARCH, EXIT) => ";
-		if (!(std::cin >> input))
-		{
-			std::cout << "SALIMOOOOOOOOOOOS" << std::endl;
-			break ;
-		}
+		if (!std::getline(std::cin, input))
+			break;
 		if (input == "ADD")
 			Add(phonebook);
 		else if (input == "SEARCH")
