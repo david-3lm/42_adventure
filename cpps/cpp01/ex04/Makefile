@@ -1,4 +1,4 @@
-NAME = ex04
+NAME = replacer
 SRC = main.cpp Replacer.cpp Iofile.cpp
 OBJ = $(SRC:.cpp=.o)
 HEADERS =

@@ -25,7 +25,7 @@ void Replacer::replaceOcc(std::string *line, std::string s1, std::string s2)
 
     while ((idx = newLine.find(s1, idx)) != std::string::npos)
     {
-        std::cout << "ENCONTRO en la posición " << idx << std::endl;
+        std::cout << "ENCONTRO en la posición " << idx << " de la linea" << std::endl;
 
         newLine.erase(idx, s1.length());
         newLine.insert(idx, s2);
