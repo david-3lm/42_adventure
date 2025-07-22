@@ -28,13 +28,13 @@ Fixed &Fixed::operator=(const Fixed &f)
 	}
 	return *this;
 }
-//Returns the raw value of the fixed-point number
+
 int Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits called" << std::endl;
 	return _value;
 }
-//sets the raw value of the fixed-point number
+
 void Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits called" << std::endl;

@@ -2,7 +2,7 @@ NAME = ex02
 SRC = main.cpp AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJ = $(SRC:.cpp=.o)
 HEADERS =
-CC = g++
+CC = c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
@@ -20,7 +20,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.c
+%.o: %.cpppp
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:

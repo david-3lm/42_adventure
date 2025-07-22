@@ -8,28 +8,42 @@ void Add(Phonebook *p)
 	std::string first;
 	std::string last;
 	std::string nick;
-	int			number;
+	std::string	number;
 	std::string secret;
 	Contact 	*c;
 
-	std::cin.ignore(10000, '\n');
-	std::cout << "Introduce first name => ";
-	std::getline(std::cin, first);
-	std::cout << "Introduce last name => ";
-	std::getline(std::cin, last);
-	std::cout << "Introduce nickname => ";
-	std::getline(std::cin, nick);
-	std::cout << "Introduce el número de telefono => ";
-	std::cin >> number;
-	if (std::cin.fail())
-	{
-		std::cin.clear();
-		std::cout << "Necesito que introduzcas un numero" << std::endl;
-		return ;
+	while (first == "")
+	{	
+		std::cout << "Introduce first name => ";
+		if (!std::getline(std::cin, first))
+			return ;
 	}
-	std::cin.ignore(10000, '\n');
-	std::cout << "Introduce el secreto => ";
-	std::getline(std::cin, secret);
+
+	while (last == "")
+	{
+		std::cout << "Introduce last name => ";
+		if (!std::getline(std::cin, last))
+			return ;
+	}
+
+	while (nick == "")
+	{
+		std::cout << "Introduce nickname => ";
+		if (!std::getline(std::cin, nick))
+			return ;
+	}
+	while (number == "")
+	{
+		std::cout << "Introduce el número de telefono => ";
+		if (!std::getline(std::cin, number))
+			return ;
+	}
+	while (secret == "")
+	{
+		std::cout << "Introduce el secreto => ";
+		if (!std::getline(std::cin, secret))
+			return ;
+	}
 	c = new Contact(first, last, nick, number, secret);
 	p->AddContact(*c);
 	std::cout << "Contacto añadido" << std::endl;
@@ -55,7 +69,7 @@ std::string TrimString(std::string str)
 
 void Search(Phonebook *p)
 {
-	int idx;
+	std::string idx;
 
 	for (size_t i = 0; i < 8; i++)
 	{
@@ -65,17 +79,31 @@ void Search(Phonebook *p)
 				<< TrimString(p->GetContact(i).GetLastName()) << " | " << TrimString(p->GetContact(i).GetNickName()) << std::endl;
 		}
 	}
-	std::cout << "Introduce el índice del contacto a revisar => ";
-	std::cin >> idx;
-	if (std::cin.fail() || idx >= p->n_contacts)
+	if (p->n_contacts == 0)
 	{
-		std::cin.clear();
-		Search(p);
+		std::cout << "No hay contactos" << std::endl;
+		return ;
+	}
+while (true)
+{
+	std::cout << "Introduce el índice del contacto a revisar => ";
+	if (!std::getline(std::cin, idx))
+		return;
+
+	int i = atoi(idx.c_str());
+	std::cout << "INDX = " << i << std::endl;
+
+	if (i >= p->n_contacts || i < 0)
+	{
+		std::cout << "		Índice inválido" << std::endl;
 	}
 	else
 	{
-		std::cout << p->GetContact(idx).ToString();
+		std::cout << p->GetContact(i).ToString();
+		break;
 	}
+}
+
 }
 
 int main(void)
@@ -86,7 +114,8 @@ int main(void)
 	while (input != "EXIT")
 	{
 		std::cout << "¿QUÉ QUIERES HACER? (ADD, SEARCH, EXIT) => ";
-		std::cin >> input; 
+		if (!std::getline(std::cin, input))
+			break;
 		if (input == "ADD")
 			Add(phonebook);
 		else if (input == "SEARCH")

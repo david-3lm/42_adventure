@@ -3,6 +3,7 @@
 Zombie::Zombie(std::string n)
 {
 	name = n;
+	std::cout << name << ": Me creé" << std::endl;
 }
 
 Zombie::~Zombie()

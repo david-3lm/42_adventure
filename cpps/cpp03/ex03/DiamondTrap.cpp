@@ -2,7 +2,7 @@
 
 DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap()
 {
-	std::cout << "DiamondTrap " << this->name << " Empty constructor called " << std::endl;
+	std::cout << "\033[1m\033[36m DiamondTrap " << this->name << " Empty constructor called " << "\033[0m" << std::endl;
 
 	this->_hitP = 100;
 	this->_energyP = 50;
@@ -13,7 +13,7 @@ DiamondTrap::DiamondTrap(const std::string& name)
   : ClapTrap(name + "_clap_name"),
 	name(name)
 {
-	std::cout << "DiamondTrap " << this->name << " Name constructor called " << std::endl;
+	std::cout << "\033[1m\033[36m DiamondTrap " << this->name << " Name constructor called " << "\033[0m" << std::endl;
 
 	this->_hitP = 100;
 	this->_energyP = 50;
@@ -22,7 +22,7 @@ DiamondTrap::DiamondTrap(const std::string& name)
 
 DiamondTrap::DiamondTrap(const DiamondTrap &d) : ClapTrap(d), ScavTrap(d), FragTrap(d)
 {
-	std::cout << "DiamondTrap " << this->name << " Copy constructor called " << std::endl;
+	std::cout << "\033[1m\033[36m DiamondTrap " << this->name << " Copy constructor called " << "\033[0m" << std::endl;
 
 	this->_hitP = 100;
 	this->_energyP = 50;
@@ -31,10 +31,10 @@ DiamondTrap::DiamondTrap(const DiamondTrap &d) : ClapTrap(d), ScavTrap(d), FragT
 
 DiamondTrap::~DiamondTrap()
 {
-	std::cout << "DiamondTrap " << this->name << " Destructor called " << std::endl;
+	std::cout << "\033[1m\033[36m DiamondTrap " << this->name << " Destructor called " << "\033[0m" << std::endl;
 }
 
 void DiamondTrap::whoAmI()
 {
-	std::cout << "DiamondTrap " << this->name << " with ClapTrap name => " << ClapTrap::name << std::endl;
+	std::cout << "\033[1m\033[36m DiamondTrap " << this->name << " with ClapTrap name => " << ClapTrap::name << "\033[0m" << std::endl;
 }

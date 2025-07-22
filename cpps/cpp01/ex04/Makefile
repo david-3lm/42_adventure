@@ -1,8 +1,8 @@
-NAME = ex04
+NAME = replacer
 SRC = main.cpp Replacer.cpp Iofile.cpp
 OBJ = $(SRC:.cpp=.o)
 HEADERS =
-CC = g++
+CC = c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
@@ -20,7 +20,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
