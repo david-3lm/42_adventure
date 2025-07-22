@@ -19,7 +19,7 @@ float area( const Point& a, const Point& b, const Point& c)
 	area = (abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2))) / 2.0f;
 	return ( area );
 }
-
+ 
 bool bsp( Point const a, Point const b, Point const c, Point const point)
 {
 	float A = area(a, b, c);
