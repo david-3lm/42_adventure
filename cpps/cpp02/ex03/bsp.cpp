@@ -16,7 +16,7 @@ float area( const Point& a, const Point& b, const Point& c)
 	
 	// To calculate the area of a triangle given three points:
 	// A = (1/2) |x1(y2 − y3) + x2(y3 − y1) + x3(y1 − y2)|
-	area = (abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2))) / 2.0f;
+	area = (std::abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2))) / 2.0f;
 	return ( area );
 }
 
