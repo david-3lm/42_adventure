@@ -20,7 +20,7 @@ Character::Character(const Character &other) {
 
 Character &Character::operator=(const Character &other) {
     if (this != &other) {
-        // TODO: operador asignación
+        this->name = other.getName();
     }
     return *this;
 }

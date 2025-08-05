@@ -1,9 +1,23 @@
 NAME = ex02
-SRC = main.cpp AAnimal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
-OBJ = $(SRC:.cpp=.o)
+
+# Archivos fuente
+SRC_DIR = src
+OBJ_DIR = obj
+
+SRC = $(SRC_DIR)/main.cpp \
+      $(SRC_DIR)/AAnimal.cpp \
+      $(SRC_DIR)/Brain.cpp \
+      $(SRC_DIR)/Cat.cpp \
+      $(SRC_DIR)/Dog.cpp \
+      $(SRC_DIR)/WrongAnimal.cpp \
+      $(SRC_DIR)/WrongCat.cpp \
+
+OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+
 HEADERS =
+
 CC = c++
-CPPFLAGS = -Wall -Werror -Wextra -std=c++98
+CPPFLAGS = -Wall -Werror -Wextra -Iinclude -std=c++98
 RM = rm -f
 
 # COLORES
@@ -14,13 +28,13 @@ YELLOW = \e[1;33m
 BLUE = \033[0;34m
 CIAN = \e[7;36m
 
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	$(CC) $(CPPFLAGS) -o $@ $(OBJ)
 
-%.o: %.cpppp
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
@@ -40,6 +54,5 @@ exec:
 
 debug: CPPFLAGS += -g3 -O0
 debug: re
-# gdb 
 
 .PHONY: all clean fclean re exec norma debug bonus

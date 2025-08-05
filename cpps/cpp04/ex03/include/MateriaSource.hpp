@@ -16,11 +16,13 @@ public:
 
 class MateriaSource : public IMateriaSource
 {
+private:
+	// AMateria[4]_materias;
 public:
-    MateriaSource();                          // Constructor por defecto
-    ~MateriaSource();                         // Destructor
-    MateriaSource(const MateriaSource &other);  // Constructor copia
-    MateriaSource &operator=(const MateriaSource &other); // Operador asignación
+    MateriaSource();
+    ~MateriaSource();
+    MateriaSource(const MateriaSource &other);
+    MateriaSource &operator=(const MateriaSource &other);
 };
 
 #endif // MateriaSource_HPP

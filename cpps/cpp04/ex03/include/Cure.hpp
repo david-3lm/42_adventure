@@ -7,10 +7,10 @@
 class Cure : public AMateria
 {
 public:
-    Cure();                             // Constructor por defecto
-    ~Cure();                            // Destructor
-    Cure(const Cure &other);            // Constructor copia
-    Cure &operator=(const Cure &other); // Operador asignación
+    Cure();
+    ~Cure();
+    Cure(const Cure &other);
+	Cure &operator=(const Cure &other);
 
     AMateria *clone() const;
     void use(ICharacter& target);
