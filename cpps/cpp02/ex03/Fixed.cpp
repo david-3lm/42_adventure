@@ -106,7 +106,7 @@ Fixed Fixed::operator/(const Fixed &other) const
 {
 	Fixed r;
 
-	r.setRawBits(this->getRawBits() / other.getRawBits());
+	r.setRawBits((this->getRawBits() / other.getRawBits()) << Fixed::_bitValue);
 	return r;
 }
 
