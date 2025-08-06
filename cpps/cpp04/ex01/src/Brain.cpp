@@ -2,16 +2,18 @@
 
 Brain::Brain()
 {
+	std::cout << "Cerebro creado" << std::endl;
 	std::string s;
 	for (int i = 0; i < 100; i++)
 	{
-		s = std::string("Soy una Idea :D");
+		s = "Soy una idea :D";
 		this->setIdea(s, i);
 	}
 }
 
 Brain::~Brain()
 {
+	std::cout << "Cerebro destruido" << std::endl;
 }
 
 Brain::Brain(const Brain &b)
