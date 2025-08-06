@@ -3,7 +3,7 @@
 
 Character::Character()
 {
-	for (size_t i = 0; i < 3; i++)
+	for (size_t i = 0; i < 4; i++)
 	{
 		inventory[i] = 0;
 	}
@@ -23,7 +23,7 @@ Character::~Character()
 
 Character::Character(std::string n) : name(n)
 {
-	for (size_t i = 0; i < 3; i++)
+	for (size_t i = 0; i < 4; i++)
 	{
 		inventory[i] = 0;
 	}

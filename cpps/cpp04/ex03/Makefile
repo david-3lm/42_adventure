@@ -17,7 +17,7 @@ OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 HEADERS =
 
 CC = c++
-CPPFLAGS = -Wall -Werror -Wextra -Iinclude -std=c++98
+CPPFLAGS = -Wall -Werror -Wextra -Iinclude -g -std=c++98
 RM = rm -f
 
 # COLORES

@@ -2,7 +2,7 @@
 
 MateriaSource::MateriaSource()
 {
-	for (size_t i = 0; i < 3; i++)
+	for (size_t i = 0; i < 4; i++)
 	{
 		materias[i] = 0;
 	}
@@ -13,7 +13,7 @@ MateriaSource::~MateriaSource()
 {    
 	for (int i = 0; i < 4; ++i) 
 	{
-        if (materias[i])
+        if (materias[i] != 0)
             delete materias[i];
     }
     std::cout << "Default destructor called." << std::endl;
@@ -36,7 +36,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 void MateriaSource::learnMateria(AMateria *mat)
 {
 
-	for (size_t i = 0; i < 3; i++)
+	for (size_t i = 0; i < 4; i++)
 	{
 		if (materias[i] == 0)
 		{
@@ -60,7 +60,7 @@ void MateriaSource::learnMateria(AMateria *mat)
 
 AMateria *MateriaSource::createMateria(std::string const &type)
 {
-	for (size_t i = 0; i < 3; i++)
+	for (size_t i = 0; i < 4; i++)
 	{
 		if (materias[i]->getType() == type)
 			return materias[i]->clone();
