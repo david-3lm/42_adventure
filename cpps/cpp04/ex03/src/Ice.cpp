@@ -2,6 +2,7 @@
 
 Ice::Ice() {
     std::cout << "Default constructor called." << std::endl;
+	this->type = "ice";
 }
 
 Ice::~Ice() {

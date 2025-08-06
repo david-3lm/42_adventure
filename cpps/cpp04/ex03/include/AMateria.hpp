@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
 #include <iostream>
 #include "Character.hpp"
 
@@ -11,7 +11,7 @@ public:
 	AMateria();
 	AMateria(std::string const & t);
 	AMateria(AMateria const &mat);
-	~AMateria();
+	virtual ~AMateria();
 
 	AMateria & operator=(AMateria const &mat);
 	std::string const & getType() const;
@@ -20,3 +20,4 @@ public:
 	virtual void use(ICharacter& target);
 };
 
+#endif

@@ -17,12 +17,15 @@ public:
 class MateriaSource : public IMateriaSource
 {
 private:
-	// AMateria[4]_materias;
+	AMateria *materias[4];
 public:
     MateriaSource();
     ~MateriaSource();
     MateriaSource(const MateriaSource &other);
     MateriaSource &operator=(const MateriaSource &other);
+
+	virtual void learnMateria(AMateria *mat);
+	virtual AMateria* createMateria(std::string const & type);
 };
 
 #endif // MateriaSource_HPP

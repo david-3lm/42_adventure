@@ -2,7 +2,7 @@
 #define ICharacter_HPP
 
 #include <iostream>
-#include "AMateria.hpp"
+class AMateria;
 
 class ICharacter
 {
@@ -17,6 +17,10 @@ public:
 };
 
 class Character : public ICharacter {
+	private:
+		// int idxTotal;
+		std::string name;
+		AMateria *inventory[4];
 	public:
 		Character();
 		Character(std::string name);
@@ -29,10 +33,6 @@ class Character : public ICharacter {
 		virtual void    equip(AMateria *m);
 		virtual void    unequip(int idx);
 		virtual void    use(int idx, ICharacter &target);
-	private:
-		int idxTotal;
-		std::string name;
-		AMateria *inventory[4];
 };
 
 #endif // ICharacter_HPP

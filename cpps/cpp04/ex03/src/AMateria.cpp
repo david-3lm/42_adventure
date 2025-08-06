@@ -21,6 +21,11 @@ AMateria::~AMateria()
     std::cout << "Materia destructor called." << std::endl;
 }
 
+std::string const & AMateria::getType() const
+{
+	return this->type;
+}
+
 AMateria &AMateria::operator=(AMateria const &mat)
 {
     if (this != &mat)
@@ -30,4 +35,5 @@ AMateria &AMateria::operator=(AMateria const &mat)
 
 void AMateria::use(ICharacter &target)
 {
+    std::cout << "~ shoots the power of abstraction to " << target.getName() << " ~" << std::endl;
 }
