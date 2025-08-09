@@ -10,8 +10,9 @@ private:
 public:
 	Cat();
 	~Cat();
+	Cat(const Cat &other);
 
-	using Animal::operator=;
+	Cat &operator=(const Cat &other);
 	using Animal::getType;
 	
 	Brain *getBrain() const;

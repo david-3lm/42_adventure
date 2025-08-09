@@ -27,8 +27,13 @@ MateriaSource::MateriaSource(const MateriaSource &other)
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 {
-    if (this != &other) {
-        // TODO: operador asignación
+    if (this != &other)
+	{
+        for (size_t i = 0; i < 4; i++)
+		{
+			this->materias[i] = other.materias[i];
+		}
+		
     }
     return *this;
 }

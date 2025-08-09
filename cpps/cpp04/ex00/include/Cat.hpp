@@ -7,8 +7,9 @@ class Cat : public Animal
 public:
 	Cat();
 	~Cat();
+	Cat(const Cat &other);
 
-	using Animal::operator=;
+	Cat &operator=(const Cat &other);
 	using Animal::getType;
 	void makeSound() const;
 };

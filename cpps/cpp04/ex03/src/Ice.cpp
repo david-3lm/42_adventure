@@ -1,20 +1,24 @@
 #include "Ice.hpp"
 
-Ice::Ice() {
+Ice::Ice() 
+{
     std::cout << "Default constructor called." << std::endl;
 	this->type = "ice";
 }
 
-Ice::~Ice() {
+Ice::~Ice() 
+{
     std::cout << "Default destructor called." << std::endl;
 }
 
-Ice::Ice(const Ice &other) {
+Ice::Ice(const Ice &other) : AMateria(other)
+{
 	std::cout << "Copy constructor called!" << std::endl;
     *this = other;
 }
 
-Ice &Ice::operator=(const Ice &other) {
+Ice &Ice::operator=(const Ice &other) 
+{
     if (this != &other) {
         this->type = other.type;
     }

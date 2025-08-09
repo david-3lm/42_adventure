@@ -9,8 +9,9 @@ private:
 public:
 	Dog();
 	~Dog();
+	Dog(const Dog &d);
 
-	using AAnimal::operator=;
+	Dog& operator=(const Dog &d);
 	using AAnimal::getType;
 
 	Brain *getBrain() const;

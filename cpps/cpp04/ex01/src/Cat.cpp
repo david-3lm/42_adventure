@@ -13,6 +13,22 @@ Cat::~Cat()
 	delete brain;
 }
 
+Cat::Cat(const Cat &other) : Animal(other)
+{
+	std::cout << "Copy Cat Constructor" << std::endl;
+	*this = other;
+}
+
+Cat& Cat::operator=(const Cat & other)
+{
+	if (this != &other)
+	{
+		this->type = other.getType();
+	}
+	return *this;
+}
+
+
 void Cat::makeSound() const
 {
 	std::cout << "marramiau :3" << std::endl;

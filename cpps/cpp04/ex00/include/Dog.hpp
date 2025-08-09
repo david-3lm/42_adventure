@@ -6,8 +6,9 @@ class Dog : public Animal
 public:
 	Dog();
 	~Dog();
+	Dog(const Dog &d);
 
-	using Animal::operator=;
+	Dog& operator=(const Dog &d);
 	using Animal::getType;
 	void makeSound() const;
 };

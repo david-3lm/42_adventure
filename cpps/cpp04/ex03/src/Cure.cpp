@@ -11,7 +11,7 @@ Cure::~Cure()
     std::cout << "Default destructor called." << std::endl;
 }
 
-Cure::Cure(const Cure &other)
+Cure::Cure(const Cure &other) : AMateria(other)
 {
 	std::cout << "Copy constructor called!" << std::endl;
     *this = other;
