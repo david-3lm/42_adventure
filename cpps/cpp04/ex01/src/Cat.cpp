@@ -13,10 +13,11 @@ Cat::~Cat()
 	delete brain;
 }
 
-Cat::Cat(const Cat &other) : Animal(other)
+Cat::Cat(const Cat &other)
 {
 	std::cout << "Copy Cat Constructor" << std::endl;
 	*this = other;
+	brain = new Brain();
 }
 
 Cat& Cat::operator=(const Cat & other)

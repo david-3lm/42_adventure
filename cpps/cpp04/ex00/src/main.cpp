@@ -28,10 +28,14 @@ int main()
 	const Animal* j = new Dog();
 	setColor(MAGENTA);
 	const WrongAnimal* w = new WrongCat();
+
+	Cat original;
+	Cat copied = original;
 	setColor(RED);
 	std::cout << i->getType() << " " << std::endl;
 	setColor(BLUE);
 	std::cout << j->getType() << " " << std::endl;
+	std::cout << copied.getType() << " " << std::endl;
 
 	setColor(RED);
 	i->makeSound();

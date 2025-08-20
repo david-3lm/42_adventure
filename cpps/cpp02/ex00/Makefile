@@ -43,3 +43,6 @@ debug: re
 # gdb 
 
 .PHONY: all clean fclean re exec norma debug bonus
+
+val:
+	valgrind ./$(NAME)

@@ -13,10 +13,12 @@ Dog::~Dog()
 	delete brain;
 }
 
-Dog::Dog(const Dog &d) : Animal(d)
+Dog::Dog(const Dog &d)
 {
 	std::cout << "Copy Dog Constructor" << std::endl;
 	*this = d;
+	brain = new Brain();
+
 }
 
 Dog& Dog::operator=(const Dog & d)
