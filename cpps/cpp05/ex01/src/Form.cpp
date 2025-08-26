@@ -38,3 +38,27 @@ int Form::getGradeToExecute() const
 {
     return _gradeToExecute;
 }
+
+void Form::beSigned(const Bureaucrat &b)
+{
+    try
+    {
+        if (b.getGrade() > _gradeToSign)
+            throw Form::GradeTooLowException();
+        _isSigned = true;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+}
+
+const char *Form::GradeTooHighException::what() const throw()
+{
+    return "DEMASIADO ALTOOO";
+}
+
+const char *Form::GradeTooLowException::what() const throw()
+{
+    return "DEMASIADO BAJOOOOOOOOO";
+}

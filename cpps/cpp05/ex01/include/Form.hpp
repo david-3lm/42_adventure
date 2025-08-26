@@ -1,6 +1,7 @@
 #ifndef Form_HPP
 #define Form_HPP
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 //TODO beSigned y error handling
 class Form 
@@ -24,6 +25,20 @@ public:
     bool getSign() const;
     int getGradeToSign()const;
     int getGradeToExecute()const;
+
+    void beSigned(const Bureaucrat& b);
+
+    class GradeTooLowException : public std::exception
+    {
+    public:
+        const char *what() const throw();
+    };
+    
+    class GradeTooHighException : public std::exception
+    {
+    public:
+        const char *what() const throw();
+    };
 
 
 };

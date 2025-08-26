@@ -24,19 +24,13 @@ public:
 
     class GradeTooHighException : public std::exception {
     public:
-        const char* what() const throw() {
-            return "⚠️⚠️ TE PASASTE DE ALTOOOOO ⚠️⚠️";
-        }
+        const char* what() const throw();
     };
 
     class GradeTooLowException : public std::exception {
     public:
-        const char* what() const throw() {
-            return "⚠️⚠️ TE PASASTE DE BAJOOOOO ⚠️⚠️";
-        }
+        const char* what() const throw();
     };
-
-    
 };
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
 
