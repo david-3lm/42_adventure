@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 
+//TODO hacer un main relevante
 int main()
 {
     Bureaucrat b(1);
