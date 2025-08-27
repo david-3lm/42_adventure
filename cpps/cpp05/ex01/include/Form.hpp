@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 
-//TODO beSigned y error handling
+class Bureaucrat;
 class Form 
 {
 private:
@@ -42,5 +42,7 @@ public:
 
 
 };
+std::ostream& operator<<(std::ostream& os, const Form& b);
+
 
 #endif // Form_HPP

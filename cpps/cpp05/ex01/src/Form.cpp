@@ -18,11 +18,14 @@ Form &Form::operator=(const Form &other)
     return *this;
 }
 
-
-
 Form::Form(const std::string& name, const int& sign, const int& execute) : _name(name), _isSigned(false), _gradeToSign(sign), _gradeToExecute(execute) {}
 
 Form::Form(const int& toSign, const int& toExecute) : _gradeToSign(toSign), _gradeToExecute(toExecute) {}
+
+std::string Form::getName() const
+{
+	return _name;
+}
 
 bool Form::getSign() const
 {
@@ -49,16 +52,23 @@ void Form::beSigned(const Bureaucrat &b)
     }
     catch(const std::exception& e)
     {
+		_isSigned = false;
         std::cerr << e.what() << '\n';
     }
 }
 
 const char *Form::GradeTooHighException::what() const throw()
 {
-    return "DEMASIADO ALTOOO";
+    return "⚠️ ⚠️ DEMASIADO ALTOOO ⚠️ ⚠️";
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-    return "DEMASIADO BAJOOOOOOOOO";
+    return "⚠️ ⚠️ DEMASIADO BAJOOOOOOOOO PARA FIRMAR EL FORM ⚠️ ⚠️";
+}
+
+std::ostream &operator<<(std::ostream &os, const Form &t)
+{
+    os << "Form: <" << t.getName() << "> \n\t - Grade to needed sign: " << t.getGradeToSign() << "\n\t - Grade to needed execute:" << t.getGradeToExecute();
+    return os;
 }

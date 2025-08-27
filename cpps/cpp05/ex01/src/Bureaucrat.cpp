@@ -104,14 +104,30 @@ void Bureaucrat::decrementGrade()
     }
 }
 
+void Bureaucrat::signForm(Form &f) const
+{
+	try
+	{
+		f.beSigned(*this);
+		if (!f.getSign())
+			throw Form::GradeTooLowException();
+		std::cout << _name << " signed " << f.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << _name << " couldn't sign " << f.getName() << " because " << e.what() << '\n';
+	}
+	
+}
+
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return "⚠️⚠️ TE PASASTE DE ALTOOOOO ⚠️⚠️";
+    return "⚠️ ⚠️ TE PASASTE DE ALTOOOOO BUROCRATA ⚠️ ⚠️";
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return "⚠️⚠️ TE PASASTE DE BAJOOOO ⚠️⚠️";
+    return "⚠️ ⚠️ TE PASASTE DE BAJOOOO BUROCRATA ⚠️ ⚠️";
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &b)

@@ -34,12 +34,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 clean:
 	$(RM) $(OBJ)
-	@clear
 	@echo "$(BLUE)Limpio$(COLOREND)"
 
 fclean: clean
 	$(RM) $(NAME)
-	@clear
 	@echo "$(BLUE)Limpio$(COLOREND)"
 
 re: fclean all
@@ -49,5 +47,8 @@ exec:
 
 debug: CPPFLAGS += -g3 -O0
 debug: re
+
+val:debug
+	valgrind ./$(NAME)
 
 .PHONY: all clean fclean re exec norma debug bonus
