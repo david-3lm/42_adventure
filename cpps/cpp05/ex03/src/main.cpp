@@ -21,6 +21,7 @@ void tryForm(AForm &f, Bureaucrat &b)
 //TODO Gestion de errores si nulo
 int main()
 {
+	AForm *f;
     try
     {
 
@@ -30,7 +31,7 @@ int main()
         
         Intern i;
         
-        AForm *f = i.makeForm("PresidentialPardon", "paco");
+        f = i.makeForm("PresidentialPardon", "paco");
         
         std::cout << GREEN << std::endl;
         std::cout << b2 << std::endl;
@@ -49,11 +50,13 @@ int main()
         b.executeForm(*f);
         b2.signForm(*f);
         b2.executeForm(*f);
+
+		delete f;
     }
     catch (std::exception &e)
     {
         std::cerr << e.what() << std::endl;
     }
-        
+
     return 0;
 }

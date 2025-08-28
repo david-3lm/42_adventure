@@ -2,7 +2,10 @@
 
 AForm::AForm() : _name("DEFAULT_AFORM_SIGN_PLS") ,_gradeToSign(20), _gradeToExecute(70) {}
 
-AForm::~AForm() {}
+AForm::~AForm() 
+{
+	
+}
 
 AForm::AForm(const AForm &other) : _name("DEFAULT_AFORM_SIGN_PLS") ,_gradeToSign(other.getGradeToSign()), _gradeToExecute(getGradeToExecute())
 {

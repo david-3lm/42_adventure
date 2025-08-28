@@ -23,7 +23,7 @@ protected:
 	std::string _target;
 public:
     AForm();
-    ~AForm();
+    virtual ~AForm();
     AForm(const AForm &other);
     AForm &operator=(const AForm &other);
 
