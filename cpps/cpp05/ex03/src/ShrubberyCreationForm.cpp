@@ -12,7 +12,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubb
 	_target = target;
 } 
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) 
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other)
 {
     *this = other;
 }

@@ -47,27 +47,19 @@ AForm *Intern::makeForm(const std::string &name, const std::string &target)
 			break;
 		i++;
 	}
-	try
+
+	switch (i)
 	{
-		switch (i)
-		{
-		case 0:
-			return (createPresi(target));
-			break;
-		case 1:
-			return (createRobot(target));
-		case 2:
-			return (createShrub(target));
-		default:
-			throw FormNotFound();
-			break;
-		}
+	case 0:
+		return (createPresi(target));
+		break;
+	case 1:
+		return (createRobot(target));
+	case 2:
+		return (createShrub(target));
+	default:
+		throw FormNotFound();
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	return 0;
 }
 
 const char *Intern::FormNotFound::what() const throw() {

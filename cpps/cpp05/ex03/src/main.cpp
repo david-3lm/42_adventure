@@ -21,31 +21,39 @@ void tryForm(AForm &f, Bureaucrat &b)
 //TODO Gestion de errores si nulo
 int main()
 {
-    Bureaucrat b(1);
+    try
+    {
 
-    Bureaucrat b2("Paco", 213);
-
-	Intern i;
-
-	AForm *f = i.makeForm("PresidentialPardon", "paco");
-
-	std::cout << GREEN << std::endl;
-    std::cout << b2 << std::endl;
-	std::cout << MAGENTA << std::endl;
-    std::cout << b << std::endl;
-    std::cout << CYAN << std::endl;
-    // std::cout << f << std::endl;
-    std::cout << WHITE << std::endl;
-
-    b.decrementGrade();
-    std::cout << BLUE <<"DECREMENTADO: \n\t"<< b << std::endl;
-
-    b2.incrementGrade();
-	b.executeForm(*f);
-	b.signForm(*f);
-    b.executeForm(*f);
-	b2.signForm(*f);
-	b2.executeForm(*f);
-
+        Bureaucrat b(1);
+        
+        Bureaucrat b2("Paco", 213);
+        
+        Intern i;
+        
+        AForm *f = i.makeForm("PresidentialPardon", "paco");
+        
+        std::cout << GREEN << std::endl;
+        std::cout << b2 << std::endl;
+        std::cout << MAGENTA << std::endl;
+        std::cout << b << std::endl;
+        std::cout << CYAN << std::endl;
+        std::cout << f << std::endl;
+        std::cout << WHITE << std::endl;
+        
+        b.decrementGrade();
+        std::cout << BLUE <<"DECREMENTADO: \n\t"<< b << std::endl;
+        
+        b2.incrementGrade();
+        b.executeForm(*f);
+        b.signForm(*f);
+        b.executeForm(*f);
+        b2.signForm(*f);
+        b2.executeForm(*f);
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+        
     return 0;
 }
