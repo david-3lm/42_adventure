@@ -6,6 +6,8 @@ int main()
 
     Bureaucrat b2;
 
+    Bureaucrat *b3 = new Bureaucrat(45);
+
     std::cout << b2 << std::endl;
     b2 = b;
     std::cout << b2 << std::endl;
@@ -15,5 +17,7 @@ int main()
 
     b2.incrementGrade();
     std::cout << b2 << std::endl;
+    std::cout << *b3 << std::endl;
+    delete b3;
     return 0;
 }
