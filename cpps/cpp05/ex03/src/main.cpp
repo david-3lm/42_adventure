@@ -18,7 +18,7 @@ void tryForm(AForm &f, Bureaucrat &b)
 	std::cout << WHITE<<" Vamos a probar este form: " << f.getName() << " con esta persona: " << b << WHITE << std::endl;
 	b.signForm(f);
 }
-//TODO Gestion de errores si nulo
+
 int main()
 {
 	AForm *f;

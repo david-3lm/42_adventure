@@ -24,7 +24,9 @@ int main()
 
     Bureaucrat b2("Paco", 213);
 
-	ShrubberyCreationForm f("JUAN");
+	PresidentialPardonForm f("JUAN");
+	RobotomyRequestForm f2("JUAN");
+	ShrubberyCreationForm f3("JUAN");
 	std::cout << GREEN << std::endl;
     std::cout << b2 << std::endl;
 	std::cout << MAGENTA << std::endl;
@@ -42,6 +44,18 @@ int main()
     b.executeForm(f);
 	b2.signForm(f);
 	b2.executeForm(f);
+
+	b.executeForm(f2);
+	b.signForm(f2);
+    b.executeForm(f2);
+	b2.signForm(f2);
+	b2.executeForm(f2);
+
+	b.executeForm(f3);
+	b.signForm(f3);
+    b.executeForm(f3);
+	b2.signForm(f3);
+	b2.executeForm(f3);
 
     return 0;
 }
