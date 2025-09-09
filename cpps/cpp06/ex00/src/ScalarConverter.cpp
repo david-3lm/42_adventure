@@ -16,9 +16,9 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
     return *this;
 }
 
-void convert(const std::string &str)
+void ScalarConverter::convert(std::string &str)
 {
-    if (str.length() == 3 && str[0] == "\'" && str[2] == "\'")
+    if (str.length() == 3 && str[0] == '\'' && str[2] == '\'')
     {
         char c = str[1];
         std::cout << "char: " << c << std::endl;
@@ -48,6 +48,13 @@ void convert(const std::string &str)
 
     char *ptr = 0;
     long l = std::strtol(str.c_str(), &ptr, 10);
+	long f = 0;
+	std::cout << "DEBUG "<< *ptr<< std::endl;
+	if (*ptr == '.')
+	{
+		f = std::strtol(ptr + 1, &ptr, 10);
+		*ptr = 0;
+	}
     if (*ptr == '\0')
     {
         if (l < CHAR_MIN || l > CHAR_MAX)
@@ -61,8 +68,8 @@ void convert(const std::string &str)
             std::cout << "int: impossible" << std::endl;
         else
             std::cout << "int: " << static_cast<int>(l) << std::endl;
-        std::cout << "float: " << static_cast<float>(l)  << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(l) << std::endl;
+        std::cout << "float: " << static_cast<float>(l) << "." << f << "f" << std::endl;
+        std::cout << "double: " << static_cast<double>(l) << "." << f << std::endl;
         return ;
     }
 

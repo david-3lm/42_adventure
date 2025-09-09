@@ -15,7 +15,7 @@ public:
     ScalarConverter(const ScalarConverter &other);
     ScalarConverter &operator=(const ScalarConverter &other);
 
-    static void convert(const std::string &str);
+    static void convert(std::string &str);
 };
 
 #endif // ScalarConverter_HPP
