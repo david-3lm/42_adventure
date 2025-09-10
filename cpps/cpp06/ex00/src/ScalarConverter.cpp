@@ -46,10 +46,10 @@ void ScalarConverter::convert(std::string &str)
         return;
     }
 
+    std::cout << std::fixed << std::setprecision(0);
     char *ptr = 0;
     long l = std::strtol(str.c_str(), &ptr, 10);
 	long f = 0;
-	std::cout << "DEBUG "<< *ptr<< std::endl;
 	if (*ptr == '.')
 	{
 		f = std::strtol(ptr + 1, &ptr, 10);
