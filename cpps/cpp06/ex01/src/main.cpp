@@ -4,7 +4,6 @@
 #include "Serializer.hpp"
 #include "../include/Serializer.hpp"
 
-
 int main()
 {
     Data data;
