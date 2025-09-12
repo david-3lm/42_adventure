@@ -68,7 +68,7 @@ void ScalarConverter::convert(std::string &str)
             std::cout << "int: impossible" << std::endl;
         else
             std::cout << "int: " << static_cast<int>(l) << std::endl;
-        std::cout << "float: " << static_cast<float>(l) << "." << f << "f" << std::endl;
+        std::cout << "float: " << static_cast<double>(l) << "." << f << "f" << std::endl;
         std::cout << "double: " << static_cast<double>(l) << "." << f << std::endl;
         return ;
     }
