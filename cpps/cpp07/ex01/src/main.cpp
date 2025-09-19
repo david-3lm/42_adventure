@@ -5,19 +5,27 @@ void print(int const &a)
 	std::cout << a << std::endl;
 }
 
-void add(int const &a)
+void printChar(char const &c)
 {
-	a = a+1;
+	std::cout << c << std::endl;
+}
+
+void doubleVal(int &a)
+{
+	a = a*2;
 }
 
 int main()
 {
 	int arr[] = {1, 2, 3, 4, 5, 6, 7};
+	std::string name = "FRANCISCO";
 
+
+	iter(name.c_str(), name.size(), printChar);
+	std::cout << "_______________________" << std::endl;
 	iter(arr, 7, print);
-
-
-	iter(arr, 7, add);
+	std::cout << "_______________________" << std::endl;
+	iter(arr, 7, doubleVal);
 
 	iter(arr, 7, print);
 
