@@ -28,8 +28,7 @@ void Span::addNumber(int nbr)
 {
 	if (this->_size >= this->_maxSize)
 	{
-		//TODO: exception
-
+		throw SizeOverflowException();
 	}
 	this->_array.push_back(nbr);
 	this->_size++;
@@ -39,7 +38,7 @@ void Span::addMultiple(unsigned int count)
 {
 	if (this->_size + count > this->_maxSize)
 	{
-		//TODO: exception
+		throw SizeOverflowException();
 	}
 
 	int n;
@@ -53,8 +52,10 @@ void Span::addMultiple(unsigned int count)
 
 int Span::longestSpan()
 {
-	//TODO: exceptions
-
+	if (_size <= 1)
+	{
+		throw EmptyOrOneElementException();
+	}
 	int max = *std::max_element(this->_array.begin(), this->_array.end());
 	int min = *std::min_element(this->_array.begin(), this->_array.end());
 	return max - min;
@@ -62,7 +63,10 @@ int Span::longestSpan()
 
 int Span::shortestSpan()
 {
-	//TODO: exceptions
+	if (_size <= 1)
+	{
+		throw EmptyOrOneElementException();
+	}
 
 	std::sort(this->_array.begin(), this->_array.end());
 

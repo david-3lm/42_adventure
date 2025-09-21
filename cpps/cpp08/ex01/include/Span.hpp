@@ -27,6 +27,23 @@ public:
 	void addMultiple(unsigned int count);
 	int longestSpan();
 	int shortestSpan();
+
+	class SizeOverflowException : public std::exception
+	{
+		public:
+			const char* what() const throw()
+			{
+				return "Max size overflow";
+			}
+	};
+	class EmptyOrOneElementException : public std::exception
+	{
+	public:
+		const char* what() const throw()
+		{
+			return "You need more than 1 Element in the array!!";
+		}
+	};
 };
 
 #endif // Span_HPP
