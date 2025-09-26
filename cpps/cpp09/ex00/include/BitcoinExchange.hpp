@@ -5,14 +5,18 @@
 #include <iostream>
 #include <fstream>
 #include <exception>
-// #include <boost/regex.hpp>
+#include <boost/regex.hpp>
+#include <boost/algorithm/string.hpp>
 
 class BitcoinExchange 
 {
 private:
-	std::map<std::string, int> _map;
+	std::map<std::string, double> _map;
 	void parseInput(std::ifstream &file);
+	void createMap(std::ifstream &db);
+	bool checkMap(std::string date, std::string value);
 	bool checkValues(std::string date, std::string value);
+	void calculateValue(std::string date, double q);
 
 public:
     BitcoinExchange();

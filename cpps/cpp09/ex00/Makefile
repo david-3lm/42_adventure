@@ -12,7 +12,7 @@ OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 HEADERS =
 
 CC = c++
-CPPFLAGS = -Wall -Werror -Wextra -Iinclude -std=c++98
+CPPFLAGS = -Wall -Werror -Wextra -Iinclude -std=c++98 
 RM = rm -f
 
 # COLORES
@@ -26,7 +26,7 @@ CIAN = \e[7;36m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CPPFLAGS) -o $@ $(OBJ)
+	$(CC) $(CPPFLAGS) -o $@ $(OBJ) -Linclude -lboost_regex
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
