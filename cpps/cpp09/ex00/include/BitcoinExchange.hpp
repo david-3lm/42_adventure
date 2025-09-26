@@ -32,7 +32,7 @@ public:
 			{
 				return "Error: Need a file to create BitcoinExchange";
 			}
-		};
+	};
 		
 	class ErrorOpeningFileException : public std::exception
 	{
