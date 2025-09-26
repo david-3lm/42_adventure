@@ -48,7 +48,25 @@ public:
 		public:
 		const char *what() const throw() 
 		{
-			return "Error: Bad or corrupted Data";
+			return "Error: Bad Input :(";
+		}
+	};
+
+	class BadDateException : public std::exception
+	{
+		public:
+		const char *what() const throw() 
+		{
+			return "Error: Bad or corrupted Date";
+		}
+	};
+
+	class BadValueException : public std::exception
+	{
+		public:
+		const char *what() const throw() 
+		{
+			return "Error: Bad Value, {integer between 0-1000}";
 		}
 	};
 };

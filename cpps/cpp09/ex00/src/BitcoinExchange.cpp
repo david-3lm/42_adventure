@@ -48,7 +48,7 @@ void BitcoinExchange::calculateValue(std::string date, double q)
 
 	result = q * _map[date];
 
-	std::cout << date << " => " << q << " = " << result << " $" << std::endl;
+	std::cout << date << " => " << q << " = " << result << std::endl;
 }
 
 //TODO: arreglar si solo se mete un valor date | 
@@ -61,20 +61,27 @@ void BitcoinExchange::parseInput(std::ifstream &file)
 
 	while (getline(file, date, '|'))
 	{
-		getline(file, value);
-		boost::trim_right(date);
-		boost::trim_left(value);
-		if (first_line)
+		try
 		{
-			first_line = false;
-			continue;
+			getline(file, value);
+			boost::trim_right(date);
+			boost::trim_left(value);
+			if (first_line)
+			{
+				first_line = false;
+				continue;
+			}
+			if (!checkValues(date, value))
+				throw BitcoinExchange::BadInputException();
+			calculateValue(date, std::atof(value.c_str()));
+			date = "";
+			value = "";
 		}
-		if (!checkValues(date, value))
-			throw BitcoinExchange::BadInputException();
-		std::cout << date << " => " << _map[date] << std::endl;
-		calculateValue(date, std::atof(value.c_str()));
-		date = "";
-		value = "";
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+			continue ;
+		}
 	}
 	
 }
@@ -87,19 +94,24 @@ void BitcoinExchange::createMap(std::ifstream &db)
 
 	while (getline(db, date, ','))
 	{
-		getline(db, value);
-		if (first_line)
-		{
-			first_line = false;
-			continue;
+		try
+		{		
+			getline(db, value);
+			if (first_line)
+			{
+				first_line = false;
+				continue;
+			}
+			if (!checkMap(date, value))
+				throw BadInputException();
+			_map[date] = std::atof(value.c_str());
 		}
-		if (!checkMap(date, value))
-			throw BitcoinExchange::BadInputException();
-		std::cout << date <<"\t"<<value << std::endl;
-		_map[date] = std::atof(value.c_str());
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << " inside the map... adding the rest of the database"<< '\n';
+			continue; 
+		}
 	}
-	std::cout << "MAPA CREADO" << std::endl;
-	std::cout << "UNA PRUEBA \t"<< _map["2022-03-29"] << std::endl;
 }
 
 bool BitcoinExchange::checkMap(std::string date, std::string value)
@@ -107,16 +119,13 @@ bool BitcoinExchange::checkMap(std::string date, std::string value)
 	const boost::regex expr("[0-9]{4}-[0-9]{2}-[0-9]{2}");
 	if (!boost::regex_match(date.c_str(), expr))
 	{
-		std::cout << "NO TA BUENO ESTA DB" << std::endl;
 		return false;
 	}
 
 	if (std::atof(value.c_str()) < 0)
 	{
-		std::cout << "NO TA BUENO2" << std::endl;
 		return false;
 	}
-	std::cout << "TA BUENO"<< std::endl;
 	return true;
 }
 
@@ -129,15 +138,12 @@ bool BitcoinExchange::checkValues(std::string date, std::string value)
 	const boost::regex expr("[0-9]{4}-[0-9]{2}-[0-9]{2}");
 	if (!boost::regex_match(date.c_str(), expr))
 	{
-		std::cout << "NO TA BUENO" << std::endl;
-		return false;
+		throw BitcoinExchange::BadDateException();
 	}
 
 	if (std::atof(value.c_str()) < 0 || std::atof(value.c_str()) > 1000)
 	{
-		std::cout << "NO TA BUENO2" << std::endl;
-		return false;
+		throw BitcoinExchange::BadValueException();
 	}
-	std::cout << "TA BUENO"<< std::endl;
 	return true;
 }

@@ -1,5 +1,6 @@
 #include "../include/BitcoinExchange.hpp"
 #include <iostream>
+#include <iomanip>
 
 #define BLACK   "\033[1m\033[30m"
 #define RED     "\033[1m\033[31m"
@@ -18,13 +19,8 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	try
-	{
-		BitcoinExchange be(argv[1]);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	std::cout << std::fixed << std::setprecision(0);
 	
+	BitcoinExchange be(argv[1]);
+
 }
