@@ -13,7 +13,7 @@ int	main()
 	lst.push_back(15);
 
 	try {
-		ret = easyfind(lst, 33);
+		ret = easyfind(lst, 32);
 		std::cout << "Value found : " << ret << "." << std::endl;
 	}
 	catch(const std::exception& e) {

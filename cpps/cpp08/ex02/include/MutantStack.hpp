@@ -30,6 +30,7 @@ MutantStack<T>::~MutantStack() {}
 template<class T>
 MutantStack<T> & MutantStack<T>::operator=(MutantStack const &other)
 {
+	this = other;
     return *this;
 }
 

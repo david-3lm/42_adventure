@@ -1,13 +1,18 @@
 #include <iostream>
+#include <list>
 #include "MutantStack.hpp"
 
 int main()
 {
     MutantStack<int> mstack;
+	std::list<int> mstack_list;
 
 
     mstack.push(5);
     mstack.push(15);
+	mstack_list.push_back(5);
+	mstack_list.push_back(15);
+
 
     std::cout << mstack.top() << std::endl;
 

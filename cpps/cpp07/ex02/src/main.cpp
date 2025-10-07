@@ -40,7 +40,7 @@ int main(int, char**)
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
-		//testTwoArray(tmp, test);
+		testTwoArray(tmp, test);
     }
 
     for (int i = 0; i < MAX_VAL; i++)
@@ -53,7 +53,7 @@ int main(int, char**)
     }
     try
     {
-        numbers[-2] = 0;
+        numbers[2] = 0;
     }
     catch(const std::exception& e)
     {
@@ -61,7 +61,7 @@ int main(int, char**)
     }
     try
     {
-        numbers[MAX_VAL] = 0;
+        numbers[MAX_VAL - 1] = 0;
     }
     catch(const std::exception& e)
     {
