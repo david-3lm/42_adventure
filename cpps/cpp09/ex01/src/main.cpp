@@ -24,6 +24,8 @@ bool check_input(std::string input)
 {
 	int i = 0;
 	bool last_was_digit = false;
+	int count_num = 0;
+	int count_tok = 0;
 	while (input[i])
 	{
 		if (!char_not_valid(input[i]))
@@ -33,12 +35,26 @@ bool check_input(std::string input)
 
 		if (last_was_digit && isdigit(input[i]))
 			return false;
-		last_was_digit = isdigit(input[i]);
+		
+		if (isdigit(input[i]))
+		{
+			last_was_digit = true;
+			count_num++;
+		}
+		else if (!isspace(input[i]))
+		{
+			last_was_digit = false;
+			count_tok++;
+		}
+		else
+			last_was_digit = false;
 		i++;
 	}
+	if (count_num != count_tok + 1)
+		return false;
 	return true;
 }
-
+//TODO: ARREGLAR POSIBLES ERRORES
 int main(int argc, char const *argv[])
 {
 	if (argc != 2)

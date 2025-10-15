@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX_VAL 750
+#define MAX_VAL 7
 
 #define BLACK   "\033[1m\033[30m"
 #define RED     "\033[1m\033[31m"
