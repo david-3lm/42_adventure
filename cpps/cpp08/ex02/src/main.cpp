@@ -35,5 +35,13 @@ int main()
         std::cout << *it << std::endl;
         ++it;
     }
+
+    MutantStack<int>::riter rit = mstack.rbegin();
+    MutantStack<int>::riter rite = mstack.rend();
+    while (rit != rite)
+    {
+        std::cout << *rit << std::endl;
+        ++rit;
+    }
     std::stack<int> s(mstack);
 }

@@ -16,34 +16,12 @@ class MutantStack : public std::stack<T>
         typedef typename std::stack<T>::container_type::iterator iterator;
         iterator begin();
         iterator end();
+
+        typedef typename std::stack<T>::container_type::reverse_iterator riter;
+        riter rbegin();
+        riter rend();
 };
 
-template<class T>
-MutantStack<T>::MutantStack() {}
-
-template<class T>
-MutantStack<T>::MutantStack(MutantStack const &other) : std::stack<T>(other) {}
-
-template<class T>
-MutantStack<T>::~MutantStack() {}
-
-template<class T>
-MutantStack<T> & MutantStack<T>::operator=(MutantStack const &other)
-{
-	this = other;
-    return *this;
-}
-
-template<class T>
-typename MutantStack<T>::iterator MutantStack<T>::begin()
-{
-    return std::stack<T>::c.begin();
-}
-
-template<class T>
-typename MutantStack<T>::iterator MutantStack<T>::end()
-{
-    return std::stack<T>::c.end();
-}
+#include "../src/MutantStack.tpp"
 
 #endif
