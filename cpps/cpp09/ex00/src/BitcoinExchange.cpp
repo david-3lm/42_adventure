@@ -19,7 +19,7 @@ BitcoinExchange::BitcoinExchange(const std::string file)
 		db.close();
 		return ;
 	}
-	createMap(db);
+	if (!createMap(db)) return;
 	fs.open(file.c_str());
 	if (fs.fail())
 	{
@@ -32,12 +32,17 @@ BitcoinExchange::BitcoinExchange(const std::string file)
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) 
 {
-    (void)other;
+    if (this != &other)
+	{
+		*this = other;
+    }
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) 
 {
-    if (this != &other) {
+    if (this != &other)
+	{
+		this->_map = other._map;
     }
     return *this;
 }
@@ -51,78 +56,91 @@ void BitcoinExchange::calculateValue(std::string date, double q)
 	std::cout << date << " => " << q << " = " << result << std::endl;
 }
 
-//TODO: arreglar si solo se mete un valor date | 
 
 void BitcoinExchange::parseInput(std::ifstream &file)
 {
 	std::string date;
 	std::string value;
-	bool first_line = true;
+	std::string line;
 
-	while (getline(file, date, '|'))
+	getline(file, line);
+	if (line != "date | value")
+		throw BitcoinExchange::ErrorOpeningFileException();
+
+	while (getline(file, line))
 	{
 		try
 		{
-			getline(file, value);
+			std::istringstream ss(line);
+			getline(ss, date, '|');
+			getline(ss, value, '|');
+
 			boost::trim_right(date);
 			boost::trim_left(value);
-			if (first_line)
-			{
-				first_line = false;
-				continue;
-			}
-			if (!checkValues(date, value))
-				throw BitcoinExchange::BadInputException();
-			calculateValue(date, std::atof(value.c_str()));
-			date = "";
-			value = "";
+
+			double dValue;
+			std::istringstream valueStream(value);
+			if (!(valueStream >> dValue))
+				throw BitcoinExchange::BadValueException();
+			checkValues(date,dValue);
+			calculateValue(date, dValue);
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
-			continue ;
+			continue;
 		}
 	}
 	
 }
 
-void BitcoinExchange::createMap(std::ifstream &db)
+bool BitcoinExchange::createMap(std::ifstream &file)
 {
 	std::string date;
 	std::string value;
-	bool first_line = true;
+	std::string line;
 
-	while (getline(db, date, ','))
-	{
-		try
-		{		
-			getline(db, value);
-			if (first_line)
-			{
-				first_line = false;
-				continue;
-			}
-			if (!checkMap(date, value))
-				throw BadInputException();
-			_map[date] = std::atof(value.c_str());
-		}
-		catch(const std::exception& e)
+	getline(file, line);
+	try
+	{	
+		if (line != "date,exchange_rate")
+			throw BitcoinExchange::ErrorOpeningFileException();
+
+		while (getline(file, line))
 		{
-			std::cerr << e.what() << " inside the map... adding the rest of the database"<< '\n';
-			continue; 
+				std::istringstream ss(line);
+				getline(ss, date, ',');
+				getline(ss, value, ',');
+
+				boost::trim_right(date);
+				boost::trim_left(value);
+
+				double dValue;
+				std::istringstream valueStream(value);
+				if (!(valueStream >> dValue))
+					throw BitcoinExchange::BadValueException();
+
+				checkMap(date, dValue);
+				_map[date] = dValue;
 		}
+		return true;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		return false;
+
 	}
 }
 
-bool BitcoinExchange::checkMap(std::string date, std::string value)
+bool BitcoinExchange::checkMap(std::string date, double value)
 {
-	const boost::regex expr("[0-9]{4}-[0-9]{2}-[0-9]{2}");
-	if (!boost::regex_match(date.c_str(), expr))
+	if (!validateDate(date))
 	{
 		return false;
 	}
 
-	if (std::atof(value.c_str()) < 0)
+	if (value < 0)
 	{
 		return false;
 	}
@@ -130,20 +148,44 @@ bool BitcoinExchange::checkMap(std::string date, std::string value)
 }
 
 
-bool BitcoinExchange::checkValues(std::string date, std::string value)
+bool BitcoinExchange::checkValues(std::string date, double value)
 {
-	if (date == "" || value == "")
+	if (date == "")
 		return false;
 
-	const boost::regex expr("[0-9]{4}-[0-9]{2}-[0-9]{2}");
-	if (!boost::regex_match(date.c_str(), expr))
+	if (!validateDate(date))
 	{
 		throw BitcoinExchange::BadDateException();
 	}
 
-	if (std::atof(value.c_str()) < 0 || std::atof(value.c_str()) > 1000)
+	if (value < 0 || value > 1000)
 	{
 		throw BitcoinExchange::BadValueException();
 	}
 	return true;
+}
+
+bool BitcoinExchange::validateDate(std::string const &date)
+{
+	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
+		return (false);
+	for (int i = 0; i < 10; i++)
+	{
+		if (i == 4 || i == 7)
+			continue;
+		if (isdigit(date[i]) == 0)
+			return (false);
+	}
+
+	if (date[5] == '0' && date[6] == '0') 
+		return (false);
+	if ((date[5] == '1' && date[6] > '2') || date[5] > '1')
+		return (false);
+
+	if (date[8] == '0' && date[9] == '0')
+		return (false);
+	if ((date[8] == '3' && date[9] > '1') || date[8] > '3')
+		return (false);
+	
+	return (true);
 }

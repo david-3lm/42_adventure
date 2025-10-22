@@ -12,11 +12,12 @@
 class RPN 
 {
 private:
-	void calculate();
-	std::stack<char> _stack;
-	void createStack(std::string arg);
-	int doOperation(int result, int num, char tok);
-	bool isValidToken(char c);
+	std::stack<int> _stack;
+	void execute(double(RPN::*f)(double, double));
+	double add(double a, double b);
+	double minus(double a, double b);
+	double mult(double a, double b);
+	double div(double a, double b);
 public:
     RPN();
 	RPN(std::string arg);
@@ -24,12 +25,41 @@ public:
     RPN(const RPN &other);
     RPN &operator=(const RPN &other);
 
+	double getResult() const;
+
 	class EmptyConstructoException : public std::exception
 	{
 		public:
 			const char *what() const throw() 
 			{
 				return "Error: Need something to calculate";
+			}
+	};
+
+	class WrongTokenException : public std::exception
+	{
+		public:
+			const char *what() const throw() 
+			{
+				return "Error: Wrong Token";
+			}
+	};
+
+	class NotEnoughNumbersException : public std::exception
+	{
+		public:
+			const char *what() const throw() 
+			{
+				return "Error: Not enough numbers";
+			}
+	};
+
+	class NotEnoughTokensException : public std::exception
+	{
+		public:
+			const char *what() const throw() 
+			{
+				return "Error: Not enough tokens";
 			}
 	};
 };

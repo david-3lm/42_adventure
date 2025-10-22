@@ -13,10 +13,11 @@ class BitcoinExchange
 private:
 	std::map<std::string, double> _map;
 	void parseInput(std::ifstream &file);
-	void createMap(std::ifstream &db);
-	bool checkMap(std::string date, std::string value);
-	bool checkValues(std::string date, std::string value);
+	bool createMap(std::ifstream &db);
+	bool checkMap(std::string date, double value);
+	bool checkValues(std::string date, double value);
 	void calculateValue(std::string date, double q);
+	bool validateDate(std::string const &date);
 
 public:
     BitcoinExchange();

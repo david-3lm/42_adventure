@@ -1,6 +1,7 @@
 #include "RPN.hpp"
 
-RPN::RPN() 
+
+RPN::RPN()
 {
 	throw RPN::EmptyConstructoException();
 }
@@ -9,88 +10,86 @@ RPN::~RPN() {}
 
 RPN::RPN(std::string arg)
 {
-	createStack(arg);
-	calculate();
+	std::stringstream ss(arg);
+	std::string tok;
+	int n;
+
+	while (getline(ss, tok, ' '))
+	{
+		if ((tok.length() == 1 && isdigit(tok[0])))
+		{
+			std::stringstream(tok) >> n;
+			_stack.push(n);
+		}
+		else if (tok == "+")
+			execute(&RPN::add);
+		else if (tok == "-")
+			execute(&RPN::minus);
+		else if (tok == "*")
+			execute(&RPN::mult);
+		else if (tok == "/")
+			execute(&RPN::div);
+		else
+			throw RPN::WrongTokenException();
+
+	}	
+}
+
+void RPN::execute(double (RPN::*f)(double,double))
+{
+	double a;
+	double b;
+
+	if (_stack.size() < 2)
+		throw RPN::EmptyConstructoException();
+	a = _stack.top();
+	_stack.pop();
+	b = _stack.top();
+	_stack.pop();
+	_stack.push((this->*f)(a, b));
+}
+
+double RPN::getResult() const
+{
+	if (_stack.empty())
+		throw RPN::NotEnoughNumbersException();
+	else if (_stack.size() > 1)
+		throw RPN::NotEnoughTokensException();
+	return (_stack.top());
+	
+}
+
+double RPN::add(double a, double b)
+{
+	return (b + a);
+}
+
+double RPN::minus(double a, double b)
+{
+	return (b - a);
+}
+
+double RPN::mult(double a, double b)
+{
+	return (b * a);
+}
+
+double RPN::div(double a, double b)
+{
+	return (b / a);
 }
 
 RPN::RPN(const RPN &other) 
 {
-    (void)other;
+    if (this != &other)
+		*this = other;
 }
 
 RPN &RPN::operator=(const RPN &other) 
 {
-    if (this != &other) {
-    }
+    if (this != &other)
+		this->_stack = other._stack;
     return *this;
 }
 
-void RPN::calculate()
-{
-	int result = std::atoi(&_stack.top());
-	std::stack<int> num;
-	char tok;
 
-	_stack.pop();
-
-	while (_stack.size() > 0)
-	{
-		tok = _stack.top();
-		_stack.pop();
-		if (isValidToken(tok))
-		{
-			result = doOperation(result, num.top(), tok);
-			num.pop();
-		}
-		else if (isdigit(tok))
-		{
-			num.push(std::atoi(&tok));
-		}
-	}
-	std::cout << result << std::endl;
-}
-
-int RPN::doOperation(int result, int num, char tok)
-{
-	switch (tok)
-	{
-	case '+':
-		return result + num;
-	case '-':
-		return result - num;
-	case '*':
-		return result * num;
-	case '/':
-		return result / num;
-	default:
-		break;
-	}
-	return result;
-}
-
-bool RPN::isValidToken(char c)
-{
-	if (c == '+' || c == '-' || c == '*' || c == '/')
-		{
-			return true;
-		}
-	return false;
-}
-
-void RPN::createStack(std::string arg)
-{
-	std::string c;
-	std::stringstream ss(arg);
-	std::stack<char> aux;
-
-	while (getline(ss, c, ' '))
-	{
-		aux.push(*(c.c_str()));
-	}
-	int size = aux.size();
-	for (int i = 0; i < size; i++)
-	{
-		_stack.push(aux.top());
-		aux.pop();
-	}
-}
