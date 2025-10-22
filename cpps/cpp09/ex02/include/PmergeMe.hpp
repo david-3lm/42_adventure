@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 #include <deque>
 
 template <typename Container>
@@ -25,6 +26,5 @@ public:
 
 template <typename Container>
 std::ostream &operator<<(std::ostream &os, PmergeMe<Container> &obj);
-#include "../src/PmergeMe.cpp"
 
 #endif // PmergeMe_HPP
