@@ -76,6 +76,8 @@ double RPN::mult(double a, double b)
 
 double RPN::div(double a, double b)
 {
+	if (a == 0.0)
+		throw RPN::DivisionZeroException();
 	return (b / a);
 }
 

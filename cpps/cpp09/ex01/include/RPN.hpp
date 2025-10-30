@@ -62,6 +62,15 @@ public:
 				return "Error: Not enough tokens";
 			}
 	};
+
+	class DivisionZeroException : public std::exception
+	{
+	public:
+		const char *what() const throw()
+		{
+			return "Error: Zero-Division detected!";
+		}
+	};
 };
 
 #endif // RPN_HPP
