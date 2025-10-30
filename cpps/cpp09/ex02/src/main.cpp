@@ -1,4 +1,4 @@
-#include "PmergeMe.hpp"
+#include "../include/PmergeMe.hpp"
 
 
 int main(int argc, char **argv)
@@ -11,13 +11,12 @@ int main(int argc, char **argv)
 			throw std::runtime_error("Not enough arguments.");
 			return 1;
 		}
-		PmergeMe<std::deque<int> > deque(argv);
-		PmergeMe<std::vector<int> > vector(argv);
-		std::cout << "Before: " << deque << std::endl;
-		//sort
-		std::cout << "After: " << deque << std::endl;
+		PmergeMe pmerge_me(argv);
+		std::cout << "Before: " << pmerge_me << std::endl;
+		pmerge_me.sort();
+		std::cout << "After: " << pmerge_me << std::endl;
 	}
-	catch (std::runtime_error e)
+	catch (std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}

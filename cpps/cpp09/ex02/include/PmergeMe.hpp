@@ -7,24 +7,24 @@
 #include <algorithm>
 #include <deque>
 
-template <typename Container>
-class PmergeMe 
+class PmergeMe
 {
-Container container;
+private:
+	std::deque<int> _deq;
+	std::vector<int> _vec;
+	void mergeInsertionDeque(std::deque<int> &deque);
+	void mergeInsetionVector();
 public:
-	typedef typename Container::iterator iterator;
     PmergeMe();
 	PmergeMe(char **input);
     ~PmergeMe();
     PmergeMe(const PmergeMe &other);
     PmergeMe &operator=(const PmergeMe &other);
 	void sort();
-	typename Container::iterator begin();
-	typename Container::iterator end();
-
+	std::deque<int> &getDeque();
+	std::vector<int> &getVector();
 };
 
-template <typename Container>
-std::ostream &operator<<(std::ostream &os, PmergeMe<Container> &obj);
+std::ostream &operator<<(std::ostream &os, PmergeMe &obj);
 
 #endif // PmergeMe_HPP
