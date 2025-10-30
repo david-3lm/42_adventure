@@ -1,8 +1,6 @@
 #include "../include/PmergeMe.hpp"
 
-PmergeMe::PmergeMe()
-{
-}
+PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(char **input)
 {
@@ -17,16 +15,12 @@ PmergeMe::PmergeMe(char **input)
     }
     std::istringstream ss(args_string);
     int n;
-    _deq.clear();
-    _vec.clear();
     while(ss >> n)
 	{
         if (std::find(input_deque.begin(), input_deque.end(), n) != input_deque.end())
             throw std::runtime_error("Duplicate value detected");
         input_deque.push_back(n);
         input_vector.push_back(n);
-        std::cout << "pusheamos: " << n << std::endl;
-
     }
     // if(container.size() != count_word_and_check(args_string))
     //     throw std::runtime_error("Unexpected error");
@@ -41,7 +35,8 @@ PmergeMe::~PmergeMe()
 
 PmergeMe::PmergeMe(const PmergeMe &other)
 {
-    (void)other;
+    _vec = other._vec;
+    _deq = other._deq;
 }
 
 std::deque<int>& PmergeMe::getDeque()
@@ -56,7 +51,10 @@ std::vector<int>& PmergeMe::getVector()
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 {
-    if (this != &other) {
+    if (this != &other)
+    {
+        _deq = other._deq;
+        _vec = other._vec;
     }
     return *this;
 }
@@ -126,15 +124,77 @@ void PmergeMe::mergeInsertionDeque(std::deque<int> &deque)
     _deq = big;
 }
 
-void PmergeMe::mergeInsetionVector()
+void PmergeMe::mergeInsetionVector(std::vector<int> &vector)
 {
+    if (vector.size() <= 1)
+        return;
 
+    std::vector<int> small;
+    std::vector<int> big;
+
+    for (size_t i = 0; i < vector.size() - 1; i+=2)
+    {
+        int a = vector[i];
+        int b = vector[i + 1];
+
+        if (a > b)
+        {
+            big.push_back(a);
+            small.push_back(b);
+        }
+        else
+        {
+            big.push_back(b);
+            small.push_back(a);
+        }
+    }
+
+    if (vector.size() % 2 != 0)
+        big.push_back(vector.back());
+
+    mergeInsetionVector(big);
+
+    std::deque<size_t> jacob = jacobsthal_sequence(small.size());
+    std::deque<size_t> order;
+    size_t prev = 0;
+
+    for (size_t i = 1; i < jacob.size(); ++i)
+    {
+        size_t limit = std::min(jacob[i], small.size());
+        for (size_t j = limit; j > prev; --j)
+            order.push_back(j - 1);
+        prev = limit;
+        if (limit == small.size())
+            break;
+    }
+
+    for (size_t i = 0; i < small.size(); ++i)
+    {
+        int val = small[order[i]];
+        std::vector<int>::iterator it = std::lower_bound(big.begin(),big.end(),val);
+
+        big.insert(it, val);
+    }
+
+    _vec = big;
 }
 
 void PmergeMe::sort()
 {
     //TODO: clock
+    clock_t begin_deq = clock();
     mergeInsertionDeque(_deq);
+    clock_t end_deq = clock();
+
+    double time_deq = static_cast<double>(end_deq - begin_deq)/ CLOCKS_PER_SEC * 1000;
+    std::cout << "Time to sort a deque of size: " << _deq.size() << "\n\t" << time_deq << " secs." << std::endl;
+    clock_t begin_vec = clock();
+    mergeInsetionVector(_vec);
+    clock_t end_vec = clock();
+
+    double time_vec = static_cast<double>(end_vec - begin_vec)/ CLOCKS_PER_SEC * 1000;
+    std::cout << "Time to sort a vector of size: " << _vec.size() << "\n\t" << time_vec << " secs." << std::endl;
+
 }
 
 

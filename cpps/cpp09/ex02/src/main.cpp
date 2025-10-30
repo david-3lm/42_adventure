@@ -12,9 +12,9 @@ int main(int argc, char **argv)
 			return 1;
 		}
 		PmergeMe pmerge_me(argv);
-		std::cout << "Before: " << pmerge_me << std::endl;
+		//std::cout << "Before: " << pmerge_me << std::endl;
 		pmerge_me.sort();
-		std::cout << "After: " << pmerge_me << std::endl;
+		//std::cout << "After: " << pmerge_me << std::endl;
 	}
 	catch (std::exception& e)
 	{

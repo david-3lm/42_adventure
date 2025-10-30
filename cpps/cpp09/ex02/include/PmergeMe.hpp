@@ -13,7 +13,7 @@ private:
 	std::deque<int> _deq;
 	std::vector<int> _vec;
 	void mergeInsertionDeque(std::deque<int> &deque);
-	void mergeInsetionVector();
+	void mergeInsetionVector(std::vector<int> &vec);
 public:
     PmergeMe();
 	PmergeMe(char **input);
