@@ -121,7 +121,7 @@ void PmergeMe::mergeInsertionDeque(std::deque<int> &deque)
         big.insert(it, val);
     }
 
-    _deq = big;
+    deque = big;
 }
 
 void PmergeMe::mergeInsetionVector(std::vector<int> &vector)
@@ -176,24 +176,23 @@ void PmergeMe::mergeInsetionVector(std::vector<int> &vector)
         big.insert(it, val);
     }
 
-    _vec = big;
+    vector = big;
 }
 
 void PmergeMe::sort()
 {
-    //TODO: clock
     clock_t begin_deq = clock();
     mergeInsertionDeque(_deq);
     clock_t end_deq = clock();
 
-    double time_deq = static_cast<double>(end_deq - begin_deq)/ CLOCKS_PER_SEC * 1000;
-    std::cout << "Time to sort a deque of size: " << _deq.size() << "\n\t" << time_deq << " secs." << std::endl;
+    double time_deq = 1000 * static_cast<double>(end_deq - begin_deq)/ CLOCKS_PER_SEC;
+    std::cout << "Time to sort a deque of size: " << _deq.size() << "\n\t" << time_deq << " ms." << std::endl;
     clock_t begin_vec = clock();
     mergeInsetionVector(_vec);
     clock_t end_vec = clock();
 
-    double time_vec = static_cast<double>(end_vec - begin_vec)/ CLOCKS_PER_SEC * 1000;
-    std::cout << "Time to sort a vector of size: " << _vec.size() << "\n\t" << time_vec << " secs." << std::endl;
+    double time_vec = 1000 * static_cast<double>(end_vec - begin_vec) / CLOCKS_PER_SEC;
+    std::cout << "Time to sort a vector of size: " << _vec.size() << "\n\t" << time_vec << " ms." << std::endl;
 
 }
 
